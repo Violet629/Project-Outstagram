@@ -24,7 +24,9 @@ export default {
 /* Roboto font 400&700 : font-family: 'Roboto', sans-serif; */
 
 .friend-list {
-  width: 60%;
+  width: 100%;
+  max-width: 60%;
+  float: left;
   margin-top: 55px;
   display: flex;
   border: solid 2px rgb(233, 233, 233);
