@@ -19,10 +19,23 @@
 
 <script>
 import MainPage from "./components/MainPage.vue";
+import axios from "axios";
+
 export default {
   name: "App",
   components: {
     MainPage,
+  },
+  // 로딩 했을때 실행
+  created() {
+    axios
+      .get("http://localhost:8080/test")
+      .then((결과) => {
+        console.log(결과.data);
+      })
+      .catch(() => {
+        console.log("데이터 전송 실패");
+      });
   },
 };
 </script>
