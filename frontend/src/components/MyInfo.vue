@@ -26,7 +26,7 @@
           <p>0</p>
         </div>
         <div class="menu3-my-follow">
-          <p>follow</p>
+          <p style="op">follow</p>
           <p>0</p>
         </div>
       </div>
@@ -105,7 +105,7 @@ export default {};
 .up-post {
   width: 100%;
   float: left;
-  margin-top: 32px;
+  margin-top: 18px;
   border: 2px solid rgb(233, 233, 233);
 }
 .up-post button {
@@ -116,7 +116,7 @@ export default {};
 }
 .my-post {
   width: 100%;
-  margin-top: 2px;
+  margin-top: 4px;
   float: left;
   border: 2px solid rgb(233, 233, 233);
 }
