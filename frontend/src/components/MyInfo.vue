@@ -62,6 +62,8 @@ export default {};
   width: 100%;
   max-width: 36%;
   float: right;
+  position: relative;
+  top: -100px;
 }
 .myinfo-menu1 {
   width: 30%;
@@ -107,6 +109,7 @@ export default {};
   float: left;
   margin-top: 18px;
   border: 2px solid rgb(233, 233, 233);
+  border-radius: 8px;
 }
 .up-post button {
   width: 100%;
@@ -119,6 +122,7 @@ export default {};
   margin-top: 4px;
   float: left;
   border: 2px solid rgb(233, 233, 233);
+  border-radius: 8px;
 }
 .my-post h3 {
   margin: 12px;

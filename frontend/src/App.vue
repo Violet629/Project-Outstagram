@@ -12,7 +12,7 @@
         <button class="logout-button">logout</button>
       </div>
     </div>
-
+    <!-- <h4>{{ $store.state.name }}</h4> -->
     <MainPage />
   </div>
 </template>

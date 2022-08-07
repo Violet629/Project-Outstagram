@@ -30,6 +30,7 @@ export default {
   margin-top: 55px;
   display: flex;
   border: solid 2px rgb(233, 233, 233);
+  border-radius: 8px;
 }
 /* .friend-text {
   font-family: "Roboto", sans-serif;

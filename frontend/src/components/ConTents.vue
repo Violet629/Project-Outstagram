@@ -43,6 +43,7 @@ export default {};
   width: 100%;
   border: 2px solid rgb(233, 233, 233);
   margin-bottom: 22px;
+  border-radius: 8px;
 }
 .profile {
   display: flex;
