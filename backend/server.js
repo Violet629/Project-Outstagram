@@ -2,26 +2,26 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
+// node와 서버간 ajax 요청 기능 추가
+app.use(express.json());
+var cors = require("cors");
+app.use(cors());
+
 const MongoClient = require("mongodb").MongoClient;
 
 var db;
 MongoClient.connect(
   "mongodb+srv://violet4649:soda4649@cluster0.dymf56j.mongodb.net/Outstagram?retryWrites=true&w=majority",
   function (err, client) {
-    // if (err) return console.log(err);
+    if (err) return console.log(err);
 
-    // db = client.db("Outstagram");
+    db = client.db("Outstagram");
 
     app.listen("8080", function () {
       console.log("listening on 8080");
     });
   }
 );
-
-// node와 서버간 ajax 요청 기능 추가
-app.use(express.json());
-var cors = require("cors");
-app.use(cors());
 
 // 다른 로컬파일 불러오기
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
