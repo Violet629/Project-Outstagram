@@ -8,11 +8,14 @@
         <input class="search" type="text" placeholder=" 🔍 Search" />
       </div>
       <div class="header-menu-3">
-        <button class="login-button">login</button>
-        <button class="logout-button">logout</button>
+        <button class="login-button" v-if="this.$store.state.login === false">
+          login
+        </button>
+        <button class="logout-button" v-if="this.$store.state.login === true">
+          logout
+        </button>
       </div>
     </div>
-    <!-- <h4>{{ $store.state.name }}</h4> -->
     <MainPage />
   </div>
 </template>
@@ -23,6 +26,9 @@ import axios from "axios";
 
 export default {
   name: "App",
+  data() {
+    return {};
+  },
   components: {
     MainPage,
   },
@@ -75,6 +81,7 @@ body {
 }
 .login-button,
 .logout-button {
+  margin-right: 36px;
   font-size: 18px;
   width: 100px;
   height: 36px;
