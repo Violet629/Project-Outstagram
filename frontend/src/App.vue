@@ -1,48 +1,34 @@
 <template>
-  <div>
-    <div class="header">
-      <div class="header-menu-1">
-        <p class="logo">Outstagram</p>
+  <div class="login-page">
+    <div class="welcome">
+      <div class="welcome-icon">
+        <img src="./assets/icon/paperairplane.png" />
       </div>
-      <div class="header-menu-2">
-        <input class="search" type="text" placeholder=" 🔍 Search" />
-      </div>
-      <div class="header-menu-3">
-        <button class="login-button" v-if="this.$store.state.login === false">
-          login
-        </button>
-        <button class="logout-button" v-if="this.$store.state.login === true">
-          logout
-        </button>
+      <div class="welcome-text">
+        <span>Welcome To </span>
+        <span style="font-family: 'Kaushan Script', cursive">Outstagram</span>
       </div>
     </div>
-    <MainPage />
+    <div class="login-input">
+      <input type="text" class="login-id" placeholder="ID" />
+      <br />
+      <input type="password" class="login-pw" placeholder="Password" />
+    </div>
+    <div>
+      <button class="login-signin">Sign In</button>
+      <br />
+      <button class="login-signup">Sign Up</button>
+    </div>
   </div>
 </template>
 
 <script>
-import MainPage from "./components/MainPage.vue";
-import axios from "axios";
-
 export default {
   name: "App",
   data() {
     return {};
   },
-  components: {
-    MainPage,
-  },
-  // 로딩 했을때 실행
-  created() {
-    axios
-      .get("http://localhost:8080/test")
-      .then((결과) => {
-        console.log(결과.data);
-      })
-      .catch(() => {
-        console.log("데이터 전송 실패");
-      });
-  },
+  components: {},
 };
 </script>
 
@@ -57,34 +43,50 @@ body {
   margin: 0;
   padding: 0;
 }
-.header {
+
+.login-page {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background-color: #ffffff;
-  border-bottom: solid 2px rgb(233, 233, 233);
+  max-width: 480px;
+  padding: 48px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  border: 1px solid rgba(153, 153, 153, 0.568);
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 20px 20px 20px grey;
 }
-.logo {
-  font-family: "Kaushan Script", cursive;
-  font-size: 35px;
-  margin: 15px;
+.welcome-icon img {
+  width: 46px;
+  margin-bottom: 14px;
 }
-.search {
-  width: 260px;
-  height: 28px;
-  background-color: rgb(233, 233, 233);
-  border: 0;
-  border-radius: 15px;
-  font-size: 15px;
+.welcome-text {
   font-family: "Roboto", sans-serif;
+  font-size: 28px;
+  margin-bottom: 24px;
 }
-.login-button,
-.logout-button {
-  margin-right: 36px;
+.login-id,
+.login-pw {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  padding: 16px 128px 16px 12px;
+  margin: 12px 12px 0px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(153, 153, 153, 0.322);
+}
+.login-signin,
+.login-signup {
+  font-family: "Roboto", sans-serif;
   font-size: 18px;
-  width: 100px;
-  height: 36px;
-  font-family: "Roboto", sans-serif;
+  margin: 12px 12px 0px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(153, 153, 153, 0.322);
+}
+.login-signin {
+  padding: 10px 180px 10px 180px;
+}
+.login-signup {
+  padding: 10px 176px 10px 176px;
 }
 </style>
