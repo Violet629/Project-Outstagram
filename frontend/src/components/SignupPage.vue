@@ -1,0 +1,87 @@
+<template>
+  <div class="signup-page">
+    <div>
+      <div class="header">
+        <div class="header-icon">
+          <img src="../assets/icon/profile.png" />
+        </div>
+        <span class="header-text">Sign Up</span>
+      </div>
+      <div>
+        <input type="text" class="signup-id" placeholder="New ID" />
+      </div>
+      <div>
+        <input type="password" class="signup-pw" placeholder="New Password" />
+      </div>
+      <div>
+        <input
+          type="password"
+          class="signup-pw"
+          placeholder="Re-Enter Password"
+        />
+      </div>
+      <div>
+        <button class="signup-submit">Submit</button>
+        <br />
+        <button class="signup-Cancel" @click="$store.commit('changeSingup')">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
+/* logo font : font-family: 'Kaushan Script', cursive; */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap");
+/* Roboto font 400&700 : font-family: 'Roboto', sans-serif; */
+
+.signup-page {
+  width: 100%;
+  max-width: 480px;
+  padding: 48px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  border: 1px solid rgba(153, 153, 153, 0.568);
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 20px 20px 20px grey;
+}
+.header-icon img {
+  width: 46px;
+  margin-bottom: 14px;
+}
+.header-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+.signup-id,
+.signup-pw {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  padding: 16px 128px 16px 12px;
+  margin: 12px 12px 0px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(153, 153, 153, 0.322);
+}
+.signup-submit,
+.signup-Cancel {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  margin: 12px 12px 0px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(153, 153, 153, 0.322);
+}
+.signup-submit,
+.signup-Cancel {
+  padding: 10px 180px 10px 180px;
+}
+</style>

@@ -3,9 +3,18 @@ import { createStore } from "vuex";
 const store = createStore({
   state() {
     return {
-      name: "lee", // state 보관
       login: false,
+      singupStep: false,
     };
+  },
+  mutations: {
+    changeSingup(state) {
+      if (state.singupStep === false) {
+        state.singupStep = true;
+      } else {
+        state.singupStep = false;
+      }
+    },
   },
 });
 
