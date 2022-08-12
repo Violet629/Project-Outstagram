@@ -7,26 +7,28 @@
         </div>
         <span class="header-text">Sign Up</span>
       </div>
-      <div>
-        <input type="text" class="signup-id" placeholder="New ID" />
-      </div>
-      <div>
-        <input type="password" class="signup-pw" placeholder="New Password" />
-      </div>
-      <div>
-        <input
-          type="password"
-          class="signup-pw"
-          placeholder="Re-Enter Password"
-        />
-      </div>
-      <div>
-        <button class="signup-submit">Submit</button>
-        <br />
+      <form action="signup" method="post">
+        <input type="text" class="signup-id" placeholder="New ID" name="id" />
+      </form>
+      <form action="signup" method="post">
+        <div>
+          <input
+            type="password"
+            class="signup-pw"
+            placeholder="New Password"
+            name="pw"
+          />
+          <input
+            type="password"
+            class="signup-pw"
+            placeholder="Re-Enter Password"
+          />
+        </div>
+        <button type="submit" class="signup-submit">Submit</button> <br />
         <button class="signup-Cancel" @click="$store.commit('changeSingup')">
           Cancel
         </button>
-      </div>
+      </form>
     </div>
   </div>
 </template>

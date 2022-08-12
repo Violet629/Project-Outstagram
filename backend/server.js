@@ -41,6 +41,15 @@ app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
+app.post("/signup", function (req, res) {
+  db.collection("userdata").insertone(
+    { userID: req.body.id, userPW: req.body.pw },
+    function (err, r) {
+      res.redirect("/");
+    }
+  );
+});
+
 // app.get("/test", function (req, res) {
 //   res.json({ name: "test" });
 // });
