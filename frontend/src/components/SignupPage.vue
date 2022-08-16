@@ -7,16 +7,21 @@
         </div>
         <span class="header-text">Sign Up</span>
       </div>
-      <form action="signup" method="post">
-        <input type="text" class="signup-id" placeholder="New ID" name="id" />
-      </form>
-      <form action="signup" method="post">
+      <form action="/signup" method="POST">
+        <div>
+          <input
+            type="text"
+            class="signup-id"
+            placeholder="New ID"
+            name="login_id"
+          />
+        </div>
         <div>
           <input
             type="password"
             class="signup-pw"
             placeholder="New Password"
-            name="pw"
+            name="login_pw"
           />
           <input
             type="password"

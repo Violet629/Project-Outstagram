@@ -7,6 +7,9 @@ app.use(express.json());
 var cors = require("cors");
 app.use(cors());
 
+// db에 저장은 가능하나 null로 출력되는 현상 & post 요청 오류 현상 고쳐줌
+app.use(express.urlencoded({ extended: true }));
+
 // 로그인 기능 라이브러리
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
@@ -42,17 +45,15 @@ app.get("/", function (req, res) {
 });
 
 app.post("/signup", function (req, res) {
-  db.collection("userdata").insertone(
-    { userID: req.body.id, userPW: req.body.pw },
-    function (err, r) {
-      res.redirect("/");
+  console.log(req.body);
+  res.redirect("/");
+  db.collection("login_account").insertOne(
+    { userID: req.body.login_id, userPW: req.body.login_pw },
+    function (err, result) {
+      console.log("완료");
     }
   );
 });
-
-// app.get("/test", function (req, res) {
-//   res.json({ name: "test" });
-// });
 
 app.get("/user", function (req, res) {
   db.collection("post")
@@ -65,41 +66,41 @@ app.get("/user", function (req, res) {
     });
 });
 
-app.post(
-  "/login",
-  passport.authenticate("local", { failureRedirect: "/fail" }),
-  function (요청, 응답) {
-    응답.redirect("/");
-  }
-);
+// app.post(
+//   "/login",
+//   passport.authenticate("local", { failureRedirect: "/fail" }),
+//   function (요청, 응답) {
+//     응답.redirect("/");
+//   }
+// );
 
-passport.use(
-  new LocalStrategy(
-    {
-      usernameField: "id",
-      passwordField: "pw",
-      session: true,
-      passReqToCallback: false,
-    },
-    function (입력한아이디, 입력한비번, done) {
-      console.log(입력한아이디, 입력한비번);
-      db.collection("login").findOne(
-        { id: 입력한아이디 },
-        function (에러, 결과) {
-          if (에러) return done(에러);
+// passport.use(
+//   new LocalStrategy(
+//     {
+//       usernameField: "id",
+//       passwordField: "pw",
+//       session: true,
+//       passReqToCallback: false,
+//     },
+//     function (입력한아이디, 입력한비번, done) {
+//       console.log(입력한아이디, 입력한비번);
+//       db.collection("login").findOne(
+//         { id: 입력한아이디 },
+//         function (에러, 결과) {
+//           if (에러) return done(에러);
 
-          if (!결과)
-            return done(null, false, { message: "존재하지않는 아이디요" });
-          if (입력한비번 == 결과.pw) {
-            return done(null, 결과);
-          } else {
-            return done(null, false, { message: "비번틀렸어요" });
-          }
-        }
-      );
-    }
-  )
-);
+//           if (!결과)
+//             return done(null, false, { message: "존재하지않는 아이디요" });
+//           if (입력한비번 == 결과.pw) {
+//             return done(null, 결과);
+//           } else {
+//             return done(null, false, { message: "비번틀렸어요" });
+//           }
+//         }
+//       );
+//     }
+//   )
+// );
 
 // 주소창에 미개발 주소 치면 다시 메인 페이지로 보내주세요
 app.get("*", function (req, res) {
