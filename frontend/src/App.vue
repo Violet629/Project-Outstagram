@@ -2,6 +2,7 @@
   <div>
     <LoginPage v-if="this.$store.state.singupStep === false" />
     <SignupPage v-if="this.$store.state.singupStep === true" />
+    <router-view></router-view>
   </div>
 </template>
 

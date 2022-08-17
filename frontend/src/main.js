@@ -4,6 +4,9 @@ import store from "./store.js";
 import router from "./router";
 
 let app = createApp(App);
-app.use(store, router).mount("#app");
+// app.use(store, router).mount("#app");
 
-// createApp(App).use(router, store).mount("#app");
+// createApp(App).use(router).mount("#app");
+app.use(store);
+app.use(router);
+app.mount("#app");

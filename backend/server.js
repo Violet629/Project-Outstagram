@@ -38,6 +38,7 @@ MongoClient.connect(
 
 // 다른 로컬파일 불러오기
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
+// app.use(express.static(path.join(__dirname, "../frontend/src/components")));
 
 // 메인 페이지
 app.get("/", function (req, res) {
@@ -45,26 +46,26 @@ app.get("/", function (req, res) {
 });
 
 app.post("/signup", function (req, res) {
-  console.log(req.body);
-  res.redirect("/");
   db.collection("login_account").insertOne(
     { userID: req.body.login_id, userPW: req.body.login_pw },
     function (err, result) {
-      console.log("완료");
+      console.log(req.body);
+      console.log(req.body.login_id + " User-Sign UP!");
     }
   );
+  res.redirect("/");
 });
 
-app.get("/user", function (req, res) {
-  db.collection("post")
-    .find()
-    .toArray(function (에러, 결과) {
-      res.json(결과);
-      for (var i = 0; i < 결과.length; i++) {
-        console.log(결과[i].name);
-      }
-    });
-});
+// app.get("/user", function (req, res) {
+//   db.collection("post")
+//     .find()
+//     .toArray(function (에러, 결과) {
+//       res.json(결과);
+//       for (var i = 0; i < 결과.length; i++) {
+//         console.log(결과[i].name);
+//       }
+//     });
+// });
 
 // app.post(
 //   "/login",

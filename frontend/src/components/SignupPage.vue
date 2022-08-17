@@ -14,6 +14,7 @@
             class="signup-id"
             placeholder="New ID"
             name="login_id"
+            @input="checkSubmit"
           />
         </div>
         <div>
@@ -22,14 +23,23 @@
             class="signup-pw"
             placeholder="New Password"
             name="login_pw"
+            @input="checkSubmit"
           />
           <input
             type="password"
-            class="signup-pw"
+            class="resignup-pw"
             placeholder="Re-Enter Password"
+            @input="checkSubmit"
           />
         </div>
-        <button type="submit" class="signup-submit">Submit</button> <br />
+        <button
+          type="submit"
+          class="signup-submit"
+          :disabled="confirmPw === false"
+        >
+          Submit
+        </button>
+        <br />
         <button class="signup-Cancel" @click="$store.commit('changeSingup')">
           Cancel
         </button>
@@ -39,7 +49,36 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "SingupPage",
+  data() {
+    return {
+      inputId: "",
+      inputPw: "",
+      inputRePw: "",
+      confirmPw: false,
+    };
+  },
+  methods: {
+    checkSubmit() {
+      this.inputId = document.querySelector(".signup-id").value;
+      this.inputPw = document.querySelector(".signup-pw").value;
+      this.inputRePw = document.querySelector(".resignup-pw").value;
+      if (this.inputId !== "" && this.inputPw !== "") {
+        if (this.inputPw === this.inputRePw) {
+          this.confirmPw = true;
+          document.querySelector(".signup-submit").innerHTML = "Submit";
+        } else {
+          this.confirmPw = false;
+          document.querySelector(".signup-submit").innerHTML =
+            "PW do not match";
+        }
+      } else {
+        this.confirmPw = false;
+      }
+    },
+  },
+};
 </script>
 
 <style>
@@ -71,7 +110,8 @@ export default {};
   margin-bottom: 24px;
 }
 .signup-id,
-.signup-pw {
+.signup-pw,
+.resignup-pw {
   font-family: "Roboto", sans-serif;
   font-size: 24px;
   padding: 16px 128px 16px 12px;
