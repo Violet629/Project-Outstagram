@@ -38,15 +38,14 @@ MongoClient.connect(
 
 // 다른 로컬파일 불러오기
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
-// app.use(express.static(path.join(__dirname, "../frontend/src/components")));
 
-// 메인 페이지
+// 시작 페이지
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
 app.post("/signup", function (req, res) {
-  db.collection("login_account").insertOne(
+  db.collection("useraccount").insertOne(
     { userID: req.body.login_id, userPW: req.body.login_pw },
     function (err, result) {
       console.log(req.body);
@@ -56,54 +55,76 @@ app.post("/signup", function (req, res) {
   res.redirect("/");
 });
 
-// app.get("/user", function (req, res) {
-//   db.collection("post")
-//     .find()
-//     .toArray(function (에러, 결과) {
-//       res.json(결과);
-//       for (var i = 0; i < 결과.length; i++) {
-//         console.log(결과[i].name);
-//       }
-//     });
-// });
+app.post(
+  "/login",
+  passport.authenticate("local", { failureRedirect: "/fail" }),
+  function (req, res) {
+    res.redirect("/home");
+  }
+);
 
-// app.post(
-//   "/login",
-//   passport.authenticate("local", { failureRedirect: "/fail" }),
-//   function (요청, 응답) {
-//     응답.redirect("/");
-//   }
-// );
+app.get("/home", loginCheck, function (req, res, next) {
+  console.log(req.user);
+  next();
+});
 
-// passport.use(
-//   new LocalStrategy(
-//     {
-//       usernameField: "id",
-//       passwordField: "pw",
-//       session: true,
-//       passReqToCallback: false,
-//     },
-//     function (입력한아이디, 입력한비번, done) {
-//       console.log(입력한아이디, 입력한비번);
-//       db.collection("login").findOne(
-//         { id: 입력한아이디 },
-//         function (에러, 결과) {
-//           if (에러) return done(에러);
+passport.use(
+  new LocalStrategy(
+    {
+      usernameField: "id",
+      passwordField: "pw",
+      session: true,
+      passReqToCallback: false,
+    },
+    function (inputId, inputPw, done) {
+      console.log(inputId, inputPw);
+      db.collection("useraccount").findOne(
+        { userID: inputId },
+        function (err, result) {
+          if (err) return done(err);
+          if (!result) return done(null, false, { message: "Incorrect ID" });
+          if (inputPw == result.userPW) {
+            return done(null, result);
+          } else {
+            return done(null, false, { message: "Incorrect password." });
+          }
+        }
+      );
+    }
+  )
+);
+passport.serializeUser(function (user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function (user, done) {
+  db.collection("useraccount").findOne(
+    { userID: user },
+    function (err, result) {
+      done(null, user);
+    }
+  );
+});
 
-//           if (!결과)
-//             return done(null, false, { message: "존재하지않는 아이디요" });
-//           if (입력한비번 == 결과.pw) {
-//             return done(null, 결과);
-//           } else {
-//             return done(null, false, { message: "비번틀렸어요" });
-//           }
-//         }
-//       );
-//     }
-//   )
-// );
+function loginCheck(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    res.redirect("/");
+  }
+}
 
 // 주소창에 미개발 주소 치면 다시 메인 페이지로 보내주세요
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
+
+// app.get("/user", function (req, res) {
+//   db.collection("post")
+//     .find()
+//     .toArray(function (err, result) {
+//       res.json(result);
+//       for (var i = 0; i < 결과.length; i++) {
+//         console.log(결과[i].name);
+//       }
+//     });
+// });

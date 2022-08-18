@@ -3,18 +3,18 @@ import { createStore } from "vuex";
 const store = createStore({
   state() {
     return {
-      login: false,
-      singupStep: false,
+      // login: false,
+      // loginPage: false,
     };
   },
   mutations: {
-    changeSingup(state) {
-      if (state.singupStep === false) {
-        state.singupStep = true;
-      } else {
-        state.singupStep = false;
-      }
-    },
+    // loginStep(state) {
+    //   if (state.loginPage === false) {
+    //     state.loginPage = true;
+    //   } else {
+    //     state.loginPage = false;
+    //   }
+    // },
   },
 });
 

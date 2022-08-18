@@ -40,9 +40,10 @@
           Submit
         </button>
         <br />
-        <button class="signup-Cancel" @click="$store.commit('changeSingup')">
+        <router-link to="/" class="signup-Cancel">Cancel</router-link>
+        <!-- <button class="signup-Cancel" @click="$store.commit('loginStep')">
           Cancel
-        </button>
+        </button> -->
       </form>
     </div>
   </div>
@@ -122,13 +123,19 @@ export default {
 .signup-submit,
 .signup-Cancel {
   font-family: "Roboto", sans-serif;
+  display: inline-block;
   font-size: 18px;
   margin: 12px 12px 0px 12px;
   border-radius: 8px;
   border: 1px solid rgba(153, 153, 153, 0.322);
+  list-style: none;
+  text-decoration: none;
 }
 .signup-submit,
 .signup-Cancel {
   padding: 10px 180px 10px 180px;
+}
+.signup-Cancel {
+  color: black;
 }
 </style>

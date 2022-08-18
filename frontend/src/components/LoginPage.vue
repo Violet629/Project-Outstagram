@@ -9,18 +9,27 @@
         <span style="font-family: 'Kaushan Script', cursive">Outstagram</span>
       </div>
     </div>
-    <div class="login-input">
-      <input type="text" class="login-id" placeholder="ID" />
-      <br />
-      <input type="password" class="login-pw" placeholder="Password" />
-    </div>
-    <div>
-      <button class="login-signin">Sign In</button>
-      <br />
-      <button class="login-signup" @click="$store.commit('changeSingup')">
+    <form action="/login" method="post">
+      <div class="login-input">
+        <input type="text" class="login-id" placeholder="ID" name="id" />
+        <br />
+        <input
+          type="password"
+          class="login-pw"
+          placeholder="Password"
+          name="pw"
+        />
+      </div>
+      <div>
+        <!-- <router-link to="/" class="login-signin">Sign In</router-link> -->
+        <button type="submit" class="login-signin">Sign In</button>
+        <br />
+        <router-link to="singup-page" class="login-signup">Sing up</router-link>
+        <!-- <button class="login-signup" @click="$store.commit('loginStep')">
         Sign Up
-      </button>
-    </div>
+      </button> -->
+      </div>
+    </form>
   </div>
 </template>
 
@@ -71,10 +80,14 @@ export default {};
 .login-signin,
 .login-signup {
   font-family: "Roboto", sans-serif;
+  display: inline-block;
   font-size: 18px;
   margin: 12px 12px 0px 12px;
   border-radius: 8px;
   border: 1px solid rgba(153, 153, 153, 0.322);
+  list-style: none;
+  text-decoration: none;
+  color: black;
 }
 .login-signin {
   padding: 10px 180px 10px 180px;
