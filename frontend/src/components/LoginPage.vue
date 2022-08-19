@@ -21,10 +21,10 @@
         />
       </div>
       <div>
-        <!-- <router-link to="/" class="login-signin">Sign In</router-link> -->
-        <button type="submit" class="login-signin">Sign In</button>
+        <!-- <router-link to="/" class="login-signin">Login</router-link> -->
+        <button type="submit" class="login-signin">Login</button>
         <br />
-        <router-link to="singup-page" class="login-signup">Sing up</router-link>
+        <router-link to="singup_page" class="login-signup">Sing up</router-link>
         <!-- <button class="login-signup" @click="$store.commit('loginStep')">
         Sign Up
       </button> -->
@@ -52,7 +52,7 @@ export default {};
   top: 50%;
   left: 50%;
   transform: translate(-50%, -55%);
-  border: 1px solid rgba(153, 153, 153, 0.568);
+  border: 1px solid rgba(153, 153, 153, 0.8);
   border-radius: 8px;
   text-align: center;
   box-shadow: 20px 20px 20px grey;
@@ -75,7 +75,7 @@ export default {};
   padding: 16px 128px 16px 12px;
   margin: 12px 12px 0px 12px;
   border-radius: 8px;
-  border: 1px solid rgba(153, 153, 153, 0.322);
+  border: 1px solid rgba(153, 153, 153, 0.8);
 }
 .login-signin,
 .login-signup {
@@ -84,13 +84,13 @@ export default {};
   font-size: 18px;
   margin: 12px 12px 0px 12px;
   border-radius: 8px;
-  border: 1px solid rgba(153, 153, 153, 0.322);
+  border: 1px solid rgba(153, 153, 153, 0.8);
   list-style: none;
   text-decoration: none;
   color: black;
 }
 .login-signin {
-  padding: 10px 180px 10px 180px;
+  padding: 10px 185px 10px 185px;
 }
 .login-signup {
   padding: 10px 176px 10px 176px;

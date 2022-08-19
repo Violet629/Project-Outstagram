@@ -52,7 +52,7 @@ app.post("/signup", function (req, res) {
       console.log(req.body.login_id + " User-Sign UP!");
     }
   );
-  res.redirect("/");
+  res.redirect("/singup_complete");
 });
 
 app.post(
@@ -109,7 +109,7 @@ function loginCheck(req, res, next) {
   if (req.user) {
     next();
   } else {
-    res.redirect("/");
+    res.redirect("/login_request");
   }
 }
 

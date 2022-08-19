@@ -96,7 +96,7 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -55%);
-  border: 1px solid rgba(153, 153, 153, 0.568);
+  border: 1px solid rgba(153, 153, 153, 0.8);
   border-radius: 8px;
   text-align: center;
   box-shadow: 20px 20px 20px grey;
@@ -118,7 +118,7 @@ export default {
   padding: 16px 128px 16px 12px;
   margin: 12px 12px 0px 12px;
   border-radius: 8px;
-  border: 1px solid rgba(153, 153, 153, 0.322);
+  border: 1px solid rgba(153, 153, 153, 0.8);
 }
 .signup-submit,
 .signup-Cancel {
@@ -127,7 +127,7 @@ export default {
   font-size: 18px;
   margin: 12px 12px 0px 12px;
   border-radius: 8px;
-  border: 1px solid rgba(153, 153, 153, 0.322);
+  border: 1px solid rgba(153, 153, 153, 0.8);
   list-style: none;
   text-decoration: none;
 }

@@ -1,16 +1,16 @@
 <template>
-  <div class="login-fail">
-    <div class="login-fail-icon">
-      <img src="../assets/icon/exclamation.png" />
+  <div class="signup-complete">
+    <div class="signup-complete-icon">
+      <img src="../assets/icon/badge.png" />
     </div>
-    <div class="login-fail-header">
-      <div>Login Fail</div>
+    <div class="signup-complete-header">
+      <span style="text-decoration-line: underline">Enjoy</span>
+      <span style="font-family: 'Kaushan Script', cursive"> Outstagram</span>
     </div>
-    <div class="login-fail-messages">
-      <div>Incorrect ID or Password</div>
-      <div>Please login again</div>
+    <div class="signup-complete-messages">
+      <div>Sign Up Complete</div>
     </div>
-    <div class="login-fail-button">
+    <div class="signup-complete-button">
       <router-link to="/" class="to-loginpage">Login Page</router-link>
     </div>
   </div>
@@ -26,7 +26,7 @@ export default {};
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap");
 /* Roboto font 400&700 : font-family: 'Roboto', sans-serif; */
 
-.login-fail {
+.signup-complete {
   width: 100%;
   max-width: 480px;
   padding: 48px;
@@ -39,17 +39,16 @@ export default {};
   text-align: center;
   box-shadow: 20px 20px 20px grey;
 }
-.login-fail-icon img {
+.signup-complete-icon img {
   width: 46px;
   margin-bottom: 14px;
 }
-.login-fail-header {
+.signup-complete-header {
   font-family: "Roboto", sans-serif;
   font-size: 36px;
   margin-bottom: 32px;
-  text-decoration-line: underline;
 }
-.login-fail-messages {
+.signup-complete-messages {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   margin-bottom: 18px;
