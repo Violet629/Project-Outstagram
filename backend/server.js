@@ -10,7 +10,7 @@ app.use(cors());
 // db에 저장은 가능하나 null로 출력되는 현상 & post 요청 오류 현상 고쳐줌
 app.use(express.urlencoded({ extended: true }));
 
-// 로그인 기능 라이브러리
+// passport : 로그인 기능 라이브러리
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
@@ -55,6 +55,13 @@ app.post("/signup", function (req, res) {
   res.redirect("/singup_complete");
 });
 
+app.get("/home", loginCheck, function (req, res, next) {
+  console.log(req.user);
+  next();
+});
+
+// 로그인요청을 passport 처리후 성공하면 /home 으로 보내주세요
+// 실패하면 /fail로 보내주세요
 app.post(
   "/login",
   passport.authenticate("local", { failureRedirect: "/fail" }),
@@ -63,11 +70,7 @@ app.post(
   }
 );
 
-app.get("/home", loginCheck, function (req, res, next) {
-  console.log(req.user);
-  next();
-});
-
+// passport 회원가입 라이브러리
 passport.use(
   new LocalStrategy(
     {
@@ -105,6 +108,7 @@ passport.deserializeUser(function (user, done) {
   );
 });
 
+// 로그인 안되어있으면 로그인 요청 창으로 이동
 function loginCheck(req, res, next) {
   if (req.user) {
     next();

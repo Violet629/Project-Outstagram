@@ -11,7 +11,13 @@
     </div>
     <form action="/login" method="post">
       <div class="login-input">
-        <input type="text" class="login-id" placeholder="ID" name="id" />
+        <input
+          type="text"
+          class="login-id"
+          placeholder="ID"
+          autocomplete="off"
+          name="id"
+        />
         <br />
         <input
           type="password"

@@ -13,6 +13,7 @@
             type="text"
             class="signup-id"
             placeholder="New ID"
+            autocomplete="off"
             name="login_id"
             @input="checkSubmit"
           />
