@@ -33,17 +33,18 @@ export default {
     MainPage,
   },
   // 로딩 했을때 실행
-  mounted() {
-    axios
-      .get("http://localhost:8080/user")
-      .then((r) => {
-        console.log(r.data);
-        this.userdata = r.data;
-      })
-      .catch((e) => {
-        console.error(e.message);
-      });
-  },
+  // mounted() {
+  //   axios
+  //     .get("http://localhost:8080/userdata")
+  //     .then((r) => {
+  //       console.log(r.data);
+  //       this.userdata = r.data;
+  //       console.log(this.userdata[0]);
+  //     })
+  //     .catch((e) => {
+  //       console.error(e.message);
+  //     });
+  // },
 };
 </script>
 

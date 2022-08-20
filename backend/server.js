@@ -45,19 +45,21 @@ app.get("/", function (req, res) {
 });
 
 app.post("/signup", function (req, res) {
-  db.collection("useraccount").insertOne(
-    { userID: req.body.login_id, userPW: req.body.login_pw },
+  db.collection("userdata").insertOne(
+    {
+      userID: req.body.login_id,
+      userPW: req.body.login_pw,
+      profileImg: "",
+      friend: [],
+      post: [],
+      like: [],
+    },
     function (err, result) {
       console.log(req.body);
       console.log(req.body.login_id + " User-Sign UP!");
     }
   );
   res.redirect("/singup_complete");
-});
-
-app.get("/home", loginCheck, function (req, res, next) {
-  console.log(req.user);
-  next();
 });
 
 // 로그인요청을 passport 처리후 성공하면 /home 으로 보내주세요
@@ -70,6 +72,23 @@ app.post(
   }
 );
 
+app.get("/home", loginCheck, function (req, res, next) {
+  // console.log(req.user);
+  next();
+});
+
+app.get("/userdata", function (req, res) {
+  console.log("UserData");
+  db.collection("userdata")
+    .find()
+    .toArray(function (err, data) {
+      res.json(data);
+      for (var i = 0; i < data.length; i++) {
+        console.log(data[i]);
+      }
+    });
+});
+
 // passport 회원가입 라이브러리
 passport.use(
   new LocalStrategy(
@@ -81,7 +100,7 @@ passport.use(
     },
     function (inputId, inputPw, done) {
       console.log(inputId, inputPw);
-      db.collection("useraccount").findOne(
+      db.collection("userdata").findOne(
         { userID: inputId },
         function (err, result) {
           if (err) return done(err);
@@ -121,14 +140,3 @@ function loginCheck(req, res, next) {
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
-
-// app.get("/user", function (req, res) {
-//   db.collection("post")
-//     .find()
-//     .toArray(function (err, result) {
-//       res.json(result);
-//       for (var i = 0; i < 결과.length; i++) {
-//         console.log(결과[i].name);
-//       }
-//     });
-// });

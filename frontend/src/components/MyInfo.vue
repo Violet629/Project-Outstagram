@@ -9,7 +9,7 @@
         />
       </div>
       <div class="myinfo-menu2">
-        <p class="my-profile-name">name</p>
+        <p class="my-profile-name">{{ userdata[0].userID }}</p>
         <img
           class="myinfo-logout"
           src="../assets/icon/logout.png"
@@ -51,7 +51,15 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "Myinfo",
+  data() {
+    return {
+      userdata: [],
+    };
+  },
+  mounted() {},
+};
 </script>
 
 <style>
