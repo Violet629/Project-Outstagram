@@ -8,12 +8,21 @@
         <input class="search" type="text" placeholder=" 🔍 Search" />
       </div>
       <div class="header-menu-3">
-        <button class="login-button" v-if="this.$store.state.login === false">
-          login
-        </button>
-        <button class="logout-button" v-if="this.$store.state.login === true">
-          logout
-        </button>
+        <router-link to="/"
+          ><img class="menu3-button" src="../assets/icon/home2.png"
+        /></router-link>
+        <router-link to="/"
+          ><img class="menu3-button" src="../assets/icon/me.png"
+        /></router-link>
+        <router-link to="/"
+          ><img class="menu3-button" src="../assets/icon/add.png"
+        /></router-link>
+        <router-link to="/"
+          ><img class="menu3-button" src="../assets/icon/heart.png"
+        /></router-link>
+        <router-link to="/"
+          ><img class="menu3-button" src="../assets/icon/logout.png"
+        /></router-link>
       </div>
     </div>
     <MainPage />
@@ -32,19 +41,18 @@ export default {
   components: {
     MainPage,
   },
-  // 로딩 했을때 실행
-  // mounted() {
-  //   axios
-  //     .get("http://localhost:8080/userdata")
-  //     .then((r) => {
-  //       console.log(r.data);
-  //       this.userdata = r.data;
-  //       console.log(this.userdata[0]);
-  //     })
-  //     .catch((e) => {
-  //       console.error(e.message);
-  //     });
-  // },
+  // 로딩 했을때 유저데이터 요청
+  mounted() {
+    axios
+      .get("http://localhost:8080/userdata")
+      .then((res) => {
+        console.log(res.data[0]);
+        this.$store.state.userdata = res.data[0];
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
+  },
 };
 </script>
 
@@ -60,7 +68,7 @@ export default {
   align-items: center;
   justify-content: space-around;
   background-color: #ffffff;
-  border-bottom: solid 2px rgb(233, 233, 233);
+  border-bottom: solid 2px rgba(153, 153, 153, 0.8);
 }
 .logo {
   font-family: "Kaushan Script", cursive;
@@ -70,18 +78,15 @@ export default {
 .search {
   width: 260px;
   height: 28px;
-  background-color: rgb(233, 233, 233);
-  border: 0;
+  padding: 4px 16px 4px 14px;
+  background-color: rgba(153, 153, 153, 0.3);
+  border: 1px solid rgba(153, 153, 153, 0.8);
   border-radius: 15px;
   font-size: 15px;
   font-family: "Roboto", sans-serif;
 }
-.login-button,
-.logout-button {
-  margin-right: 36px;
-  font-size: 18px;
-  width: 100px;
-  height: 36px;
-  font-family: "Roboto", sans-serif;
+.menu3-button {
+  margin-right: 18px;
+  width: 28px;
 }
 </style>

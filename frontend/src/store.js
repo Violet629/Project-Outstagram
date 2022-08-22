@@ -3,13 +3,14 @@ import { createStore } from "vuex";
 const store = createStore({
   state() {
     return {
-      _id: "",
-      userID: "",
-      userPW: "",
-      myProfileImg: "",
-      friend: [],
-      post: [],
-      like: [],
+      // _id: "",
+      // userID: "",
+      // userPW: "",
+      // myProfileImg: "",
+      // friend: [],
+      // post: [],
+      // like: [],
+      userdata: [],
     };
   },
   mutations: {
@@ -20,21 +21,6 @@ const store = createStore({
     //     state.loginPage = false;
     //   }
     // },
-    userDataGet(state) {
-      // state._id =
-    },
-  },
-  mounted() {
-    axios
-      .get("http://localhost:8080/userdata")
-      .then((r) => {
-        console.log(r.data);
-        this.userdata = r.data;
-        console.log(this.userdata[0]);
-      })
-      .catch((e) => {
-        console.error(e.message);
-      });
   },
 });
 

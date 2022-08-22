@@ -41,7 +41,7 @@ export default {};
 }
 .contents {
   width: 100%;
-  border: 2px solid rgb(233, 233, 233);
+  border: 2px solid rgba(153, 153, 153, 0.8);
   margin-bottom: 22px;
   border-radius: 8px;
 }
@@ -91,7 +91,7 @@ export default {};
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 2px solid rgb(233, 233, 233);
+  border-top: 2px solid rgba(153, 153, 153, 0.8);
 }
 .post-comment input {
   width: 88%;

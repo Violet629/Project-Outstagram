@@ -29,7 +29,7 @@ export default {
   float: left;
   margin-top: 55px;
   display: flex;
-  border: solid 2px rgb(233, 233, 233);
+  border: solid 2px rgba(153, 153, 153, 0.8);
   border-radius: 8px;
 }
 /* .friend-text {

@@ -9,25 +9,20 @@
         />
       </div>
       <div class="myinfo-menu2">
-        <p class="my-profile-name">{{ userdata[0].userID }}</p>
-        <img
-          class="myinfo-logout"
-          src="../assets/icon/logout.png"
-          alt="logout"
-        />
+        <p class="my-profile-name">{{ $store.state.userdata.userID }}</p>
       </div>
       <div class="myinfo-menu3">
         <div class="menu3-my-post">
-          <p>post</p>
-          <p>0</p>
+          <p>Post</p>
+          <p>{{ $store.state.userdata.post.length }}</p>
         </div>
         <div class="menu3-my-follower">
-          <p>follower</p>
-          <p>0</p>
+          <p>Like</p>
+          <p>{{ $store.state.userdata.like.length }}</p>
         </div>
         <div class="menu3-my-follow">
-          <p style="op">follow</p>
-          <p>0</p>
+          <p>Follower</p>
+          <p>{{ $store.state.userdata.friend.length }}</p>
         </div>
       </div>
     </div>
@@ -54,9 +49,7 @@
 export default {
   name: "Myinfo",
   data() {
-    return {
-      userdata: [],
-    };
+    return {};
   },
   mounted() {},
 };
@@ -77,6 +70,7 @@ export default {
   width: 30%;
   padding: 12px;
   float: left;
+  text-align: center;
 }
 .my-profile-img {
   width: 100%;
@@ -95,10 +89,7 @@ export default {
   font-family: "Roboto", sans-serif;
   font-size: 32px;
   font-weight: 700;
-}
-.myinfo-logout {
-  width: 30px;
-  opacity: 0.4;
+  text-align: center;
 }
 .myinfo-menu3 {
   width: 57%;
@@ -116,7 +107,7 @@ export default {
   width: 100%;
   float: left;
   margin-top: 18px;
-  border: 2px solid rgb(233, 233, 233);
+  border: 2px solid rgba(153, 153, 153, 0.8);
   border-radius: 8px;
 }
 .up-post button {
@@ -129,7 +120,7 @@ export default {
   width: 100%;
   margin-top: 4px;
   float: left;
-  border: 2px solid rgb(233, 233, 233);
+  border: 2px solid rgba(153, 153, 153, 0.8);
   border-radius: 8px;
 }
 .my-post h3 {

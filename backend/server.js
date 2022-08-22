@@ -73,14 +73,14 @@ app.post(
 );
 
 app.get("/home", loginCheck, function (req, res, next) {
-  // console.log(req.user);
+  console.log(req.user._id);
   next();
 });
 
 app.get("/userdata", function (req, res) {
   console.log("UserData");
   db.collection("userdata")
-    .find()
+    .find({ userID: req.user.userID })
     .toArray(function (err, data) {
       res.json(data);
       for (var i = 0; i < data.length; i++) {
@@ -119,12 +119,9 @@ passport.serializeUser(function (user, done) {
   done(null, user);
 });
 passport.deserializeUser(function (user, done) {
-  db.collection("useraccount").findOne(
-    { userID: user },
-    function (err, result) {
-      done(null, user);
-    }
-  );
+  db.collection("userdata").findOne({ userID: user }, function (err, result) {
+    done(null, user);
+  });
 });
 
 // 로그인 안되어있으면 로그인 요청 창으로 이동
