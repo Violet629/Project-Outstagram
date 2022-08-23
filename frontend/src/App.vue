@@ -1,7 +1,5 @@
 <template>
   <div>
-    <!-- <LoginPage v-if="this.$store.state.loginPage === false" /> -->
-    <!-- <SignupPage v-if="this.$store.state.loginPage === true" /> -->
     <router-view />
   </div>
 </template>
@@ -9,7 +7,6 @@
 <script>
 import LoginPage from "../src/components/LoginPage.vue";
 import SignupPage from "../src/components/SignupPage.vue";
-// import axios from "axios";
 
 export default {
   name: "App",

@@ -18,12 +18,20 @@ const routes = [
     component: () => import("../src/components/LoginFail.vue"),
   },
   {
+    path: "/logout",
+    component: () => import("../src/components/LoginPage.vue"),
+  },
+  {
     path: "/login_request",
     component: () => import("../src/components/LoginRequest.vue"),
   },
   {
     path: "/home",
-    component: () => import("../src/components/HomePage.vue"),
+    component: () => import("../src/components/MainPage.vue"),
+  },
+  {
+    path: "/mypage",
+    component: () => import("../src/components/Mypage.vue"),
   },
 ];
 

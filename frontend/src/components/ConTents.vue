@@ -77,15 +77,15 @@ export default {};
 }
 .contents-post {
   width: 100%;
-  margin-left: 16px;
 }
 .post-text {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
+  padding-left: 16px;
 }
 .post-like {
   width: 26px;
-  margin-bottom: 8px;
+  padding: 16px;
 }
 .post-comment {
   display: flex;
@@ -94,15 +94,40 @@ export default {};
   border-top: 2px solid rgba(153, 153, 153, 0.8);
 }
 .post-comment input {
-  width: 88%;
+  width: 80%;
   padding: 16px;
   border: 0;
 }
 .comment-send {
-  width: 10%;
+  width: 20%;
   font-size: 16px;
   color: blue;
   background-color: #fff;
   border: 0;
+}
+/* PC (해상도 1024px)*/
+@media all and (min-width: 1024px) {
+}
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  .contents-list {
+    max-width: 90%;
+    float: none;
+    margin: 0px auto 24px auto;
+  }
+}
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media all and (max-width: 767px) {
+  .contents-list {
+    max-width: 100%;
+    float: none;
+    margin: 0px auto 24px auto;
+  }
+  .contents {
+    border-left: none;
+    border-right: none;
+  }
 }
 </style>

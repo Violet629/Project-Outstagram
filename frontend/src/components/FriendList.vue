@@ -9,6 +9,9 @@
       />
       <p class="icon-name">name</p>
     </div>
+    <!-- <div class="friend-add">
+      <img class="add-img" src="../assets/icon/add.png" alt="friend-add" />
+    </div> -->
   </div>
 </template>
 
@@ -31,11 +34,11 @@ export default {
   display: flex;
   border: solid 2px rgba(153, 153, 153, 0.8);
   border-radius: 8px;
+  overflow: hidden;
 }
-/* .friend-text {
-  font-family: "Roboto", sans-serif;
-} */
-.friend-icon {
+.friend-icon,
+.friend-add {
+  width: 60px;
   margin: 14px;
 }
 .icon-img {
@@ -45,13 +48,40 @@ export default {
     linear-gradient(to bottom, violet 0%, orange 100%);
   background-origin: border-box;
   background-clip: content-box, border-box;
-  width: 60px;
-  height: 60px;
+  width: 100%;
+  /* height: 60px; */
+}
+.add-img {
+  width: 100%;
+  opacity: 0.3;
 }
 .icon-name {
   font-family: "Roboto", sans-serif;
   font-size: 12px;
   text-align: center;
   margin: 2px;
+}
+/* PC (해상도 1024px)*/
+@media all and (min-width: 1024px) {
+}
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  .friend-list {
+    max-width: 90%;
+    float: none;
+    margin: 24px auto 24px auto;
+  }
+}
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media all and (max-width: 767px) {
+  .friend-list {
+    max-width: 100%;
+    float: none;
+    margin: 12px auto 12px auto;
+    border-left: none;
+    border-right: none;
+  }
 }
 </style>

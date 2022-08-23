@@ -9,20 +9,20 @@
         />
       </div>
       <div class="myinfo-menu2">
-        <p class="my-profile-name">{{ $store.state.userdata.userID }}</p>
+        <p class="my-profile-name">{{ $store.state.userData.userID }}</p>
       </div>
       <div class="myinfo-menu3">
         <div class="menu3-my-post">
           <p>Post</p>
-          <p>{{ $store.state.userdata.post.length }}</p>
+          <p>{{ $store.state.userData.post.length }}</p>
         </div>
         <div class="menu3-my-follower">
           <p>Like</p>
-          <p>{{ $store.state.userdata.like.length }}</p>
+          <p>{{ $store.state.userData.like.length }}</p>
         </div>
         <div class="menu3-my-follow">
           <p>Follower</p>
-          <p>{{ $store.state.userdata.friend.length }}</p>
+          <p>{{ $store.state.userData.friend.length }}</p>
         </div>
       </div>
     </div>
@@ -157,5 +157,23 @@ export default {
 .my-post-list-comment p {
   width: 100%;
   margin: 0;
+}
+
+/* PC (해상도 1024px)*/
+@media all and (min-width: 1024px) {
+}
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  .myinfo {
+    display: none;
+  }
+}
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media all and (max-width: 767px) {
+  .myinfo {
+    display: none;
+  }
 }
 </style>

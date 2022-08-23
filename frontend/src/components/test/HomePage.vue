@@ -8,29 +8,31 @@
         <input class="search" type="text" placeholder=" 🔍 Search" />
       </div>
       <div class="header-menu-3">
-        <router-link to="/"
+        <router-link to="/home"
           ><img class="menu3-button" src="../assets/icon/home2.png"
         /></router-link>
-        <router-link to="/"
+        <router-link to="/mypage"
           ><img class="menu3-button" src="../assets/icon/me.png"
         /></router-link>
-        <router-link to="/"
+        <router-link to="/post_add"
           ><img class="menu3-button" src="../assets/icon/add.png"
         /></router-link>
-        <router-link to="/"
+        <router-link to="/post_like"
           ><img class="menu3-button" src="../assets/icon/heart.png"
         /></router-link>
-        <router-link to="/"
-          ><img class="menu3-button" src="../assets/icon/logout.png"
+        <router-link to="/logout" @click="logout">
+          <img class="menu3-button" src="../assets/icon/logout.png"
         /></router-link>
       </div>
     </div>
     <MainPage />
+    <!-- <MyPage /> -->
   </div>
 </template>
 
 <script>
 import MainPage from "./MainPage.vue";
+import Mypage from "./Mypage.vue";
 import axios from "axios";
 
 export default {
@@ -40,6 +42,12 @@ export default {
   },
   components: {
     MainPage,
+    Mypage,
+  },
+  methods: {
+    logout() {
+      axios.post("http://localhost:8080/logout");
+    },
   },
   // 로딩 했을때 유저데이터 요청
   mounted() {
@@ -78,7 +86,7 @@ export default {
 .search {
   width: 260px;
   height: 28px;
-  padding: 4px 16px 4px 14px;
+  padding: 2px 0px 2px 12px;
   background-color: rgba(153, 153, 153, 0.3);
   border: 1px solid rgba(153, 153, 153, 0.8);
   border-radius: 15px;
@@ -88,5 +96,35 @@ export default {
 .menu3-button {
   margin-right: 18px;
   width: 28px;
+}
+/* PC (해상도 1024px)*/
+@media all and (min-width: 1024px) {
+}
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  .logo {
+    font-size: 30px;
+  }
+  .search {
+    width: 220px;
+  }
+  .menu3-button {
+    width: 26px;
+    margin-right: 14px;
+  }
+}
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media all and (max-width: 767px) {
+  .logo {
+    font-size: 28px;
+  }
+  .search {
+    width: 180px;
+  }
+  .menu3-button {
+    display: none;
+  }
 }
 </style>

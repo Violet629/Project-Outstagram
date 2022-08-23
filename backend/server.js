@@ -44,51 +44,6 @@ app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
-app.post("/signup", function (req, res) {
-  db.collection("userdata").insertOne(
-    {
-      userID: req.body.login_id,
-      userPW: req.body.login_pw,
-      profileImg: "",
-      friend: [],
-      post: [],
-      like: [],
-    },
-    function (err, result) {
-      console.log(req.body);
-      console.log(req.body.login_id + " User-Sign UP!");
-    }
-  );
-  res.redirect("/singup_complete");
-});
-
-// 로그인요청을 passport 처리후 성공하면 /home 으로 보내주세요
-// 실패하면 /fail로 보내주세요
-app.post(
-  "/login",
-  passport.authenticate("local", { failureRedirect: "/fail" }),
-  function (req, res) {
-    res.redirect("/home");
-  }
-);
-
-app.get("/home", loginCheck, function (req, res, next) {
-  console.log(req.user._id);
-  next();
-});
-
-app.get("/userdata", function (req, res) {
-  console.log("UserData");
-  db.collection("userdata")
-    .find({ userID: req.user.userID })
-    .toArray(function (err, data) {
-      res.json(data);
-      for (var i = 0; i < data.length; i++) {
-        console.log(data[i]);
-      }
-    });
-});
-
 // passport 회원가입 라이브러리
 passport.use(
   new LocalStrategy(
@@ -132,6 +87,61 @@ function loginCheck(req, res, next) {
     res.redirect("/login_request");
   }
 }
+
+// 로그인요청을 passport 처리후 성공하면 /home 으로 보내주세요
+// 실패하면 /fail로 보내주세요
+app.post(
+  "/login",
+  passport.authenticate("local", { failureRedirect: "/fail" }),
+  function (req, res) {
+    res.redirect("/home");
+  }
+);
+
+app.post("/logout", function (req, res) {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+    console.log("User-logout");
+  });
+});
+
+app.post("/signup", function (req, res) {
+  db.collection("userdata").insertOne(
+    {
+      userID: req.body.login_id,
+      userPW: req.body.login_pw,
+      profileImg: "",
+      friend: [],
+      post: [],
+      like: [],
+    },
+    function (err, result) {
+      console.log(req.body);
+      console.log(req.body.login_id + " User-Sign UP!");
+    }
+  );
+  res.redirect("/singup_complete");
+});
+
+app.get("/home", loginCheck, function (req, res, next) {
+  console.log(req.user._id);
+  next();
+});
+
+app.get("/userdata", function (req, res) {
+  console.log("UserData");
+  db.collection("userdata")
+    .find({ userID: req.user.userID })
+    .toArray(function (err, data) {
+      res.json(data);
+      for (var i = 0; i < data.length; i++) {
+        console.log(data[i]);
+      }
+    });
+});
 
 // 주소창에 미개발 주소 치면 다시 메인 페이지로 보내주세요
 app.get("*", function (req, res) {
