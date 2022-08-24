@@ -30,7 +30,7 @@ export default {
   width: 100%;
   max-width: 60%;
   float: left;
-  margin-top: 55px;
+  margin-top: 24px;
   display: flex;
   border: solid 2px rgba(153, 153, 153, 0.8);
   border-radius: 8px;

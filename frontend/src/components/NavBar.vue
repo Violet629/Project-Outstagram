@@ -9,35 +9,116 @@
       </div>
       <div class="header-menu-3">
         <div>
-          <!-- <router-link to="/home"
+          <router-link
+            to="/home"
+            @click="$store.commit('homeAct')"
+            v-if="$store.state.buttonAct.home === false"
             ><img class="menu3-button" src="../assets/icon/home.png"
-          /></router-link> -->
-          <router-link to="/home"
-            ><img class="menu3-button" src="../assets/icon/home2.png"
+          /></router-link>
+          <router-link to="/home" v-if="$store.state.buttonAct.home === true"
+            ><img
+              class="menu3-button act-button"
+              src="../assets/icon/home2.png"
           /></router-link>
         </div>
         <div>
-          <!-- <router-link to="/mypage"
+          <router-link
+            to="/mypage"
+            @click="$store.commit('mypageAct')"
+            v-if="$store.state.buttonAct.mypage === false"
             ><img class="menu3-button" src="../assets/icon/me.png"
-          /></router-link> -->
-          <router-link to="/mypage"
-            ><img class="menu3-button" src="../assets/icon/me2.png"
+          /></router-link>
+          <router-link
+            to="/mypage"
+            v-if="$store.state.buttonAct.mypage === true"
+            ><img class="menu3-button act-button" src="../assets/icon/me2.png"
           /></router-link>
         </div>
         <div>
-          <!-- <router-link to="/post_add"
+          <router-link
+            to="/post_add"
+            @click="$store.commit('addAct')"
+            v-if="$store.state.buttonAct.add === false"
             ><img class="menu3-button" src="../assets/icon/add.png"
-          /></router-link> -->
-          <router-link to="/post_add"
-            ><img class="menu3-button" src="../assets/icon/add2.png"
+          /></router-link>
+          <router-link to="/post_add" v-if="$store.state.buttonAct.add === true"
+            ><img class="menu3-button act-button" src="../assets/icon/add2.png"
           /></router-link>
         </div>
         <div>
-          <!-- <router-link to="/post_like"
+          <router-link
+            to="/post_like"
+            @click="$store.commit('likeAct')"
+            v-if="$store.state.buttonAct.like === false"
             ><img class="menu3-button" src="../assets/icon/heart.png"
-          /></router-link> -->
-          <router-link to="/post_like"
-            ><img class="menu3-button" src="../assets/icon/heart2.png"
+          /></router-link>
+          <router-link
+            to="/post_like"
+            v-if="$store.state.buttonAct.like === true"
+            ><img
+              class="menu3-button act-button"
+              src="../assets/icon/heart2.png"
+          /></router-link>
+        </div>
+        <div>
+          <router-link to="/logout" @click="logout">
+            <img class="menu3-button" src="../assets/icon/logout.png"
+          /></router-link>
+        </div>
+      </div>
+    </div>
+    <div class="header-mobile">
+      <div class="header-menu-3">
+        <div>
+          <router-link
+            to="/home"
+            @click="$store.commit('homeAct')"
+            v-if="$store.state.buttonAct.home === false"
+            ><img class="menu3-button" src="../assets/icon/home.png"
+          /></router-link>
+          <router-link to="/home" v-if="$store.state.buttonAct.home === true"
+            ><img
+              class="menu3-button act-button"
+              src="../assets/icon/home2.png"
+          /></router-link>
+        </div>
+        <div>
+          <router-link
+            to="/mypage"
+            @click="$store.commit('mypageAct')"
+            v-if="$store.state.buttonAct.mypage === false"
+            ><img class="menu3-button" src="../assets/icon/me.png"
+          /></router-link>
+          <router-link
+            to="/mypage"
+            v-if="$store.state.buttonAct.mypage === true"
+            ><img class="menu3-button act-button" src="../assets/icon/me2.png"
+          /></router-link>
+        </div>
+        <div>
+          <router-link
+            to="/post_add"
+            @click="$store.commit('addAct')"
+            v-if="$store.state.buttonAct.add === false"
+            ><img class="menu3-button" src="../assets/icon/add.png"
+          /></router-link>
+          <router-link to="/post_add" v-if="$store.state.buttonAct.add === true"
+            ><img class="menu3-button act-button" src="../assets/icon/add2.png"
+          /></router-link>
+        </div>
+        <div>
+          <router-link
+            to="/post_like"
+            @click="$store.commit('likeAct')"
+            v-if="$store.state.buttonAct.like === false"
+            ><img class="menu3-button" src="../assets/icon/heart.png"
+          /></router-link>
+          <router-link
+            to="/post_like"
+            v-if="$store.state.buttonAct.like === true"
+            ><img
+              class="menu3-button act-button"
+              src="../assets/icon/heart2.png"
           /></router-link>
         </div>
         <div>
@@ -52,7 +133,6 @@
 
 <script>
 import axios from "axios";
-
 export default {
   name: "NavBar",
   data() {
@@ -84,7 +164,6 @@ export default {
 /* logo font : font-family: 'Kaushan Script', cursive; */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap");
 /* Roboto font 400&700 : font-family: 'Roboto', sans-serif; */
-
 .header {
   width: 100%;
   display: flex;
@@ -115,10 +194,19 @@ export default {
   margin-right: 18px;
   width: 28px;
 }
+.act-button {
+  border-bottom: 1px solid rgb(209, 13, 13);
+}
+.header-mobile {
+  position: fixed;
+  /* bottom: 0; */
+}
 /* PC (해상도 1024px)*/
 @media all and (min-width: 1024px) {
+  .header-mobile {
+    display: none;
+  }
 }
-
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
   .logo {
@@ -131,8 +219,10 @@ export default {
     width: 26px;
     margin-right: 14px;
   }
+  .header-mobile {
+    display: none;
+  }
 }
-
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
   .logo {
@@ -143,6 +233,9 @@ export default {
   }
   .menu3-button {
     display: none;
+  }
+  .header-mobile {
+    display: block;
   }
 }
 </style>
