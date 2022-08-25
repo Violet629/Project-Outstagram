@@ -13,8 +13,8 @@
             to="/home"
             @click="$store.commit('homeAct')"
             v-if="$store.state.buttonAct.home === false"
-            ><img class="menu3-button" src="../assets/icon/home.png"
-          /></router-link>
+            ><img class="menu3-button" src="../assets/icon/home.png" />
+          </router-link>
           <router-link to="/home" v-if="$store.state.buttonAct.home === true"
             ><img
               class="menu3-button act-button"
@@ -67,18 +67,18 @@
         </div>
       </div>
     </div>
-    <div class="header-mobile">
-      <div class="header-menu-3">
+    <div class="mobile-footer">
+      <div class="footer-menu">
         <div>
           <router-link
             to="/home"
             @click="$store.commit('homeAct')"
             v-if="$store.state.buttonAct.home === false"
-            ><img class="menu3-button" src="../assets/icon/home.png"
+            ><img class="footer-button" src="../assets/icon/home.png"
           /></router-link>
           <router-link to="/home" v-if="$store.state.buttonAct.home === true"
             ><img
-              class="menu3-button act-button"
+              class="footer-button act-button"
               src="../assets/icon/home2.png"
           /></router-link>
         </div>
@@ -87,12 +87,12 @@
             to="/mypage"
             @click="$store.commit('mypageAct')"
             v-if="$store.state.buttonAct.mypage === false"
-            ><img class="menu3-button" src="../assets/icon/me.png"
+            ><img class="footer-button" src="../assets/icon/me.png"
           /></router-link>
           <router-link
             to="/mypage"
             v-if="$store.state.buttonAct.mypage === true"
-            ><img class="menu3-button act-button" src="../assets/icon/me2.png"
+            ><img class="footer-button act-button" src="../assets/icon/me2.png"
           /></router-link>
         </div>
         <div>
@@ -100,10 +100,12 @@
             to="/post_add"
             @click="$store.commit('addAct')"
             v-if="$store.state.buttonAct.add === false"
-            ><img class="menu3-button" src="../assets/icon/add.png"
+            ><img class="footer-button" src="../assets/icon/add.png"
           /></router-link>
           <router-link to="/post_add" v-if="$store.state.buttonAct.add === true"
-            ><img class="menu3-button act-button" src="../assets/icon/add2.png"
+            ><img
+              class="footer-button act-button"
+              src="../assets/icon/add2.png"
           /></router-link>
         </div>
         <div>
@@ -111,19 +113,19 @@
             to="/post_like"
             @click="$store.commit('likeAct')"
             v-if="$store.state.buttonAct.like === false"
-            ><img class="menu3-button" src="../assets/icon/heart.png"
+            ><img class="footer-button" src="../assets/icon/heart.png"
           /></router-link>
           <router-link
             to="/post_like"
             v-if="$store.state.buttonAct.like === true"
             ><img
-              class="menu3-button act-button"
+              class="footer-button act-button"
               src="../assets/icon/heart2.png"
           /></router-link>
         </div>
         <div>
           <router-link to="/logout" @click="logout">
-            <img class="menu3-button" src="../assets/icon/logout.png"
+            <img class="footer-button" src="../assets/icon/logout.png"
           /></router-link>
         </div>
       </div>
@@ -190,20 +192,33 @@ export default {
 .header-menu-3 {
   display: flex;
 }
+.footer-menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  border-top: 1px solid rgba(153, 153, 153, 0.8);
+  padding-top: 10px;
+  padding-bottom: 6px;
+}
 .menu3-button {
   margin-right: 18px;
+  width: 28px;
+}
+.footer-button {
   width: 28px;
 }
 .act-button {
   border-bottom: 1px solid rgb(209, 13, 13);
 }
-.header-mobile {
+.mobile-footer {
   position: fixed;
-  /* bottom: 0; */
+  bottom: 0;
+  width: 100%;
 }
 /* PC (해상도 1024px)*/
 @media all and (min-width: 1024px) {
-  .header-mobile {
+  .mobile-footer {
     display: none;
   }
 }
@@ -219,7 +234,7 @@ export default {
     width: 26px;
     margin-right: 14px;
   }
-  .header-mobile {
+  .mobile-footer {
     display: none;
   }
 }
@@ -233,9 +248,6 @@ export default {
   }
   .menu3-button {
     display: none;
-  }
-  .header-mobile {
-    display: block;
   }
 }
 </style>
