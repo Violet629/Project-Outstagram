@@ -4,7 +4,7 @@
       <div class="myinfo-menu1">
         <img
           class="my-profile-img"
-          src="https://placeimg.com/100/100/arch"
+          :src="$store.state.userData.profileImg"
           alt="my-profile-img"
         />
       </div>
@@ -16,12 +16,12 @@
           <p>Post</p>
           <p>{{ $store.state.userData.post.length }}</p>
         </div>
-        <div class="menu3-my-follower">
+        <div class="menu3-my-like">
           <p>Like</p>
           <p>{{ $store.state.userData.like.length }}</p>
         </div>
-        <div class="menu3-my-follow">
-          <p>Follower</p>
+        <div class="menu3-my-friend">
+          <p>friend</p>
           <p>{{ $store.state.userData.friend.length }}</p>
         </div>
       </div>
@@ -75,6 +75,7 @@ export default {
 .my-profile-img {
   width: 100%;
   border-radius: 50%;
+  border: 2px solid rgba(153, 153, 153, 0.8);
 }
 .myinfo-menu2 {
   width: 57%;

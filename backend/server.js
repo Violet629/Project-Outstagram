@@ -113,7 +113,7 @@ app.post("/signup", function (req, res) {
     {
       userID: req.body.login_id,
       userPW: req.body.login_pw,
-      profileImg: "",
+      profileImg: "https://i.postimg.cc/SxW2379F/user-1699635-1280.png",
       friend: [],
       post: [],
       like: [],

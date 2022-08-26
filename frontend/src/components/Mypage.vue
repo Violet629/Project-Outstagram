@@ -1,15 +1,18 @@
 <template>
   <div class="mypage">
     <NavBar />
-    개레전드
+    <MyProfile />
   </div>
 </template>
 
 <script>
 import NavBar from "./NavBar.vue";
+import MyProfile from "./MyProfile.vue";
+
 export default {
   components: {
     NavBar,
+    MyProfile,
   },
 };
 </script>
