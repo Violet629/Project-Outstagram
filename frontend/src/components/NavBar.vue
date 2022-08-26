@@ -146,18 +146,6 @@ export default {
       axios.post("http://localhost:8080/logout");
     },
   },
-  // 로딩 했을때 유저데이터 요청
-  mounted() {
-    axios
-      .get("http://localhost:8080/userdata")
-      .then((res) => {
-        console.log(res.data[0]);
-        this.$store.state.userData = res.data[0];
-      })
-      .catch((err) => {
-        console.error(err.message);
-      });
-  },
 };
 </script>
 
@@ -209,7 +197,9 @@ export default {
   width: 28px;
 }
 .act-button {
-  border-bottom: 1px solid rgb(209, 13, 13);
+  padding-bottom: 2px;
+  border-radius: 10%;
+  border-bottom: 1px solid rgb(0, 0, 0);
 }
 .mobile-footer {
   position: fixed;

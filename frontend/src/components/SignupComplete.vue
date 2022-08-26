@@ -1,17 +1,34 @@
 <template>
   <div class="signup-complete">
-    <div class="signup-complete-icon">
-      <img src="../assets/icon/badge.png" />
+    <div class="pc-signup-complete">
+      <div class="signup-complete-icon">
+        <img src="../assets/icon/badge.png" />
+      </div>
+      <div class="signup-complete-header">
+        <span style="text-decoration-line: underline">Enjoy</span>
+        <span style="font-family: 'Kaushan Script', cursive"> Outstagram</span>
+      </div>
+      <div class="signup-complete-messages">
+        <div>Sign Up Complete</div>
+      </div>
+      <div class="signup-complete-button">
+        <router-link to="/" class="to-loginpage">Login Page</router-link>
+      </div>
     </div>
-    <div class="signup-complete-header">
-      <span style="text-decoration-line: underline">Enjoy</span>
-      <span style="font-family: 'Kaushan Script', cursive"> Outstagram</span>
-    </div>
-    <div class="signup-complete-messages">
-      <div>Sign Up Complete</div>
-    </div>
-    <div class="signup-complete-button">
-      <router-link to="/" class="to-loginpage">Login Page</router-link>
+    <div class="mobile-signup-complete">
+      <div class="mobile-signup-complete-icon">
+        <img src="../assets/icon/badge.png" />
+      </div>
+      <div class="mobile-signup-complete-header">
+        <span style="text-decoration-line: underline">Enjoy</span>
+        <span style="font-family: 'Kaushan Script', cursive"> Outstagram</span>
+      </div>
+      <div class="mobile-signup-complete-messages">
+        <div>Sign Up Complete</div>
+      </div>
+      <div class="mobile-signup-complete-button">
+        <router-link to="/" class="mobile-to-loginpage">Login Page</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -26,7 +43,7 @@ export default {};
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap");
 /* Roboto font 400&700 : font-family: 'Roboto', sans-serif; */
 
-.signup-complete {
+.pc-signup-complete {
   width: 100%;
   max-width: 480px;
   padding: 48px;
@@ -64,5 +81,60 @@ export default {};
   text-decoration: none;
   color: black;
   padding: 10px 180px 10px 180px;
+}
+.mobile-signup-complete {
+  width: 100%;
+  text-align: center;
+  margin: 45% auto;
+}
+.mobile-signup-complete-icon img {
+  width: 80px;
+  margin: 24px;
+}
+.mobile-signup-complete-header {
+  font-size: 48px;
+  margin-bottom: 18px;
+}
+.mobile-signup-complete-messages {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  margin-bottom: 18px;
+}
+.mobile-signup-complete-button {
+  font-family: "Roboto", sans-serif;
+  font-size: 28px;
+  margin-bottom: 18px;
+}
+.mobile-to-loginpage {
+  font-family: "Roboto", sans-serif;
+  display: inline-block;
+  font-size: 18px;
+  margin: 12px 12px 0px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(153, 153, 153, 0.8);
+  list-style: none;
+  text-decoration: none;
+  color: black;
+  padding: 10px 144px 10px 144px;
+}
+/* PC (해상도 1024px)*/
+@media all and (min-width: 1024px) {
+  .mobile-signup-complete {
+    display: none;
+  }
+}
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  .mobile-signup-complete {
+    display: none;
+  }
+}
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media all and (max-width: 767px) {
+  .pc-signup-complete {
+    display: none;
+  }
 }
 </style>

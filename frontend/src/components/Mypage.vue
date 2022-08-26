@@ -1,5 +1,5 @@
 <template>
-  <div class="Mypage">
+  <div class="mypage">
     <NavBar />
     개레전드
   </div>
@@ -15,6 +15,11 @@ export default {
 </script>
 
 <style>
+.mypage {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
 /* PC (해상도 1024px)*/
 @media all and (min-width: 1024px) {
 }

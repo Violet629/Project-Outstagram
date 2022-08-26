@@ -139,7 +139,7 @@ export default {};
 .mobile-login-page {
   width: 100%;
   text-align: center;
-  margin: 40% auto;
+  margin: 30% auto;
 }
 .mobile-welcome-icon img {
   width: 80px;
@@ -147,7 +147,7 @@ export default {};
 }
 .mobile-welcome-text {
   font-family: "Roboto", sans-serif;
-  font-size: 32px;
+  font-size: 48px;
   margin-bottom: 18px;
 }
 .mobile-login-id,

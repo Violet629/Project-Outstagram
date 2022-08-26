@@ -75,6 +75,7 @@
             @input="checkSubmit"
           />
         </div>
+        <!-- 모바일 disabled에 버그가 있음 -->
         <button
           type="submit"
           class="mobile-signup-submit check-submit"
@@ -180,7 +181,7 @@ export default {
 .mobile-signup-page {
   width: 100%;
   text-align: center;
-  margin: 40% auto;
+  margin: 30% auto;
 }
 .mobile-header-icon img {
   width: 80px;
@@ -188,7 +189,7 @@ export default {
 }
 .mobile-header-text {
   font-family: "Roboto", sans-serif;
-  font-size: 32px;
+  font-size: 48px;
   margin-bottom: 18px;
 }
 .mobile-signup-id,
