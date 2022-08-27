@@ -114,6 +114,7 @@ app.post("/signup", function (req, res) {
       userID: req.body.login_id,
       userPW: req.body.login_pw,
       profileImg: "https://i.postimg.cc/SxW2379F/user-1699635-1280.png",
+      profileComment: "Hello!",
       friend: [],
       post: [],
       like: [],
@@ -127,7 +128,11 @@ app.post("/signup", function (req, res) {
 });
 
 app.get("/home", loginCheck, function (req, res, next) {
-  console.log(req.user._id);
+  // console.log(req.user._id);
+  next();
+});
+
+app.get("/mypage", loginCheck, function (req, res, next) {
   next();
 });
 
