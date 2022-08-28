@@ -6,8 +6,9 @@
         <p class="profile-name">name</p>
         <p class="contents-time">xx hour</p>
       </div>
+      <!-- 버그 -->
       <div class="contents-img">
-        <img src="https://placeimg.com/500/500/arch" alt="contents-img" />
+        <img src="https://placeimg.com/600/600/arch" alt="contents-img" />
       </div>
       <div class="contents-post">
         <p class="post-text">
@@ -17,6 +18,7 @@
         <br />
         <img class="post-like" src="../assets/icon/heart.png" alt="like" />
       </div>
+      <!-- 버그 -->
       <div class="post-comment">
         <input type="text" placeholder="댓글을 달아주세요" />
         <button class="comment-send">Send</button>

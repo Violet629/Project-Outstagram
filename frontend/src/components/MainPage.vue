@@ -41,7 +41,7 @@ export default {
 .main-page {
   width: 100%;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
 }
 /* PC (해상도 1024px)
 @media all and (min-width: 1024px) {

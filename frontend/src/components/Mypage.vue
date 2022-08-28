@@ -2,18 +2,21 @@
   <div class="mypage">
     <NavBar />
     <MyProfile />
+    <MyContents />
   </div>
 </template>
 
 <script>
 import NavBar from "./NavBar.vue";
 import MyProfile from "./MyProfile.vue";
+import MyContents from "./MyContents.vue";
 import axios from "axios";
 
 export default {
   components: {
     NavBar,
     MyProfile,
+    MyContents,
   },
   // 로딩 했을때 유저데이터 요청
   created() {
@@ -34,7 +37,7 @@ export default {
 .mypage {
   width: 100%;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
 }
 /* PC (해상도 1024px)*/
 @media all and (min-width: 1024px) {

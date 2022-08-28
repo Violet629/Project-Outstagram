@@ -50,7 +50,9 @@ export default {};
 
 .myprofile {
   width: 100%;
-  margin: 24px 0px 24px 0px;
+  height: 330px;
+  margin: 18px 0px 24px 0px;
+  border-bottom: 2px solid rgba(153, 153, 153, 0.8);
 }
 .myprofile-menu1 {
   width: 20%;
@@ -74,23 +76,27 @@ export default {};
   width: 65%;
   font-size: 48px;
   margin: 24px 0px 12px 0px;
+  font-weight: 700;
 }
 .myprofile-setting {
   float: left;
   width: 25%;
-  align-content: center;
   margin-top: 24px;
+  display: flex;
+  align-items: center;
 }
 .myprofile-setting button {
   font-size: 18px;
   margin: 0;
+  padding: 3px;
   border: 2px solid rgba(153, 153, 153, 0.8);
   background-color: #fff;
+  font-family: "Roboto", sans-serif;
 }
 .myprofile-setting img {
-  width: 22px;
-  height: 22px;
-  margin-left: 8px;
+  width: 26px;
+  height: 26px;
+  margin-left: 4px;
 }
 .menu2-mid {
   width: 60%;
