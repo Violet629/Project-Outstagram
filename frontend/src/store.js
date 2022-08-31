@@ -1,6 +1,9 @@
 import { createStore } from "vuex";
+// 스토리지에 데이터 저장
+import createPersistedState from "vuex-persistedstate";
 
 const store = createStore({
+  plugins: [createPersistedState()],
   state() {
     return {
       userData: [],

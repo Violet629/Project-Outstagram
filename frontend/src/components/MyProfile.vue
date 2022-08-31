@@ -51,7 +51,7 @@ export default {};
 .myprofile {
   width: 100%;
   height: 330px;
-  margin: 18px 0px 24px 0px;
+  margin: 18px 0px 0px 0px;
   border-bottom: 2px solid rgba(153, 153, 153, 0.8);
 }
 .myprofile-menu1 {

@@ -140,7 +140,6 @@ export default {
   data() {
     return {};
   },
-  components: {},
   methods: {
     logout() {
       axios.post("http://localhost:8080/logout");

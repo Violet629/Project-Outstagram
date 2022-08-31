@@ -2,8 +2,8 @@
   <div class="main-page">
     <NavBar />
     <FriendList />
-    <ConTents />
     <MyInfo />
+    <ConTents />
   </div>
 </template>
 

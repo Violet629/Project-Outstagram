@@ -35,16 +35,15 @@ export default {};
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap");
 /* Roboto font 400&700 : font-family: 'Roboto', sans-serif; */
 
-.contents-list {
+/* .contents-list {
+  overflow: hidden;
+} */
+.contents {
   width: 100%;
   max-width: 60%;
   float: left;
   margin-top: 22px;
-}
-.contents {
-  width: 100%;
   border: 2px solid rgba(153, 153, 153, 0.8);
-  margin-bottom: 22px;
   border-radius: 8px;
 }
 .profile {
@@ -113,7 +112,7 @@ export default {};
 
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
-  .contents-list {
+  .contents {
     max-width: 90%;
     float: none;
     margin: 0px auto 24px auto;
@@ -122,7 +121,7 @@ export default {};
 
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
-  .contents-list {
+  .contents {
     max-width: 100%;
     float: none;
     margin: 0px auto 24px auto;

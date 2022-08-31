@@ -51,7 +51,6 @@ export default {
   data() {
     return {};
   },
-  mounted() {},
 };
 </script>
 
@@ -62,8 +61,7 @@ export default {
   width: 100%;
   max-width: 36%;
   float: right;
-  position: relative;
-  top: -100px;
+  margin-top: 32px;
 }
 .myinfo-menu1 {
   width: 30%;
