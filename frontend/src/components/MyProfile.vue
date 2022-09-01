@@ -114,4 +114,54 @@ export default {};
   margin-bottom: 0;
   font-size: 24px;
 }
+/* PC (해상도 1024px)*/
+@media all and (min-width: 1024px) {
+}
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  .myprofile-menu1 {
+    width: 25%;
+  }
+  .myprofile-setting {
+    margin-top: 32px;
+  }
+}
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media all and (max-width: 767px) {
+  .myprofile-menu1 {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .myprofile-img {
+    max-width: 148px;
+  }
+  .myprofile-setting {
+    position: absolute;
+    right: -55px;
+    top: 55px;
+  }
+  .myprofile-setting button {
+    display: none;
+  }
+  .myprofile-menu2 {
+    width: 100%;
+    text-align: center;
+  }
+  .myprofile-name p {
+    width: 100%;
+    margin: 0;
+  }
+  .menu2-top {
+    /* width: 100%; */
+    text-align: center;
+  }
+
+  .myprofile-name {
+    /* width: 100%; */
+    /* text-align: center; */
+  }
+}
 </style>
