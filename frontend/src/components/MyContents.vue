@@ -82,21 +82,14 @@ export default {
   font-size: 22px;
   font-family: "Roboto", sans-serif;
 }
-.mycontent-list {
-  /* display: flex;
-  flex-wrap: wrap; */
-}
 .mycontent-myposts,
 .mycontent-mylikes {
-  /* width: 30%; */
-  /* margin: 12px; */
   width: 100%;
 }
 .mycontent-myposts img,
 .mycontent-mylikes img {
   width: 30%;
   margin: 8px;
-  /* object-fit: cover; */
   float: left;
 }
 .menuber-act {
@@ -108,5 +101,24 @@ export default {
 }
 .post-none {
   display: none;
+}
+/* PC (해상도 1024px)*/
+@media all and (min-width: 1024px) {
+}
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+}
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media all and (max-width: 767px) {
+  .mycontent-menuber button {
+    font-size: 20px;
+  }
+  .mycontent-myposts img,
+  .mycontent-mylikes img {
+    width: 100%;
+    margin: 4px 0px 4px 0px;
+  }
 }
 </style>

@@ -25,7 +25,7 @@
           <div class="myprofile-like">
             <p>{{ $store.state.userData.like.length }} like</p>
           </div>
-          <div class="friend">
+          <div class="myprofile-friend">
             <p>{{ $store.state.userData.friend.length }} friend</p>
           </div>
         </div>
@@ -130,6 +130,9 @@ export default {};
 
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
+  .myprofile {
+    height: 420px;
+  }
   .myprofile-menu1 {
     width: 100%;
     margin: 0 auto;
@@ -138,10 +141,10 @@ export default {};
   .myprofile-img {
     max-width: 148px;
   }
-  .myprofile-setting {
+  .myprofile-setting img {
     position: absolute;
-    right: -55px;
-    top: 55px;
+    right: 20px;
+    top: 80px;
   }
   .myprofile-setting button {
     display: none;
@@ -155,13 +158,24 @@ export default {};
     margin: 0;
   }
   .menu2-top {
-    /* width: 100%; */
     text-align: center;
   }
-
-  .myprofile-name {
-    /* width: 100%; */
-    /* text-align: center; */
+  .menu2-mid {
+    width: 100%;
+    justify-content: space-around;
+  }
+  .menu2-bottom {
+    width: 100%;
+    text-align: left;
+    font-size: 18px;
+  }
+  .menu2-bottom p:nth-child(1) {
+    margin: 0;
+    margin-left: 24px;
+  }
+  .menu2-bottom p:nth-child(2) {
+    margin-top: 8px;
+    margin-left: 24px;
   }
 }
 </style>
