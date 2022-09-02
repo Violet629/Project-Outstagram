@@ -2,7 +2,9 @@
   <div>
     <div class="header">
       <div class="header-menu-1">
-        <p class="logo">Outstagram</p>
+        <router-link to="/home" style="text-decoration: none">
+          <p class="logo">Outstagram</p>
+        </router-link>
       </div>
       <div class="header-menu-2">
         <input class="search" type="text" placeholder=" 🔍 Search" />
@@ -165,6 +167,8 @@ export default {
   font-family: "Kaushan Script", cursive;
   font-size: 35px;
   margin: 15px;
+  color: black;
+  text-decoration-line: none;
 }
 .search {
   width: 260px;

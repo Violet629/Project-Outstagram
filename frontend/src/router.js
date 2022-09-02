@@ -33,6 +33,10 @@ const routes = [
     path: "/mypage",
     component: () => import("../src/components/Mypage.vue"),
   },
+  {
+    path: "/test",
+    component: () => import("../src/components/EditProfile.vue"),
+  },
 ];
 
 const router = createRouter({

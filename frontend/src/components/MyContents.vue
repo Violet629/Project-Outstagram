@@ -88,7 +88,7 @@ export default {
 }
 .mycontent-myposts img,
 .mycontent-mylikes img {
-  width: 30%;
+  width: 32%;
   margin: 8px;
   float: left;
 }
@@ -108,6 +108,10 @@ export default {
 
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
+  .mycontent-myposts img,
+  .mycontent-mylikes img {
+    width: 31%;
+  }
 }
 
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
