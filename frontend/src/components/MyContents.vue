@@ -81,6 +81,7 @@ export default {
   padding: 8px 42px 8px 42px;
   font-size: 22px;
   font-family: "Roboto", sans-serif;
+  background-color: #fff;
 }
 .mycontent-myposts,
 .mycontent-mylikes {
