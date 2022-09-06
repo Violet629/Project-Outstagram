@@ -3,17 +3,14 @@
     <div class="editprofile-header">
       <p>Edit Profile</p>
     </div>
-    <form action="editprofile" method="post">
+    <div>
+      <input @change="upload()" type="file" id="file" />
+    </div>
+    <!-- <form action="editprofile" method="post">
       <div class="editprofile-img">
         <h3>Profile Image</h3>
         <img :src="$store.state.userData.profileImg" />
-        <input
-          type="file"
-          id="file"
-          accept="image/png, image/jpeg"
-          @change="upload()"
-          style="display: none"
-        />
+        <input @change="preview(event)" type="file" id="file" />
         <label for="file">Select File</label>
       </div>
       <div class="editprofile-comment">
@@ -25,18 +22,36 @@
         <button class="editprofile-submit" type="submit">Edit</button>
         <button class="editprofile-cancel">Cancel</button>
       </div>
-    </form>
+    </form> -->
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      uploadImageFile: "",
+    };
+  },
   methods: {
     upload(e) {
-      let 파일 = e.target.files;
-      let url = URL.createObjectURL(파일[0]);
+      파일 = e.target.files;
+      url = URL.createObjectURL(파일[0]);
       console.log(url);
     },
+    // preview(event) {
+    //   console.log(event.target.files);
+    // },
+    // onFileSelected(event) {
+    //   var input = event.target;
+    //   if (input.files && input.files[0]) {
+    //     var reader = new FileReader();
+    //     reader.onload = (e) => {
+    //       this.uploadImageFile = e.target.result;
+    //     };
+    //     reader.readAsDataURL(input.files[0]);
+    //   }
+    // },
   },
 };
 </script>

@@ -14,10 +14,10 @@
           <router-link
             to="/home"
             @click="$store.commit('homeAct')"
-            v-if="$store.state.buttonAct.home === false"
+            v-if="this.urlName != `/home`"
             ><img class="menu3-button" src="../assets/icon/home.png" />
           </router-link>
-          <router-link to="/home" v-if="$store.state.buttonAct.home === true"
+          <router-link to="/home" v-if="this.urlName == `/home`"
             ><img
               class="menu3-button act-button"
               src="../assets/icon/home2.png"
@@ -27,12 +27,10 @@
           <router-link
             to="/mypage"
             @click="$store.commit('mypageAct')"
-            v-if="$store.state.buttonAct.mypage === false"
+            v-if="this.urlName != `/mypage`"
             ><img class="menu3-button" src="../assets/icon/me.png"
           /></router-link>
-          <router-link
-            to="/mypage"
-            v-if="$store.state.buttonAct.mypage === true"
+          <router-link to="/mypage" v-if="this.urlName == `/mypage`"
             ><img class="menu3-button act-button" src="../assets/icon/me2.png"
           /></router-link>
         </div>
@@ -40,10 +38,10 @@
           <router-link
             to="/post_add"
             @click="$store.commit('addAct')"
-            v-if="$store.state.buttonAct.add === false"
+            v-if="this.urlName != `/add`"
             ><img class="menu3-button" src="../assets/icon/add.png"
           /></router-link>
-          <router-link to="/post_add" v-if="$store.state.buttonAct.add === true"
+          <router-link to="/post_add" v-if="this.urlName == `/add`"
             ><img class="menu3-button act-button" src="../assets/icon/add2.png"
           /></router-link>
         </div>
@@ -51,12 +49,10 @@
           <router-link
             to="/post_like"
             @click="$store.commit('likeAct')"
-            v-if="$store.state.buttonAct.like === false"
+            v-if="this.urlName != `/like`"
             ><img class="menu3-button" src="../assets/icon/heart.png"
           /></router-link>
-          <router-link
-            to="/post_like"
-            v-if="$store.state.buttonAct.like === true"
+          <router-link to="/post_like" v-if="this.urlName == `/like`"
             ><img
               class="menu3-button act-button"
               src="../assets/icon/heart2.png"
@@ -72,54 +68,38 @@
     <div class="mobile-footer">
       <div class="footer-menu">
         <div>
-          <router-link
-            to="/home"
-            @click="$store.commit('homeAct')"
-            v-if="$store.state.buttonAct.home === false"
+          <router-link to="/home" v-if="this.urlName != `/home`"
             ><img class="footer-button" src="../assets/icon/home.png"
           /></router-link>
-          <router-link to="/home" v-if="$store.state.buttonAct.home === true"
+          <router-link to="/home" v-if="this.urlName == `/home`"
             ><img
               class="footer-button act-button"
               src="../assets/icon/home2.png"
           /></router-link>
         </div>
         <div>
-          <router-link
-            to="/mypage"
-            @click="$store.commit('mypageAct')"
-            v-if="$store.state.buttonAct.mypage === false"
+          <router-link to="/mypage" v-if="this.urlName != `/mypage`"
             ><img class="footer-button" src="../assets/icon/me.png"
           /></router-link>
-          <router-link
-            to="/mypage"
-            v-if="$store.state.buttonAct.mypage === true"
+          <router-link to="/mypage" v-if="this.urlName == `/mypage`"
             ><img class="footer-button act-button" src="../assets/icon/me2.png"
           /></router-link>
         </div>
         <div>
-          <router-link
-            to="/post_add"
-            @click="$store.commit('addAct')"
-            v-if="$store.state.buttonAct.add === false"
+          <router-link to="/post_add" v-if="this.urlName != `/add`"
             ><img class="footer-button" src="../assets/icon/add.png"
           /></router-link>
-          <router-link to="/post_add" v-if="$store.state.buttonAct.add === true"
+          <router-link to="/post_add" v-if="this.urlName == `/add`"
             ><img
               class="footer-button act-button"
               src="../assets/icon/add2.png"
           /></router-link>
         </div>
         <div>
-          <router-link
-            to="/post_like"
-            @click="$store.commit('likeAct')"
-            v-if="$store.state.buttonAct.like === false"
+          <router-link to="/post_like" v-if="this.urlName != `/like`"
             ><img class="footer-button" src="../assets/icon/heart.png"
           /></router-link>
-          <router-link
-            to="/post_like"
-            v-if="$store.state.buttonAct.like === true"
+          <router-link to="/post_like" v-if="this.urlName == `/like`"
             ><img
               class="footer-button act-button"
               src="../assets/icon/heart2.png"
@@ -140,7 +120,10 @@ import axios from "axios";
 export default {
   name: "NavBar",
   data() {
-    return {};
+    return {
+      // 호스트네임 / 뒷 문자 가져옴
+      urlName: window.location.pathname,
+    };
   },
   methods: {
     logout() {
