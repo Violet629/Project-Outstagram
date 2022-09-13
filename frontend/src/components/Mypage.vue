@@ -3,6 +3,7 @@
     <NavBar />
     <MyProfile />
     <MyContents />
+    <EditProfile v-if="this.$store.state.editModal == true" />
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import NavBar from "./NavBar.vue";
 import MyProfile from "./MyProfile.vue";
 import MyContents from "./MyContents.vue";
+import EditProfile from "./EditProfile.vue";
 import axios from "axios";
 
 export default {
@@ -17,6 +19,7 @@ export default {
     NavBar,
     MyProfile,
     MyContents,
+    EditProfile,
   },
   // 로딩 했을때 유저데이터 요청
   created() {

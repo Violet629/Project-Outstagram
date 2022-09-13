@@ -13,9 +13,13 @@ const store = createStore({
       //   add: false,
       //   like: false,
       // },
+      editModal: false,
     };
   },
   mutations: {
+    openEditModal(state) {
+      state.editModal = true;
+    },
     // homeAct(state) {
     //   state.buttonAct.home = true;
     //   state.buttonAct.mypage = false;

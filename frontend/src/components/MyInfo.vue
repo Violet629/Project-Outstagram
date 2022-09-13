@@ -62,6 +62,7 @@ export default {
   max-width: 36%;
   float: right;
   margin-top: 32px;
+  box-sizing: border-box;
 }
 .myinfo-menu1 {
   width: 30%;
@@ -120,6 +121,7 @@ export default {
   float: left;
   border: 2px solid rgba(153, 153, 153, 0.8);
   border-radius: 8px;
+  overflow: hidden;
 }
 .my-post h3 {
   margin: 12px;
@@ -129,7 +131,9 @@ export default {
 }
 .my-post-list {
   margin: 24px;
-  float: left;
+  /* width: 100%; */
+  /* float: left; */
+  display: inline-block;
 }
 .my-post-list img {
   width: 64px;

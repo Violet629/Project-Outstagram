@@ -14,7 +14,9 @@
             <p>{{ $store.state.userData.userID }}</p>
           </div>
           <div class="myprofile-setting">
-            <button>Edit Profile</button>
+            <button @click="$store.commit('openEditModal')">
+              Edit Profile
+            </button>
             <img src="../assets/icon/setting.png" alt="Setting" />
           </div>
         </div>

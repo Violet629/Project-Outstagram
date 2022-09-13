@@ -11,10 +11,7 @@
       </div>
       <div class="header-menu-3">
         <div>
-          <router-link
-            to="/home"
-            @click="$store.commit('homeAct')"
-            v-if="this.urlName != `/home`"
+          <router-link to="/home" v-if="this.urlName != `/home`"
             ><img class="menu3-button" src="../assets/icon/home.png" />
           </router-link>
           <router-link to="/home" v-if="this.urlName == `/home`"
@@ -24,10 +21,7 @@
           /></router-link>
         </div>
         <div>
-          <router-link
-            to="/mypage"
-            @click="$store.commit('mypageAct')"
-            v-if="this.urlName != `/mypage`"
+          <router-link to="/mypage" v-if="this.urlName != `/mypage`"
             ><img class="menu3-button" src="../assets/icon/me.png"
           /></router-link>
           <router-link to="/mypage" v-if="this.urlName == `/mypage`"
@@ -35,10 +29,7 @@
           /></router-link>
         </div>
         <div>
-          <router-link
-            to="/post_add"
-            @click="$store.commit('addAct')"
-            v-if="this.urlName != `/add`"
+          <router-link to="/post_add" v-if="this.urlName != `/add`"
             ><img class="menu3-button" src="../assets/icon/add.png"
           /></router-link>
           <router-link to="/post_add" v-if="this.urlName == `/add`"
@@ -46,10 +37,7 @@
           /></router-link>
         </div>
         <div>
-          <router-link
-            to="/post_like"
-            @click="$store.commit('likeAct')"
-            v-if="this.urlName != `/like`"
+          <router-link to="/post_like" v-if="this.urlName != `/like`"
             ><img class="menu3-button" src="../assets/icon/heart.png"
           /></router-link>
           <router-link to="/post_like" v-if="this.urlName == `/like`"

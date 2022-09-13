@@ -12,7 +12,7 @@
           v-if="switchMenuber == 0 || switchMenuber == 1"
         >
           <img
-            v-for="mypost in 2"
+            v-for="mypost in 9"
             :key="mypost"
             src="https://placeimg.com/500/500/arch"
           />
@@ -22,7 +22,7 @@
           v-if="switchMenuber == 0 || switchMenuber == 2"
         >
           <img
-            v-for="mylike in 3"
+            v-for="mylike in 5"
             :key="mylike"
             src="https://placeimg.com/500/500/arch"
           />
@@ -86,12 +86,17 @@ export default {
 .mycontent-myposts,
 .mycontent-mylikes {
   width: 100%;
+  padding: 0 auto;
+  text-align: center;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* justify-content: center; */
 }
 .mycontent-myposts img,
 .mycontent-mylikes img {
   width: 32%;
-  margin: 8px;
-  float: left;
+  margin: 0.1%;
+  /* float: left; */
 }
 .menuber-act {
   font-weight: 700;
