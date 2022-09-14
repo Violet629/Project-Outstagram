@@ -23,7 +23,12 @@
         </div>
         <div class="editprofile-button">
           <button class="editprofile-submit" type="submit">Edit</button>
-          <button class="editprofile-cancel">Cancel</button>
+          <button
+            class="editprofile-cancel"
+            @click="$store.commit('closeEditModal')"
+          >
+            Cancel
+          </button>
         </div>
       </form>
     </div>

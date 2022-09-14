@@ -26,7 +26,7 @@ export default {
     axios
       .get("http://localhost:8080/userdata")
       .then((res) => {
-        console.log(res.data[0]);
+        // console.log(res.data[0]);
         this.$store.state.userData = res.data[0];
       })
       .catch((err) => {
