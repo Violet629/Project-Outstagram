@@ -1,10 +1,10 @@
 <template>
-  <div class="editprofile-modal">
-    <div class="editprofile">
+  <div class="editprofile-modal animate__animated animate__fadeIn">
+    <div class="editprofile animate__animated animate__fadeInDown">
       <div class="editprofile-header">
         <p>Edit Profile</p>
       </div>
-      <form action="editprofile" method="post">
+      <form action="/editprofile" method="post" enctype="multipart/form-data">
         <div class="editprofile-img">
           <h3>Profile Image</h3>
           <img :src="previewUrl" />
@@ -48,19 +48,6 @@ export default {
       this.previewUrl = URL.createObjectURL(this.file[0]);
       console.log(this.previewUrl);
     },
-    // preview(event) {
-    //   console.log(event.target.files);
-    // },
-    // onFileSelected(event) {
-    //   var input = event.target;
-    //   if (input.files && input.files[0]) {
-    //     var reader = new FileReader();
-    //     reader.onload = (e) => {
-    //       this.uploadImageFile = e.target.result;
-    //     };
-    //     reader.readAsDataURL(input.files[0]);
-    //   }
-    // },
   },
 };
 </script>
@@ -68,14 +55,16 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap");
 /* Roboto font 400&700 : font-family: 'Roboto', sans-serif; */
+@import "animate.css";
 
 .editprofile-modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   height: 100%;
-  /* display: none; */
   background-color: rgba(0, 0, 0, 0.4);
 }
 .open-editprofile {
@@ -85,16 +74,19 @@ export default {
   border-radius: 8px;
   font-family: "Roboto", sans-serif;
   border: 2px solid rgba(153, 153, 153, 0.8);
+  transform: translateX(-50%) translateY(-50%);
   position: absolute;
-  top: 45%;
-  left: 50%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 50%;
   height: 55%;
   padding: 40px;
+  margin: auto;
   text-align: center;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-  transform: translateX(-50%) translateY(-50%);
 }
 .editprofile-header {
   width: 100%;
@@ -175,15 +167,23 @@ export default {
 @media all and (min-width: 768px) and (max-width: 1023px) {
   .editprofile {
     width: 85%;
-    height: 40%;
   }
 }
 
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
   .editprofile {
-    width: 85%;
-    height: 40%;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+  .editprofile-img,
+  .editprofile-comment {
+    width: 100%;
+  }
+  .editprofile-comment p,
+  .editprofile-comment input {
+    padding: 6px 0px 50px 8px;
   }
 }
 </style>

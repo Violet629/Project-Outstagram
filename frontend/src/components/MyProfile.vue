@@ -17,7 +17,11 @@
             <button @click="$store.commit('openEditModal')">
               Edit Profile
             </button>
-            <img src="../assets/icon/setting.png" alt="Setting" />
+            <img
+              @click="$store.commit('openEditModal')"
+              src="../assets/icon/setting.png"
+              alt="Setting"
+            />
           </div>
         </div>
         <div class="menu2-mid">

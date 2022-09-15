@@ -148,6 +148,8 @@ app.get("/userdata", function (req, res) {
     });
 });
 
+// app.get("/editprofile", function (req, res) {});
+
 // 주소창에 미개발 주소 치면 다시 메인 페이지로 보내주세요
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
