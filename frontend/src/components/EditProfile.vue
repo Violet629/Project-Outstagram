@@ -12,9 +12,15 @@
             @change="preview($event)"
             type="file"
             id="file"
+            name="image"
             style="display: none"
           />
           <label for="file">Select File</label>
+          <input
+            :value="$store.state.userData.userID"
+            name="userID"
+            style="display: none"
+          />
         </div>
         <div class="editprofile-comment">
           <h3>Profile Comment</h3>
@@ -111,6 +117,7 @@ export default {
 .editprofile-img img {
   width: 250px;
   height: 250px;
+  object-fit: cover;
   border-radius: 50%;
   border: 2px solid rgba(153, 153, 153, 0.8);
   display: block;

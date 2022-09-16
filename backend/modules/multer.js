@@ -2,12 +2,13 @@ const multer = require("multer");
 const multerS3 = require("multer-s3");
 const aws = require("aws-sdk");
 aws.config.loadFromPath(__dirname + "/../config/s3.json");
+// config,s3.json = 깃허브에는 올라가지 않음
 
 const s3 = new aws.S3();
 const upload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: "YOUR BUCKET NAME",
+    bucket: "project-outstagram",
     acl: "public-read",
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key: function (req, file, cb) {

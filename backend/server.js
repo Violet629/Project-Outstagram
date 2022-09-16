@@ -113,7 +113,8 @@ app.post("/signup", function (req, res) {
     {
       userID: req.body.login_id,
       userPW: req.body.login_pw,
-      profileImg: "https://i.postimg.cc/SxW2379F/user-1699635-1280.png",
+      profileImg:
+        "https://project-outstagram.s3.ap-northeast-2.amazonaws.com/Default.png",
       profileComment: "Hello!",
       friend: [],
       post: [],
@@ -148,7 +149,39 @@ app.get("/userdata", function (req, res) {
     });
 });
 
-// app.get("/editprofile", function (req, res) {});
+// 이미지를 AWS S3에 저장하기
+const multer = require("multer");
+const multerS3 = require("multer-s3");
+const aws = require("aws-sdk");
+aws.config.loadFromPath(__dirname + "/config/s3.json");
+// 키는 json파일로 저장해놓음 보안상 config,s3.json는 깃허브에는 올라가지 않음
+
+const s3 = new aws.S3();
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: "project-outstagram",
+    acl: "public-read",
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    key: function (req, file, cb) {
+      cb(null, `${Date.now()}_${file.originalname}`);
+    },
+  }),
+});
+
+app.post("/editprofile", upload.single("image"), function (req, res) {
+  // console.log(req.file);
+  // console.log(req.file.location);
+  // console.log(req.body.userID);
+  db.collection("userdata").updateOne(
+    { userID: req.body.userID },
+    { $set: { profileImg: req.file.location } },
+    function () {
+      console.log("수정완료");
+      res.redirect("/mypage");
+    }
+  );
+});
 
 // 주소창에 미개발 주소 치면 다시 메인 페이지로 보내주세요
 app.get("*", function (req, res) {

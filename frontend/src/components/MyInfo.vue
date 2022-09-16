@@ -72,6 +72,8 @@ export default {
 }
 .my-profile-img {
   width: 100%;
+  height: 140px;
+  object-fit: cover;
   border-radius: 50%;
   border: 2px solid rgba(153, 153, 153, 0.8);
 }

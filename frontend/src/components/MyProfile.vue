@@ -57,7 +57,7 @@ export default {};
 .myprofile {
   width: 100%;
   height: 330px;
-  margin: 18px 0px 0px 0px;
+  /* margin: 18px 0px 0px 0px; */
   border-bottom: 2px solid rgba(153, 153, 153, 0.8);
 }
 .myprofile-menu1 {
@@ -67,6 +67,8 @@ export default {};
 }
 .myprofile-img {
   width: 100%;
+  height: 250px;
+  object-fit: cover;
   border-radius: 50%;
   border: 2px solid rgba(153, 153, 153, 0.8);
 }
@@ -145,7 +147,8 @@ export default {};
     text-align: center;
   }
   .myprofile-img {
-    max-width: 148px;
+    max-width: 250px;
+    height: 250px;
   }
   .myprofile-setting img {
     position: absolute;
