@@ -114,7 +114,7 @@ app.post("/signup", function (req, res) {
       userID: req.body.login_id,
       userPW: req.body.login_pw,
       profileImg:
-        "https://project-outstagram.s3.ap-northeast-2.amazonaws.com/Default.png",
+        "https://project-outstagram.s3.ap-northeast-2.amazonaws.com/profile-img/Default.png",
       profileComment: "Hello!",
       friend: [],
       post: [],
@@ -157,10 +157,10 @@ aws.config.loadFromPath(__dirname + "/config/s3.json");
 // 키는 json파일로 저장해놓음 보안상 config,s3.json는 깃허브에는 올라가지 않음
 
 const s3 = new aws.S3();
-const upload = multer({
+const profileimg_upload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: "project-outstagram",
+    bucket: "project-outstagram/profile-img",
     acl: "public-read",
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key: function (req, file, cb) {
@@ -169,13 +169,46 @@ const upload = multer({
   }),
 });
 
-app.post("/editprofile", upload.single("image"), function (req, res) {
-  // console.log(req.file);
-  // console.log(req.file.location);
-  // console.log(req.body.userID);
+const postimg_upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: "project-outstagram/post-img",
+    acl: "public-read",
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    key: function (req, file, cb) {
+      cb(null, `${Date.now()}_${file.originalname}`);
+    },
+  }),
+});
+
+app.post(
+  "/editprofile-img",
+  profileimg_upload.single("image"),
+  function (req, res) {
+    console.log(req.body);
+    db.collection("userdata").updateOne(
+      { userID: req.body.userID },
+      {
+        $set: {
+          profileImg: req.file.location,
+        },
+      },
+      function () {
+        console.log("수정완료");
+        res.redirect("/mypage");
+      }
+    );
+  }
+);
+
+app.post("/editprofile-comment", function (req, res) {
   db.collection("userdata").updateOne(
     { userID: req.body.userID },
-    { $set: { profileImg: req.file.location } },
+    {
+      $set: {
+        profileComment: req.body.comment,
+      },
+    },
     function () {
       console.log("수정완료");
       res.redirect("/mypage");

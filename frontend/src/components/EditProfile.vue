@@ -4,10 +4,14 @@
       <div class="editprofile-header">
         <p>Edit Profile</p>
       </div>
-      <form action="/editprofile" method="post" enctype="multipart/form-data">
+      <form
+        action="/editprofile-img"
+        method="post"
+        enctype="multipart/form-data"
+      >
         <div class="editprofile-img">
           <h3>Profile Image</h3>
-          <img :src="previewUrl" />
+          <img class="preview" :src="previewUrl" />
           <input
             @change="preview($event)"
             type="file"
@@ -21,11 +25,31 @@
             name="userID"
             style="display: none"
           />
+          <div class="editprofile-button">
+            <button class="editprofile-submit" type="submit">Edit</button>
+            <button
+              class="editprofile-cancel"
+              @click="$store.commit('closeEditModal')"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
+      </form>
+      <!-- <form
+        v-if="editstep == 0"
+        action="/editprofile-comment"
+        method="post"
+        enctype="text/plain"
+      >
         <div class="editprofile-comment">
           <h3>Profile Comment</h3>
           <p>{{ $store.state.userData.profileComment }}</p>
-          <input type="text" />
+          <input
+            type="text"
+            name="comment"
+            :value="$store.state.userData.profileComment"
+          />
         </div>
         <div class="editprofile-button">
           <button class="editprofile-submit" type="submit">Edit</button>
@@ -36,7 +60,7 @@
             Cancel
           </button>
         </div>
-      </form>
+      </form> -->
     </div>
   </div>
 </template>
@@ -45,6 +69,7 @@
 export default {
   data() {
     return {
+      // editstep: 1,
       previewUrl: this.$store.state.userData.profileImg,
     };
   },
@@ -86,9 +111,9 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  width: 50%;
+  width: 30%;
   height: 55%;
-  padding: 40px;
+  padding: 30px;
   margin: auto;
   text-align: center;
   background-color: rgb(255, 255, 255);
@@ -107,14 +132,14 @@ export default {
 .editprofile-img,
 .editprofile-comment {
   float: left;
-  width: 50%;
+  width: 100%;
   text-align: center;
 }
 .editprofile-img h3 {
   font-size: 24px;
   margin: 24px 0px 8px 0px;
 }
-.editprofile-img img {
+.preview {
   width: 250px;
   height: 250px;
   object-fit: cover;
@@ -125,7 +150,7 @@ export default {
 }
 .editprofile-img label {
   display: block;
-  margin: 36px auto;
+  margin: 24px auto;
   padding: 4px 0px 4px 0px;
   width: 50%;
   border: 2px solid rgba(153, 153, 153, 0.8);
@@ -152,8 +177,11 @@ export default {
   margin: 0px 0px 48px 0px;
 }
 .editprofile-button {
-  text-align: right;
-  margin-right: 12px;
+  display: flex;
+  /* justify-content: space-around; */
+  justify-content: flex-end;
+  /* text-align: right; */
+  /* margin-right: 12px; */
 }
 .editprofile-submit,
 .editprofile-cancel {
@@ -173,7 +201,7 @@ export default {
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
   .editprofile {
-    width: 85%;
+    width: 55%;
   }
 }
 
@@ -191,6 +219,9 @@ export default {
   .editprofile-comment p,
   .editprofile-comment input {
     padding: 6px 0px 50px 8px;
+  }
+  .editprofile-button {
+    justify-content: center;
   }
 }
 </style>
