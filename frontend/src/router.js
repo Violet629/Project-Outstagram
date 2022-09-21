@@ -35,7 +35,7 @@ const routes = [
   },
   {
     path: "/test",
-    component: () => import("../src/components/EditProfile.vue"),
+    component: () => import("../src/components/UpPost.vue"),
   },
 ];
 

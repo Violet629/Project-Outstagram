@@ -9,6 +9,7 @@ const store = createStore({
     return {
       userData: [],
       editModal: false,
+      upPostModal: false,
     };
   },
   mutations: {
@@ -17,6 +18,12 @@ const store = createStore({
     },
     closeEditModal(state) {
       state.editModal = false;
+    },
+    openUpPostModal(state) {
+      state.upPostModal = true;
+    },
+    openUpPostModal(state) {
+      state.upPostModal = false;
     },
   },
 });

@@ -3,6 +3,12 @@
     <div class="pc-myprofile">
       <div class="myprofile-menu1">
         <img
+          class="myprofile-setting"
+          @click="$store.commit('openEditModal')"
+          src="../assets/icon/setting.png"
+          alt="Setting"
+        />
+        <img
           @click="$store.commit('openEditModal')"
           class="myprofile-img"
           :src="$store.state.userData.profileImg"
@@ -18,11 +24,6 @@
             <button @click="$store.commit('openEditModal')">
               Edit Profile
             </button>
-            <img
-              @click="$store.commit('openEditModal')"
-              src="../assets/icon/setting.png"
-              alt="Setting"
-            />
           </div> -->
         </div>
         <div class="menu2-mid">
@@ -39,7 +40,7 @@
         <div class="menu2-bottom">
           <div class="myprofile-comment">
             <p style="font-weight: 700">My Comment</p>
-            <!-- <p>{{ $store.state.userData.profileComment }}</p> -->
+            <p>{{ $store.state.userData.profileComment }}</p>
             <form
               action="/editprofile-comment"
               method="post"
@@ -49,13 +50,10 @@
                 :value="$store.state.userData.userID"
                 name="userID"
                 style="display: none"
+                autocomplete="off"
               />
-              <input
-                type="text"
-                name="comment"
-                :value="$store.state.userData.profileComment"
-              />
-              <button type="submit">Edit</button>
+              <input type="text" name="comment" placeholder="Edit MyComment" />
+              <button type="submit">Submit</button>
             </form>
           </div>
         </div>
@@ -91,7 +89,7 @@ export default {};
   border: 2px solid rgba(153, 153, 153, 0.8);
 }
 .myprofile-img:hover {
-  opacity: 0.8;
+  opacity: 0.7;
 }
 .myprofile-menu2 {
   width: 60%;
@@ -108,11 +106,14 @@ export default {};
   font-weight: 700;
 }
 .myprofile-setting {
-  float: left;
+  width: 26px;
+  height: 26px;
+  float: right;
+  /* float: left;
   width: 25%;
   margin-top: 24px;
   display: flex;
-  align-items: center;
+  align-items: center; */
 }
 .myprofile-setting button {
   font-size: 18px;
@@ -122,11 +123,11 @@ export default {};
   background-color: #fff;
   font-family: "Roboto", sans-serif;
 }
-.myprofile-setting img {
+/* .myprofile-setting img {
   width: 26px;
   height: 26px;
   margin-left: 4px;
-}
+} */
 .menu2-mid {
   width: 60%;
   float: left;
@@ -145,8 +146,8 @@ export default {};
 }
 .edit-comment input,
 .edit-comment button {
-  /* border: 2px solid rgba(153, 153, 153, 0.8); */
-  border: 0;
+  border: 1px solid rgba(153, 153, 153, 0.8);
+  /* border: 0; */
   font-size: 18px;
   font-family: "Roboto", sans-serif;
 }
@@ -157,11 +158,20 @@ export default {};
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
   .myprofile-menu1 {
-    width: 25%;
+    width: 30%;
   }
-  .myprofile-setting {
+  .myprofile-menu2 {
+    width: 55%;
+  }
+  .myprofile-name p {
+    margin-top: 0;
+  }
+  .myprofile-img {
+    max-width: 250px;
+  }
+  /* .myprofile-setting {
     margin-top: 32px;
-  }
+  } */
 }
 
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
@@ -179,11 +189,11 @@ export default {};
     height: 250px;
     margin: 12px 0px 12px 0px;
   }
-  .myprofile-setting img {
+  /* .myprofile-setting img {
     position: absolute;
     right: 20px;
     top: 80px;
-  }
+  } */
   .myprofile-setting button {
     display: none;
   }
@@ -213,6 +223,9 @@ export default {};
   }
   .menu2-bottom p:nth-child(2) {
     margin-top: 8px;
+    margin-left: 24px;
+  }
+  .edit-comment {
     margin-left: 24px;
   }
 }

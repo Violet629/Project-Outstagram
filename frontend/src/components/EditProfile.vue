@@ -18,6 +18,7 @@
             id="file"
             name="image"
             style="display: none"
+            accept="image/jpeg, image/png"
           />
           <label for="file">Select File</label>
           <input
