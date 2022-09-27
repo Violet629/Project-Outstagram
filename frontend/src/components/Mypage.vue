@@ -4,7 +4,6 @@
     <MyProfile />
     <MyContents />
     <EditProfile v-if="this.$store.state.editModal == true" />
-    <UpPost v-if="this.$store.state.upPostModal == true" />
   </div>
 </template>
 
@@ -13,7 +12,6 @@ import NavBar from "./NavBar.vue";
 import MyProfile from "./MyProfile.vue";
 import MyContents from "./MyContents.vue";
 import EditProfile from "./EditProfile.vue";
-import UpPost from "./UpPost.vue";
 import axios from "axios";
 
 export default {
@@ -22,7 +20,6 @@ export default {
     MyProfile,
     MyContents,
     EditProfile,
-    UpPost,
   },
   // 로딩 했을때 유저데이터 요청
   created() {

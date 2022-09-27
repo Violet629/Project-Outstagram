@@ -34,8 +34,8 @@ const routes = [
     component: () => import("../src/components/Mypage.vue"),
   },
   {
-    path: "/test",
-    component: () => import("../src/components/UpPost.vue"),
+    path: "/add_post",
+    component: () => import("../src/components/AddPost.vue"),
   },
 ];
 

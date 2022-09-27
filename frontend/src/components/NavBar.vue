@@ -29,10 +29,10 @@
           /></router-link>
         </div>
         <div>
-          <router-link to="/post_add" v-if="this.urlName != `/add`"
+          <router-link to="/add_post" v-if="this.urlName != `/add_post`"
             ><img class="menu3-button" src="../assets/icon/add.png"
           /></router-link>
-          <router-link to="/post_add" v-if="this.urlName == `/add`"
+          <router-link to="/add_post" v-if="this.urlName == `/add_post`"
             ><img class="menu3-button act-button" src="../assets/icon/add2.png"
           /></router-link>
         </div>
@@ -74,10 +74,10 @@
           /></router-link>
         </div>
         <div>
-          <router-link to="/post_add" v-if="this.urlName != `/add`"
+          <router-link to="/add_post" v-if="this.urlName != `/add_post`"
             ><img class="footer-button" src="../assets/icon/add.png"
           /></router-link>
-          <router-link to="/post_add" v-if="this.urlName == `/add`"
+          <router-link to="/add_post" v-if="this.urlName == `/add_post`"
             ><img
               class="footer-button act-button"
               src="../assets/icon/add2.png"

@@ -137,6 +137,10 @@ app.get("/mypage", loginCheck, function (req, res, next) {
   next();
 });
 
+app.get("/add_post", loginCheck, function (req, res, next) {
+  next();
+});
+
 app.get("/userdata", function (req, res) {
   console.log("UserData");
   db.collection("userdata")
