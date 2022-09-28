@@ -21,11 +21,6 @@
             accept="image/jpeg, image/png"
           />
           <label for="file">Select File</label>
-          <input
-            :value="$store.state.userData.userID"
-            name="userID"
-            style="display: none"
-          />
           <div class="editprofile-button">
             <button class="editprofile-submit" type="submit">Edit</button>
             <button
@@ -35,6 +30,10 @@
               Cancel
             </button>
           </div>
+        </div>
+        <div style="display: none">
+          <input :value="$store.state.userData.userID" name="userID" />
+          <!-- <input :value="$store.state.userData.profileImg" name="beforeUrl" /> -->
         </div>
       </form>
       <!-- <form
@@ -72,6 +71,7 @@ export default {
     return {
       // editstep: 1,
       previewUrl: this.$store.state.userData.profileImg,
+      // deletReqUrl: this.$store.state.userData.profileImg,
     };
   },
   methods: {
@@ -80,6 +80,9 @@ export default {
       this.previewUrl = URL.createObjectURL(this.file[0]);
       console.log(this.previewUrl);
     },
+  },
+  created() {
+    // this.deletReqUrl = this.deletReqUrl.split("^_");
   },
 };
 </script>

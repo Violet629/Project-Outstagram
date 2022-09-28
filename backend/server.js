@@ -128,6 +128,7 @@ app.post("/signup", function (req, res) {
   res.redirect("/singup_complete");
 });
 
+// 로그인하지 않고 밑에 경로로  바로 들어가는걸 방지 해주세요
 app.get("/home", loginCheck, function (req, res, next) {
   // console.log(req.user._id);
   next();
@@ -168,7 +169,7 @@ const profileimg_upload = multer({
     acl: "public-read",
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key: function (req, file, cb) {
-      cb(null, `${Date.now()}_${file.originalname}`);
+      cb(null, `^_${Date.now()}_${file.originalname}`);
     },
   }),
 });
@@ -180,7 +181,7 @@ const postimg_upload = multer({
     acl: "public-read",
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key: function (req, file, cb) {
-      cb(null, `${Date.now()}_${file.originalname}`);
+      cb(null, `^_${Date.now()}_${file.originalname}`);
     },
   }),
 });
@@ -190,6 +191,17 @@ app.post(
   profileimg_upload.single("image"),
   function (req, res) {
     console.log(req.body);
+
+    // 수정전 사진은 S3 버킷에서 삭제 해주세요
+    // s3.deleteObject(
+    //   { Bucket: "project-outstagram/profile-img", Key: req.body.beforeUrl },
+    //   (err, data) => {
+    //     console.error(err);
+    //     console.log(data);
+    //   }
+    // );
+
+    // 수정한 사진은 DB에 주소만 저장해주세요
     db.collection("userdata").updateOne(
       { userID: req.body.userID },
       {

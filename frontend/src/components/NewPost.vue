@@ -17,22 +17,18 @@
         />
         <label for="newpost-imgfile">Select File</label>
       </div>
-      <div class="editimg" v-if="openFilter === true">
-        <!-- <img
-          :src="newPostImgUrl"
-          class="filter-item"
-          :class="imgFilter"
-          v-for="imgFilter in imgFilter"
-          :key="imgFilter"
-        /> -->
-        <div
-          :style="`background-image:url(${newPostImgUrl})`"
-          :src="newPostImgUrl"
-          class="filter-item"
-          :class="imgFilter"
-          v-for="imgFilter in imgFilter"
-          :key="imgFilter"
-        ></div>
+      <div v-if="openFilter === true">
+        <div class="editimg">
+          <div
+            v-for="imgFilter in imgFilter"
+            :key="imgFilter"
+            class="filter-item"
+            :class="imgFilter"
+          >
+            <p>{{ imgFilter }}</p>
+            <img :src="newPostImgUrl" />
+          </div>
+        </div>
       </div>
     </div>
     <div v-if="newPostStep == 1"></div>
@@ -67,7 +63,6 @@ export default {
         "reyes",
         "rise",
         "slumber",
-        "stinson",
         "toaster",
         "valencia",
         "walden",
@@ -144,6 +139,8 @@ export default {
   display: flex;
   overflow: scroll;
   overflow-y: hidden;
+  /* justify-content: space-around; */
+  /* width: 100%; */
 }
 .editimg::-webkit-scrollbar {
   width: 10px;
@@ -163,10 +160,22 @@ export default {
   width: 150px;
   height: 150px;
   margin: 10px 10px 10px auto;
-  padding: 8px;
+  /* padding: 8px; */
   display: inline-block;
   color: white;
   background-size: cover;
   background-position: center;
+}
+.filter-item img {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  z-index: 1;
+}
+.filter-item p {
+  position: absolute;
+  z-index: 99;
+  margin: 4px;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 }
 </style>
