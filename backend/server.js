@@ -232,6 +232,21 @@ app.post("/editprofile-comment", function (req, res) {
   );
 });
 
+app.post("/newpost", postimg_upload.single("image"), function (req, res) {
+  console.log(req.body);
+  db.collection("post").insertOne({
+    userID: req.body.userID,
+    profileimg: req.body.profileimg,
+    filter: req.body.filterName,
+    postimg: req.file.location,
+    postcomment: req.body.newPostComment,
+    comment: [],
+    like: 0,
+    liked: false,
+  });
+  res.redirect("/add_post");
+});
+
 // 주소창에 미개발 주소 치면 다시 메인 페이지로 보내주세요
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));

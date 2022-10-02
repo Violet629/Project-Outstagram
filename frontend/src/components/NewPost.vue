@@ -1,37 +1,70 @@
 <template>
   <div class="newpost">
     <div class="newpost-header">NEW POST</div>
-    <div class="newpost-nav">
-      <button class="newpost-nav-back">BACK</button>
-      <button class="newpost-nav-next">NEXT</button>
-    </div>
-    <div v-if="newPostStep == 0">
-      <div class="newpost-postimg">
-        <img :src="newPostImgUrl" />
-        <input
-          @change="newPostPreview($event)"
-          id="newpost-imgfile"
-          type="file"
-          style="display: none"
-          accept="image/jpeg, image/png"
-        />
-        <label for="newpost-imgfile">Select File</label>
+    <form action="newpost" method="post" enctype="multipart/form-data">
+      <div class="newpost-nav">
+        <div class="newpost-nav-back" @click="back()">BACK</div>
+        <div class="newpost-nav-next" @click="next()" v-if="newPostStep !== 1">
+          NEXT
+        </div>
+        <button type="submit" class="newpost-nav-post" v-if="newPostStep === 1">
+          POST
+        </button>
       </div>
-      <div v-if="openFilter === true">
-        <div class="editimg">
-          <div
-            v-for="imgFilter in imgFilter"
-            :key="imgFilter"
-            class="filter-item"
-            :class="imgFilter"
+      <div>
+        <div class="newpost-postimg">
+          <img :src="newPostImgUrl" :class="filterName" />
+          <input
+            @change="newPostPreview($event)"
+            id="newpost-imgfile"
+            type="file"
+            style="display: none"
+            accept="image/jpeg, image/png"
+            name="image"
+          />
+          <label for="newpost-imgfile" v-if="newPostStep == 0"
+            >Select File</label
           >
-            <p>{{ imgFilter }}</p>
-            <img :src="newPostImgUrl" />
+          <p v-if="newPostStep == 1">Image Filter {{ filterName }}</p>
+        </div>
+        <div v-if="openFilter == true && newPostStep == 0">
+          <div class="editimg">
+            <div
+              v-for="imgFilter in imgFilter"
+              :key="imgFilter"
+              class="filter-item"
+              :class="imgFilter"
+            >
+              <p>{{ imgFilter }}</p>
+              <img :src="newPostImgUrl" @click="filterAdd(imgFilter)" />
+            </div>
           </div>
         </div>
+        <div class="newpost-comment" v-if="newPostStep == 1">
+          <input type="text" name="newPostComment" placeholder="Post Comment" />
+        </div>
       </div>
-    </div>
-    <div v-if="newPostStep == 1"></div>
+      <div>
+        <input
+          type="text"
+          :value="filterName"
+          name="filterName"
+          style="display: none"
+        />
+        <input
+          type="text"
+          :value="$store.state.userData.userID"
+          name="userID"
+          style="display: none"
+        />
+        <input
+          type="text"
+          :value="$store.state.userData.profileImg"
+          name="profileimg"
+          style="display: none"
+        />
+      </div>
+    </form>
   </div>
 </template>
 
@@ -70,6 +103,7 @@ export default {
         "xpro2",
       ],
       openFilter: false,
+      filterName: "",
     };
   },
   methods: {
@@ -78,6 +112,18 @@ export default {
       this.newPostImgUrl = URL.createObjectURL(this.file[0]);
       //   console.log(this.newPostImgUrl);
       this.openFilter = true;
+    },
+    filterAdd($filter) {
+      this.filterName = $filter;
+    },
+    back() {
+      if (this.newPostStep === 0) {
+        return;
+      }
+      this.newPostStep--;
+    },
+    next() {
+      this.newPostStep++;
     },
   },
 };
@@ -94,6 +140,7 @@ export default {
   text-align: center;
   font-size: 36px;
   background-color: rgba(153, 153, 153, 0.8);
+  border-radius: 0px 0px 12px 12px;
   padding: 8px 0px;
 }
 .newpost-nav {
@@ -103,7 +150,8 @@ export default {
   /* width: 90%; */
   /* margin: 0 auto; */
 }
-.newpost-nav button {
+.newpost-nav button,
+.newpost-nav div {
   border: 2px solid rgba(153, 153, 153, 0.8);
   border-radius: 8px;
   margin: 8px 0px;
@@ -123,7 +171,7 @@ export default {
   height: 500px;
   margin: 0px auto;
   border: 2px solid rgba(153, 153, 153, 0.8);
-  object-fit: cover;
+  /* object-fit: cover; */
 }
 .newpost-postimg label {
   text-align: center;
@@ -174,8 +222,19 @@ export default {
 }
 .filter-item p {
   position: absolute;
-  z-index: 99;
+  z-index: 50;
   margin: 4px;
   text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+}
+.newpost-comment {
+  text-align: center;
+}
+.newpost-comment input {
+  width: 60%;
+  padding: 4px 0px 86px 6px;
+  border: 2px solid rgba(153, 153, 153, 0.8);
+  border-radius: 8px;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
 }
 </style>
