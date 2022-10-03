@@ -1,24 +1,25 @@
 <template>
   <div class="contents-list">
-    <div class="contents" v-for="contentsData in 4" :key="contentsData">
+    <div class="contents" v-for="(contentsData, i) in 4" :key="contentsData">
       <div class="profile">
-        <img src="https://placeimg.com/100/100/arch" alt="profile-img" />
-        <p class="profile-name">name</p>
-        <p class="contents-time">xx hour</p>
+        <img :src="$store.state.postData[i].profileimg" alt="profile-img" />
+        <p class="profile-name">{{ $store.state.postData[i].userID }}</p>
+        <p class="contents-time">{{ $store.state.postData[i].timestamp }}</p>
       </div>
-      <!-- 버그 -->
       <div class="contents-img">
-        <img src="https://placeimg.com/600/600/arch" alt="contents-img" />
+        <img
+          :src="$store.state.postData[i].postimg"
+          alt="contents-img"
+          :class="$store.state.postData[i].filterName"
+        />
       </div>
       <div class="contents-post">
         <p class="post-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo,
-          nesciunt.
+          {{ $store.state.postData[i].postcomment }}
         </p>
         <br />
         <img class="post-like" src="../assets/icon/heart.png" alt="like" />
       </div>
-      <!-- 버그 -->
       <div class="post-comment">
         <input type="text" placeholder="댓글을 달아주세요" />
         <button class="comment-send">Send</button>
@@ -52,6 +53,7 @@ export default {};
 }
 .profile img {
   width: 40px;
+  height: 40px;
   border-radius: 50%;
   margin: 12px;
 }
@@ -74,7 +76,7 @@ export default {};
 .contents-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* object-fit: cover; */
 }
 .contents-post {
   width: 100%;

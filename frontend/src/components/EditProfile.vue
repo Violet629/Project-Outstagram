@@ -146,7 +146,7 @@ export default {
 .preview {
   width: 250px;
   height: 250px;
-  object-fit: cover;
+  /* object-fit: cover; */
   border-radius: 50%;
   border: 2px solid rgba(153, 153, 153, 0.8);
   display: block;

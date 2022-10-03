@@ -27,7 +27,9 @@
       </div>
     </div>
     <div class="up-post">
-      <button>+</button>
+      <router-link to="add_post">
+        <button>+</button>
+      </router-link>
     </div>
     <div class="my-post">
       <h3>My Post</h3>
@@ -73,7 +75,7 @@ export default {
 .my-profile-img {
   width: 100%;
   height: 140px;
-  object-fit: cover;
+  /* object-fit: cover; */
   border-radius: 50%;
   border: 2px solid rgba(153, 153, 153, 0.8);
 }

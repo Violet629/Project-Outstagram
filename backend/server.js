@@ -143,14 +143,26 @@ app.get("/add_post", loginCheck, function (req, res, next) {
 });
 
 app.get("/userdata", function (req, res) {
-  console.log("UserData");
+  // console.log("UserData");
   db.collection("userdata")
     .find({ userID: req.user.userID })
     .toArray(function (err, data) {
       res.json(data);
-      for (var i = 0; i < data.length; i++) {
-        console.log(data[i]);
-      }
+      // for (var i = 0; i < data.length; i++) {
+      //   console.log(data[i]);
+      // }
+    });
+});
+
+app.get("/postdata", function (req, res) {
+  // console.log("PostData");
+  db.collection("post")
+    .find({ userID: req.user.userID })
+    .toArray(function (err, data) {
+      res.json(data);
+      // for (var i = 0; i < data.length; i++) {
+      //   console.log(data[i]);
+      // }
     });
 });
 
@@ -234,6 +246,13 @@ app.post("/editprofile-comment", function (req, res) {
 
 app.post("/newpost", postimg_upload.single("image"), function (req, res) {
   console.log(req.body);
+
+  var today = new Date();
+  var month = today.getUTCMonth() + 1; //months from 1-12
+  var day = today.getUTCDate();
+  var year = today.getUTCFullYear();
+  today = year + "-" + month + "-" + day;
+
   db.collection("post").insertOne({
     userID: req.body.userID,
     profileimg: req.body.profileimg,
@@ -243,6 +262,7 @@ app.post("/newpost", postimg_upload.single("image"), function (req, res) {
     comment: [],
     like: 0,
     liked: false,
+    timestamp: today,
   });
   res.redirect("/add_post");
 });

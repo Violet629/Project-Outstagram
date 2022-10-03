@@ -33,6 +33,15 @@ export default {
       .catch((err) => {
         console.error(err.message);
       });
+    axios
+      .get("http://localhost:8080/postdata")
+      .then((res) => {
+        // console.log(res.data);
+        this.$store.state.postData = res.data;
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
   },
 };
 </script>

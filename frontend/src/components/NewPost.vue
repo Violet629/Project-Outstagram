@@ -1,9 +1,9 @@
 <template>
   <div class="newpost">
-    <div class="newpost-header">NEW POST</div>
     <form action="newpost" method="post" enctype="multipart/form-data">
       <div class="newpost-nav">
         <div class="newpost-nav-back" @click="back()">BACK</div>
+        <div class="newpost-header">NEW POST</div>
         <div class="newpost-nav-next" @click="next()" v-if="newPostStep !== 1">
           NEXT
         </div>
@@ -41,7 +41,12 @@
           </div>
         </div>
         <div class="newpost-comment" v-if="newPostStep == 1">
-          <input type="text" name="newPostComment" placeholder="Post Comment" />
+          <input
+            type="text"
+            name="newPostComment"
+            placeholder="Post Comment"
+            autocomplete="off"
+          />
         </div>
       </div>
       <div>
@@ -141,17 +146,19 @@ export default {
   font-size: 36px;
   background-color: rgba(153, 153, 153, 0.8);
   border-radius: 0px 0px 12px 12px;
-  padding: 8px 0px;
+  padding: 8px 128px;
+  margin-bottom: 12px;
 }
 .newpost-nav {
   display: flex;
-  justify-content: space-between;
-  align-content: center;
+  justify-content: space-around;
+  align-items: center;
   /* width: 90%; */
   /* margin: 0 auto; */
 }
-.newpost-nav button,
-.newpost-nav div {
+.newpost-nav-post,
+.newpost-nav-back,
+.newpost-nav-next {
   border: 2px solid rgba(153, 153, 153, 0.8);
   border-radius: 8px;
   margin: 8px 0px;

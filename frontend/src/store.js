@@ -8,6 +8,7 @@ const store = createStore({
   state() {
     return {
       userData: [],
+      postData: [],
       editModal: false,
       upPostModal: false,
     };
