@@ -10,7 +10,8 @@
         <img
           :src="$store.state.postData[i].postimg"
           alt="contents-img"
-          :class="$store.state.postData[i].filterName"
+          class="filter-item"
+          :class="$store.state.postData[i].filter"
         />
       </div>
       <div class="contents-post">
@@ -18,12 +19,23 @@
           {{ $store.state.postData[i].postcomment }}
         </p>
         <br />
+        <div class="post-taglist">
+          <p
+            class="post-tag"
+            v-for="(taglist, j) in $store.state.postData[i].posttag.length"
+            :key="taglist"
+          >
+            {{ "#" + $store.state.postData[i].posttag[j] }}
+          </p>
+        </div>
         <img class="post-like" src="../assets/icon/heart.png" alt="like" />
       </div>
-      <div class="post-comment">
-        <input type="text" placeholder="댓글을 달아주세요" />
-        <button class="comment-send">Send</button>
-      </div>
+      <form action="leavecomment" method="post">
+        <div class="post-comment">
+          <input type="text" placeholder="Leave your Comment" />
+          <button type="submit" class="comment-send">Send</button>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -83,8 +95,17 @@ export default {};
 }
 .post-text {
   font-family: "Roboto", sans-serif;
-  font-size: 18px;
+  font-size: 24px;
   padding-left: 16px;
+}
+.post-taglist {
+  display: flex;
+}
+.post-tag {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  color: rgba(0, 0, 255, 0.7);
+  margin-left: 12px;
 }
 .post-like {
   width: 26px;

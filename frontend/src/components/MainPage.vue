@@ -36,7 +36,7 @@ export default {
     axios
       .get("http://localhost:8080/postdata")
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         this.$store.state.postData = res.data;
       })
       .catch((err) => {

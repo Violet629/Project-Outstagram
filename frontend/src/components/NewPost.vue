@@ -40,11 +40,20 @@
             </div>
           </div>
         </div>
-        <div class="newpost-comment" v-if="newPostStep == 1">
+        <div class="newpost-input" v-if="newPostStep == 1">
           <input
             type="text"
+            class="newpost-comment"
             name="newPostComment"
             placeholder="Post Comment"
+            autocomplete="off"
+          />
+          <br />
+          <input
+            type="text"
+            class="newpost-tag"
+            name="newPostTag"
+            placeholder="#Tag"
             autocomplete="off"
           />
         </div>
@@ -151,6 +160,7 @@ export default {
 }
 .newpost-nav {
   display: flex;
+  /* justify-content: center; */
   justify-content: space-around;
   align-items: center;
   /* width: 90%; */
@@ -233,15 +243,30 @@ export default {
   margin: 4px;
   text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 }
-.newpost-comment {
+.newpost-input {
   text-align: center;
 }
-.newpost-comment input {
+.newpost-input {
   width: 60%;
-  padding: 4px 0px 86px 6px;
+  margin: 0 auto;
   border: 2px solid rgba(153, 153, 153, 0.8);
   border-radius: 8px;
   font-family: "Roboto", sans-serif;
   font-size: 18px;
+}
+.newpost-comment {
+  width: 99%;
+  border: 0;
+  border-bottom: 2px solid rgba(153, 153, 153, 0.8);
+  padding: 4px 0px 42px 6px;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+}
+.newpost-tag {
+  width: 99%;
+  border: 0;
+  padding: 4px 0px 42px 6px;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
 }
 </style>

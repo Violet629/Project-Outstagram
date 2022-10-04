@@ -157,9 +157,11 @@ app.get("/userdata", function (req, res) {
 app.get("/postdata", function (req, res) {
   // console.log("PostData");
   db.collection("post")
-    .find({ userID: req.user.userID })
+    .find()
+    .sort({ timestamp: -1 })
     .toArray(function (err, data) {
       res.json(data);
+      console.log(data);
       // for (var i = 0; i < data.length; i++) {
       //   console.log(data[i]);
       // }
@@ -251,7 +253,13 @@ app.post("/newpost", postimg_upload.single("image"), function (req, res) {
   var month = today.getUTCMonth() + 1; //months from 1-12
   var day = today.getUTCDate();
   var year = today.getUTCFullYear();
-  today = year + "-" + month + "-" + day;
+  var hours = today.getHours();
+  var minutes = today.getMinutes();
+
+  today = year + "/" + month + "/" + day + " " + hours + ":" + minutes;
+
+  var tagList = req.body.newPostTag;
+  var tagSplit = tagList.split("#");
 
   db.collection("post").insertOne({
     userID: req.body.userID,
@@ -259,9 +267,10 @@ app.post("/newpost", postimg_upload.single("image"), function (req, res) {
     filter: req.body.filterName,
     postimg: req.file.location,
     postcomment: req.body.newPostComment,
+    posttag: tagSplit,
     comment: [],
     like: 0,
-    liked: false,
+    liked: [],
     timestamp: today,
   });
   res.redirect("/add_post");
