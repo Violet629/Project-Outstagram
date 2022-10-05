@@ -23,8 +23,8 @@
             name="image"
           />
           <label for="newpost-imgfile" v-if="newPostStep == 0"
-            >Select File</label
-          >
+            >Select File
+          </label>
           <p v-if="newPostStep == 1">Image Filter {{ filterName }}</p>
         </div>
         <div v-if="openFilter == true && newPostStep == 0">
@@ -58,24 +58,17 @@
           />
         </div>
       </div>
-      <div>
-        <input
-          type="text"
-          :value="filterName"
-          name="filterName"
-          style="display: none"
-        />
+      <div style="display: none">
+        <input type="text" :value="filterName" name="filterName" />
         <input
           type="text"
           :value="$store.state.userData.userID"
           name="userID"
-          style="display: none"
         />
         <input
           type="text"
           :value="$store.state.userData.profileImg"
           name="profileimg"
-          style="display: none"
         />
       </div>
     </form>

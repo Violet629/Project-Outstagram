@@ -54,7 +54,7 @@ passport.use(
       passReqToCallback: false,
     },
     function (inputId, inputPw, done) {
-      console.log(inputId, inputPw);
+      console.log("Login Attempts " + "ID " + inputId + "PW " + inputPw);
       db.collection("userdata").findOne(
         { userID: inputId },
         function (err, result) {
@@ -120,11 +120,10 @@ app.post("/signup", function (req, res) {
       post: [],
       like: [],
     },
-    function (err, result) {
-      console.log(req.body);
-      console.log(req.body.login_id + " User-Sign UP!");
-    }
+    function (err, result) {}
   );
+  // console.log(req.body);
+  console.log(req.body.login_id + " User-Sign UP!");
   res.redirect("/singup_complete");
 });
 
@@ -143,11 +142,11 @@ app.get("/add_post", loginCheck, function (req, res, next) {
 });
 
 app.get("/userdata", function (req, res) {
-  // console.log("UserData");
   db.collection("userdata")
     .find({ userID: req.user.userID })
     .toArray(function (err, data) {
       res.json(data);
+      // console.log("UserData");
       // for (var i = 0; i < data.length; i++) {
       //   console.log(data[i]);
       // }
@@ -155,13 +154,12 @@ app.get("/userdata", function (req, res) {
 });
 
 app.get("/postdata", function (req, res) {
-  // console.log("PostData");
   db.collection("post")
     .find()
     .sort({ timestamp: -1 })
     .toArray(function (err, data) {
       res.json(data);
-      console.log(data);
+      // console.log("PostData");
       // for (var i = 0; i < data.length; i++) {
       //   console.log(data[i]);
       // }
@@ -171,7 +169,10 @@ app.get("/postdata", function (req, res) {
 // 이미지를 AWS S3에 저장하기
 const multer = require("multer");
 const multerS3 = require("multer-s3");
+// const multerS3 = require("multer-s3-transform");
+// const sharp = require("sharp");
 const aws = require("aws-sdk");
+const { ObjectId } = require("mongodb");
 aws.config.loadFromPath(__dirname + "/config/s3.json");
 // 키는 json파일로 저장해놓음 보안상 config,s3.json는 깃허브에는 올라가지 않음
 
@@ -247,6 +248,7 @@ app.post("/editprofile-comment", function (req, res) {
 });
 
 app.post("/newpost", postimg_upload.single("image"), function (req, res) {
+  console.log("New Posting!");
   console.log(req.body);
 
   var today = new Date();
@@ -260,6 +262,9 @@ app.post("/newpost", postimg_upload.single("image"), function (req, res) {
 
   var tagList = req.body.newPostTag;
   var tagSplit = tagList.split("#");
+  var tagfilter = tagSplit.filter(function (tag) {
+    return tag !== null && tag !== undefined && tag !== "";
+  });
 
   db.collection("post").insertOne({
     userID: req.body.userID,
@@ -267,7 +272,7 @@ app.post("/newpost", postimg_upload.single("image"), function (req, res) {
     filter: req.body.filterName,
     postimg: req.file.location,
     postcomment: req.body.newPostComment,
-    posttag: tagSplit,
+    posttag: tagfilter,
     comment: [],
     like: 0,
     liked: [],
@@ -275,6 +280,34 @@ app.post("/newpost", postimg_upload.single("image"), function (req, res) {
   });
   res.redirect("/add_post");
 });
+
+app.post("/leavecomment", function (req, res) {
+  console.log(req.body);
+  db.collection("post").updateOne(
+    { _id: ObjectId(req.body.objID) },
+    {
+      $push: {
+        comment: {
+          userID: req.body.userID,
+          profileimg: req.body.profileimg,
+          text: req.body.leaveComment,
+        },
+      },
+    },
+    function () {
+      console.log("Leave Comment!" + "Post Obj ID" + req.body.objID);
+      res.redirect("/home");
+    }
+  );
+});
+
+// db.collection("post").updateOne(
+//   { _id: req.body.userID },
+//   { $push: { profileComment: req.body.comment, }, },
+//   function () {
+//     console.log("수정완료");
+//     res.redirect("/mypage");
+//   }
 
 // 주소창에 미개발 주소 치면 다시 메인 페이지로 보내주세요
 app.get("*", function (req, res) {

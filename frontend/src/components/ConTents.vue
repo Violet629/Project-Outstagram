@@ -27,13 +27,41 @@
           >
             {{ "#" + $store.state.postData[i].posttag[j] }}
           </p>
+          <p
+            class="post-commentlist"
+            v-for="(commentlist, k) in 3"
+            :key="commentlist"
+          >
+            {{ $store.state.postData[i].comment[k] }}
+          </p>
         </div>
         <img class="post-like" src="../assets/icon/heart.png" alt="like" />
       </div>
       <form action="leavecomment" method="post">
         <div class="post-comment">
-          <input type="text" placeholder="Leave your Comment" />
+          <input
+            type="text"
+            placeholder="Leave your Comment"
+            name="leaveComment"
+          />
           <button type="submit" class="comment-send">Send</button>
+        </div>
+        <div style="display: none">
+          <input
+            type="text"
+            :value="$store.state.userData.userID"
+            name="userID"
+          />
+          <input
+            type="text"
+            :value="$store.state.userData.profileImg"
+            name="profileimg"
+          />
+          <input
+            type="text"
+            :value="$store.state.postData[i]._id"
+            name="objID"
+          />
         </div>
       </form>
     </div>
