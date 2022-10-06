@@ -37,7 +37,9 @@ export default {
       .get("http://localhost:8080/postdata")
       .then((res) => {
         console.log(res.data);
+        console.log(res.data[0].comment[0].profileimg);
         this.$store.state.postData = res.data;
+        this.$store.state.postcomment = res.data.comment;
       })
       .catch((err) => {
         console.error(err.message);

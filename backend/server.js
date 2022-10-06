@@ -159,10 +159,10 @@ app.get("/postdata", function (req, res) {
     .sort({ timestamp: -1 })
     .toArray(function (err, data) {
       res.json(data);
-      // console.log("PostData");
-      // for (var i = 0; i < data.length; i++) {
-      //   console.log(data[i]);
-      // }
+      console.log("PostData");
+      for (var i = 0; i < data.length; i++) {
+        console.log(data[i]);
+      }
     });
 });
 
@@ -271,7 +271,7 @@ app.post("/newpost", postimg_upload.single("image"), function (req, res) {
     profileimg: req.body.profileimg,
     filter: req.body.filterName,
     postimg: req.file.location,
-    postcomment: req.body.newPostComment,
+    postfeed: req.body.newPostFeed,
     posttag: tagfilter,
     comment: [],
     like: 0,

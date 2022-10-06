@@ -43,9 +43,9 @@
         <div class="newpost-input" v-if="newPostStep == 1">
           <input
             type="text"
-            class="newpost-comment"
-            name="newPostComment"
-            placeholder="Post Comment"
+            class="newpost-feed"
+            name="newPostFeed"
+            placeholder="Post Feed"
             autocomplete="off"
           />
           <br />

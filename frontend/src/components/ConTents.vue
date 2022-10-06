@@ -15,8 +15,8 @@
         />
       </div>
       <div class="contents-post">
-        <p class="post-text">
-          {{ $store.state.postData[i].postcomment }}
+        <p class="post-feed">
+          {{ $store.state.postData[i].postfeed }}
         </p>
         <br />
         <div class="post-taglist">
@@ -27,18 +27,23 @@
           >
             {{ "#" + $store.state.postData[i].posttag[j] }}
           </p>
-          <p
+        </div>
+        <div class="post-comment">
+          <div
             class="post-commentlist"
-            v-for="(commentlist, k) in 3"
+            v-for="commentlist in 3"
             :key="commentlist"
           >
-            {{ $store.state.postData[i].comment[k] }}
-          </p>
+            {{ $store.state.postData[i].comment[0].text }}
+            <!-- <img :src="$store.state.postData[i].comment[k].profileimg" /> -->
+            <p></p>
+          </div>
+          <p></p>
         </div>
         <img class="post-like" src="../assets/icon/heart.png" alt="like" />
       </div>
       <form action="leavecomment" method="post">
-        <div class="post-comment">
+        <div class="leavecomment">
           <input
             type="text"
             placeholder="Leave your Comment"
@@ -121,7 +126,7 @@ export default {};
 .contents-post {
   width: 100%;
 }
-.post-text {
+.post-feed {
   font-family: "Roboto", sans-serif;
   font-size: 24px;
   padding-left: 16px;
@@ -139,13 +144,13 @@ export default {};
   width: 26px;
   padding: 16px;
 }
-.post-comment {
+.leavecomment {
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-top: 2px solid rgba(153, 153, 153, 0.8);
 }
-.post-comment input {
+.leavecomment input {
   width: 80%;
   padding: 16px;
   border: 0;

@@ -11,6 +11,7 @@ const store = createStore({
       postData: [],
       editModal: false,
       upPostModal: false,
+      poscomment: [],
     };
   },
   mutations: {
