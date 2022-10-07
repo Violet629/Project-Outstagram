@@ -82,8 +82,6 @@ export default {};
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
 /* logo font : font-family: 'Kaushan Script', cursive; */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap");
-/* Roboto font 400&700 : font-family: 'Roboto', sans-serif; */
 
 .pc-login-page {
   width: 100%;

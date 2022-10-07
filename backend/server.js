@@ -159,10 +159,10 @@ app.get("/postdata", function (req, res) {
     .sort({ timestamp: -1 })
     .toArray(function (err, data) {
       res.json(data);
-      console.log("PostData");
-      for (var i = 0; i < data.length; i++) {
-        console.log(data[i]);
-      }
+      // console.log("PostData");
+      // for (var i = 0; i < data.length; i++) {
+      //   console.log(data[i]);
+      // }
     });
 });
 
@@ -299,6 +299,10 @@ app.post("/leavecomment", function (req, res) {
       res.redirect("/home");
     }
   );
+});
+
+app.post("/postlike", function (req, res) {
+  console.log(req.body);
 });
 
 // db.collection("post").updateOne(

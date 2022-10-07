@@ -88,8 +88,6 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap");
-/* Roboto font 400&700 : font-family: 'Roboto', sans-serif; */
 @import "animate.css";
 
 .editprofile-modal {

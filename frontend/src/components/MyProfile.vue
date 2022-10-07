@@ -50,9 +50,13 @@
                 :value="$store.state.userData.userID"
                 name="userID"
                 style="display: none"
+              />
+              <input
+                type="text"
+                name="comment"
+                placeholder="Edit MyComment"
                 autocomplete="off"
               />
-              <input type="text" name="comment" placeholder="Edit MyComment" />
               <button type="submit">Submit</button>
             </form>
           </div>
@@ -67,9 +71,6 @@ export default {};
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap");
-/* Roboto font 400&700 : font-family: 'Roboto', sans-serif; */
-
 .myprofile {
   width: 100%;
   height: 360px;

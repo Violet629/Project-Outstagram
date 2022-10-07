@@ -141,6 +141,15 @@ export default {
   width: 100%;
   margin: 0 auto;
 }
+.newpost-nav {
+  width: 80%;
+  display: flex;
+  /* justify-content: center; */
+  margin: 0 auto;
+  align-items: center;
+  /* width: 90%; */
+  /* margin: 0 auto; */
+}
 .newpost-header {
   font-family: "Roboto", sans-serif;
   font-weight: 700;
@@ -148,26 +157,21 @@ export default {
   font-size: 36px;
   background-color: rgba(153, 153, 153, 0.8);
   border-radius: 0px 0px 12px 12px;
-  padding: 8px 128px;
+  padding: 8px 0px 8px 0px;
   margin-bottom: 12px;
-}
-.newpost-nav {
-  display: flex;
-  /* justify-content: center; */
-  justify-content: space-around;
-  align-items: center;
-  /* width: 90%; */
-  /* margin: 0 auto; */
+  flex-grow: 6;
 }
 .newpost-nav-post,
 .newpost-nav-back,
 .newpost-nav-next {
+  text-align: center;
   border: 2px solid rgba(153, 153, 153, 0.8);
   border-radius: 8px;
   margin: 8px 0px;
-  padding: 8px 24px;
+  padding: 8px 0px 8px 0px;
   font-size: 20px;
   font-family: "Roboto", sans-serif;
+  flex-grow: 2;
 }
 .newpost-postimg {
   width: 60%;
@@ -247,7 +251,7 @@ export default {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
 }
-.newpost-comment {
+.newpost-feed {
   width: 99%;
   border: 0;
   border-bottom: 2px solid rgba(153, 153, 153, 0.8);
@@ -261,5 +265,16 @@ export default {
   padding: 4px 0px 42px 6px;
   font-size: 16px;
   font-family: "Roboto", sans-serif;
+}
+/* PC (해상도 1024px)*/
+@media all and (min-width: 1024px) {
+}
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+}
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media all and (max-width: 767px) {
 }
 </style>

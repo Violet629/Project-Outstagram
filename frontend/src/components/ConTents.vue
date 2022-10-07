@@ -31,16 +31,32 @@
         <div class="post-comment">
           <div
             class="post-commentlist"
-            v-for="commentlist in 3"
+            v-for="(commentlist, k) in $store.state.postData[i].comment.length"
             :key="commentlist"
           >
-            {{ $store.state.postData[i].comment[0].text }}
-            <!-- <img :src="$store.state.postData[i].comment[k].profileimg" /> -->
-            <p></p>
+            <img
+              class="commentlist-profileimg"
+              :src="$store.state.postData[i].comment[k].profileimg"
+            />
+            <p class="commentlist-name">
+              {{ $store.state.postData[i].comment[k].userID }}
+            </p>
+            <p class="commentlist-text">
+              {{ $store.state.postData[i].comment[k].text }}
+            </p>
           </div>
-          <p></p>
         </div>
-        <img class="post-like" src="../assets/icon/heart.png" alt="like" />
+        <div class="post-like">
+          <img
+            @click="postLike()"
+            class="like-icon"
+            src="../assets/icon/heart.png"
+            alt="like"
+          />
+          <p class="like-count">
+            {{ $store.state.postData[i].like + " like" }}
+          </p>
+        </div>
       </div>
       <form action="leavecomment" method="post">
         <div class="leavecomment">
@@ -48,6 +64,7 @@
             type="text"
             placeholder="Leave your Comment"
             name="leaveComment"
+            autocomplete="off"
           />
           <button type="submit" class="comment-send">Send</button>
         </div>
@@ -74,16 +91,19 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    postLike() {
+      axios.post("http://localhost:8080/postlike");
+    },
+  },
+};
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap");
-/* Roboto font 400&700 : font-family: 'Roboto', sans-serif; */
-
-/* .contents-list {
-  overflow: hidden;
-} */
 .contents {
   width: 100%;
   max-width: 60%;
@@ -104,7 +124,7 @@ export default {};
 }
 .profile-name {
   font-family: "Roboto", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
 }
 .contents-time {
@@ -128,20 +148,29 @@ export default {};
 }
 .post-feed {
   font-family: "Roboto", sans-serif;
-  font-size: 24px;
+  font-size: 22px;
   padding-left: 16px;
+  margin: 0;
+  margin-top: 12px;
 }
 .post-taglist {
   display: flex;
+  border-bottom: 2px solid rgba(153, 153, 153, 0.8);
 }
 .post-tag {
   font-family: "Roboto", sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   color: rgba(0, 0, 255, 0.7);
   margin-left: 12px;
 }
 .post-like {
-  width: 26px;
+  display: flex;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+}
+.like-icon {
+  width: 25px;
+  height: 25px;
   padding: 16px;
 }
 .leavecomment {
@@ -161,6 +190,48 @@ export default {};
   color: blue;
   background-color: #fff;
   border: 0;
+}
+.post-comment {
+  max-height: 160px;
+  overflow: scroll;
+  overflow-x: hidden;
+  /* overflow-y: hidden; */
+  /* border-bottom: 2px solid rgba(153, 153, 153, 0.8); */
+}
+.post-comment::-webkit-scrollbar {
+  width: 10px;
+}
+.post-comment::-webkit-scrollbar-thumb {
+  background-color: #2f3542;
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+.post-comment::-webkit-scrollbar-track {
+  background-color: rgba(153, 153, 153, 0.8);
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px white;
+  display: none;
+}
+.post-commentlist {
+  display: flex;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+}
+.commentlist-profileimg {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin: 4px;
+  margin-left: 10px;
+}
+.commentlist-name {
+  font-size: 16px;
+  margin-right: 4px;
+  font-weight: 700;
+}
+.commentlist-text {
+  font-size: 16px;
 }
 /* PC (해상도 1024px)*/
 @media all and (min-width: 1024px) {
