@@ -48,7 +48,7 @@
         </div>
         <div class="post-like">
           <img
-            @click="postLike()"
+            @click="postLike($store.state.postData[i]._id)"
             class="like-icon"
             src="../assets/icon/heart.png"
             alt="like"
@@ -93,11 +93,13 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      // objId: "",
+    };
   },
   methods: {
-    postLike() {
-      axios.post("http://localhost:8080/postlike");
+    postLike(objId) {
+      consol.log(objId);
     },
   },
 };

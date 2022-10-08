@@ -142,7 +142,7 @@ export default {
   margin: 0 auto;
 }
 .newpost-nav {
-  width: 80%;
+  width: 60%;
   display: flex;
   /* justify-content: center; */
   margin: 0 auto;
@@ -167,7 +167,7 @@ export default {
   text-align: center;
   border: 2px solid rgba(153, 153, 153, 0.8);
   border-radius: 8px;
-  margin: 8px 0px;
+  margin: 0px 4px;
   padding: 8px 0px 8px 0px;
   font-size: 20px;
   font-family: "Roboto", sans-serif;

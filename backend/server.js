@@ -166,6 +166,19 @@ app.get("/postdata", function (req, res) {
     });
 });
 
+app.get("/mypostdata", function (req, res) {
+  db.collection("post")
+    .find({ userID: req.user.userID })
+    .sort({ timestamp: -1 })
+    .toArray(function (err, data) {
+      res.json(data);
+      // console.log("PostData");
+      for (var i = 0; i < data.length; i++) {
+        console.log(data[i]);
+      }
+    });
+});
+
 // 이미지를 AWS S3에 저장하기
 const multer = require("multer");
 const multerS3 = require("multer-s3");
@@ -314,6 +327,7 @@ app.post("/postlike", function (req, res) {
 //   }
 
 // 주소창에 미개발 주소 치면 다시 메인 페이지로 보내주세요
+// 사이트 랜더링을 프론트에게 맡김
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });

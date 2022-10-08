@@ -9,6 +9,8 @@ const store = createStore({
     return {
       userData: [],
       postData: [],
+      myPostData: [],
+      myLikeData: [],
       editModal: false,
       upPostModal: false,
     };

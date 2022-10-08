@@ -12,12 +12,12 @@
           v-if="switchMenuber == 0 || switchMenuber == 1"
         >
           <img
-            v-for="mypost in 9"
+            v-for="(mypost, i) in $store.state.myPostData.length"
             :key="mypost"
-            src="https://placeimg.com/500/500/arch"
+            :src="$store.state.myPostData[i].postimg"
           />
         </div>
-        <div
+        <!-- <div
           class="mycontent-mylikes"
           v-if="switchMenuber == 0 || switchMenuber == 2"
         >
@@ -26,15 +26,13 @@
             :key="mylike"
             src="https://placeimg.com/500/500/arch"
           />
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import $ from "jquery";
-
 export default {
   data() {
     return {
@@ -82,16 +80,18 @@ export default {
 }
 .mycontent-myposts,
 .mycontent-mylikes {
-  width: 100%;
-  padding: 0 auto;
-  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  /* padding: 0 auto; */
+  /* text-align: center; */
   /* display: flex; */
   /* flex-wrap: wrap; */
   /* justify-content: center; */
 }
 .mycontent-myposts img,
 .mycontent-mylikes img {
-  width: 32%;
+  width: 350px;
+  height: 350px;
   margin: 0.1%;
   /* float: left; */
 }
