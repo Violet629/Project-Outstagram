@@ -15,6 +15,8 @@
             v-for="(mypost, i) in $store.state.myPostData.length"
             :key="mypost"
             :src="$store.state.myPostData[i].postimg"
+            class="filter-item"
+            :class="$store.state.myPostData[i].filter"
           />
         </div>
         <!-- <div

@@ -33,14 +33,28 @@
     </div>
     <div class="my-post">
       <h3>My Post</h3>
-      <div class="my-post-list" v-for="mypostData in 3" :key="mypostData">
-        <img src="https://placeimg.com/500/500/arch" alt="post-img" />
-        <p class="my-post-list-time">xx hour</p>
-        <div class="my-post-list-comment">
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi,
-            deserunt.
-          </p>
+      <div
+        class="my-post-list"
+        v-for="(mypostData, i) in $store.state.myPostData.length"
+        :key="mypostData"
+      >
+        <img
+          :src="$store.state.myPostData[i].postimg"
+          alt="post-img"
+          class="filter-item"
+          :class="$store.state.myPostData[i].filter"
+        />
+        <div class="my-post-text">
+          <div class="my-post-list-time">
+            <p>
+              {{ $store.state.myPostData[i].timestamp }}
+            </p>
+          </div>
+          <div class="my-post-list-comment">
+            <p>
+              {{ $store.state.myPostData[i].postfeed }}
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -119,34 +133,59 @@ export default {
 }
 .my-post {
   width: 100%;
+  height: 350px;
+  overflow: scroll;
+  overflow-x: hidden;
   margin-top: 4px;
   float: left;
   border: 2px solid rgba(153, 153, 153, 0.8);
   border-radius: 8px;
-  overflow: hidden;
+}
+.my-post::-webkit-scrollbar {
+  width: 10px;
+}
+.my-post::-webkit-scrollbar-thumb {
+  background-color: #2f3542;
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+.my-post::-webkit-scrollbar-track {
+  background-color: rgba(153, 153, 153, 0.8);
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px white;
+  display: none;
 }
 .my-post h3 {
-  margin: 12px;
+  margin: 18px;
   color: gray;
   opacity: 0.5;
   font-family: "Roboto", sans-serif;
+  border-bottom: 2px solid rgba(153, 153, 153, 0.8);
 }
 .my-post-list {
-  margin: 24px;
+  margin: 0px 4px 28px 16px;
   /* width: 100%; */
   /* float: left; */
   display: inline-block;
 }
 .my-post-list img {
   width: 64px;
+  height: 64px;
   float: left;
+  border-radius: 12px;
 }
-.my-post-list-time {
-  width: 80%;
+.my-post-text {
+  display: flex;
+  flex-direction: column;
+}
+.my-post-list-time p {
+  /* width: 80%; */
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   margin: 6px 12px 0px 12px;
   float: left;
+  opacity: 0.5;
 }
 .my-post-list-comment {
   width: 50%;
@@ -156,7 +195,7 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   float: left;
-  opacity: 0.5;
+  opacity: 0.7;
 }
 .my-post-list-comment p {
   width: 100%;

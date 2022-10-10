@@ -272,9 +272,33 @@ export default {
 
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
+  .newpost-nav {
+    width: 100%;
+  }
+  .newpost-postimg {
+    width: 80%;
+  }
+  .newpost-postimg label {
+    width: 100%;
+  }
 }
 
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
+  .newpost-nav {
+    width: 100%;
+  }
+  .newpost-postimg {
+    width: 100%;
+  }
+  .newpost-postimg img {
+    height: 350px;
+  }
+  .newpost-postimg label {
+    width: 100%;
+  }
+  .newpost-input {
+    width: 95%;
+  }
 }
 </style>
