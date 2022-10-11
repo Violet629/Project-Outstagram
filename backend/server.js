@@ -279,18 +279,31 @@ app.post("/newpost", postimg_upload.single("image"), function (req, res) {
     return tag !== null && tag !== undefined && tag !== "";
   });
 
-  db.collection("post").insertOne({
-    userID: req.body.userID,
-    profileimg: req.body.profileimg,
-    filter: req.body.filterName,
-    postimg: req.file.location,
-    postfeed: req.body.newPostFeed,
-    posttag: tagfilter,
-    comment: [],
-    like: 0,
-    liked: [],
-    timestamp: today,
-  });
+  db.collection("post")
+    .insertOne({
+      userID: req.body.userID,
+      profileimg: req.body.profileimg,
+      filter: req.body.filterName,
+      postimg: req.file.location,
+      postfeed: req.body.newPostFeed,
+      posttag: tagfilter,
+      comment: [],
+      like: 0,
+      liked: [],
+      timestamp: today,
+    })
+    .then((result) =>
+      db.collection("userdata").updateOne(
+        { userID: req.body.userID },
+        {
+          $push: {
+            post: {
+              postId: result,
+            },
+          },
+        }
+      )
+    );
   res.redirect("/add_post");
 });
 
