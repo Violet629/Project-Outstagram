@@ -47,12 +47,21 @@
           </div>
         </div>
         <div class="post-like">
-          <img
+          <form action="postlike" method="post">
+            <button type="submit">
+              <img
+                class="like-icon"
+                src="../assets/icon/heart.png"
+                alt="like"
+              />
+            </button>
+          </form>
+          <!-- <img
             @click="postLike($store.state.postData[i]._id)"
             class="like-icon"
             src="../assets/icon/heart.png"
             alt="like"
-          />
+          /> -->
           <p class="like-count">
             {{ $store.state.postData[i].like + " like" }}
           </p>

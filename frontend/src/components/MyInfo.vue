@@ -188,7 +188,7 @@ export default {
   opacity: 0.5;
 }
 .my-post-list-comment {
-  width: 50%;
+  /* width: 50%; */
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   margin: 8px 12px 0px 12px;

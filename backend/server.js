@@ -146,7 +146,7 @@ app.get("/userdata", function (req, res) {
     .find({ userID: req.user.userID })
     .toArray(function (err, data) {
       res.json(data);
-      // console.log("UserData");
+      console.log("UserData Request");
       // for (var i = 0; i < data.length; i++) {
       //   console.log(data[i]);
       // }
@@ -156,10 +156,10 @@ app.get("/userdata", function (req, res) {
 app.get("/postdata", function (req, res) {
   db.collection("post")
     .find()
-    .sort({ timestamp: -1 })
+    .sort({ _id: -1 })
     .toArray(function (err, data) {
       res.json(data);
-      // console.log("PostData");
+      console.log("PostData Request");
       // for (var i = 0; i < data.length; i++) {
       //   console.log(data[i]);
       // }
@@ -169,13 +169,13 @@ app.get("/postdata", function (req, res) {
 app.get("/mypostdata", function (req, res) {
   db.collection("post")
     .find({ userID: req.user.userID })
-    .sort({ timestamp: -1 })
+    .sort({ _id: -1 })
     .toArray(function (err, data) {
       res.json(data);
-      // console.log("PostData");
-      for (var i = 0; i < data.length; i++) {
-        console.log(data[i]);
-      }
+      console.log("PostData Request");
+      // for (var i = 0; i < data.length; i++) {
+      //   console.log(data[i]);
+      // }
     });
 });
 
@@ -218,7 +218,7 @@ app.post(
   "/editprofile-img",
   profileimg_upload.single("image"),
   function (req, res) {
-    console.log(req.body);
+    // console.log(req.body);
 
     // 수정전 사진은 S3 버킷에서 삭제 해주세요
     // s3.deleteObject(
@@ -238,7 +238,7 @@ app.post(
         },
       },
       function () {
-        console.log("수정완료");
+        console.log("Profile-Img Edit Request");
         res.redirect("/mypage");
       }
     );
@@ -254,7 +254,7 @@ app.post("/editprofile-comment", function (req, res) {
       },
     },
     function () {
-      console.log("수정완료");
+      console.log("Profile-Comment Edit Request");
       res.redirect("/mypage");
     }
   );
@@ -262,7 +262,7 @@ app.post("/editprofile-comment", function (req, res) {
 
 app.post("/newpost", postimg_upload.single("image"), function (req, res) {
   console.log("New Posting!");
-  console.log(req.body);
+  // console.log(req.body);
 
   var today = new Date();
   var month = today.getUTCMonth() + 1; //months from 1-12
@@ -297,9 +297,7 @@ app.post("/newpost", postimg_upload.single("image"), function (req, res) {
         { userID: req.body.userID },
         {
           $push: {
-            post: {
-              postId: result,
-            },
+            post: result.insertedId,
           },
         }
       )
@@ -308,7 +306,7 @@ app.post("/newpost", postimg_upload.single("image"), function (req, res) {
 });
 
 app.post("/leavecomment", function (req, res) {
-  console.log(req.body);
+  // console.log(req.body);
   db.collection("post").updateOne(
     { _id: ObjectId(req.body.objID) },
     {
@@ -321,14 +319,14 @@ app.post("/leavecomment", function (req, res) {
       },
     },
     function () {
-      console.log("Leave Comment!" + "Post Obj ID" + req.body.objID);
+      console.log("Leave Comment! " + "Post Obj ID: " + req.body.objID);
       res.redirect("/home");
     }
   );
 });
 
 app.post("/postlike", function (req, res) {
-  console.log(req.body);
+  res.send("ok");
 });
 
 // db.collection("post").updateOne(
