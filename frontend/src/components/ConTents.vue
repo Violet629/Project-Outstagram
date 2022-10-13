@@ -47,15 +47,12 @@
           </div>
         </div>
         <div class="post-like">
-          <form action="postlike" method="post">
-            <button type="submit">
-              <img
-                class="like-icon"
-                src="../assets/icon/heart.png"
-                alt="like"
-              />
-            </button>
-          </form>
+          <img
+            @click="postLike($store.state.postData[i]._id)"
+            class="like-icon"
+            src="../assets/icon/heart.png"
+            alt="like"
+          />
           <!-- <img
             @click="postLike($store.state.postData[i]._id)"
             class="like-icon"
@@ -100,6 +97,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -107,8 +106,22 @@ export default {
     };
   },
   methods: {
-    postLike(objId) {
-      consol.log(objId);
+    // postLike(objId) {
+    //   consol.log(objId);
+    // },
+    postLike(obj) {
+      axios
+        .post("postlike", {
+          postObjId: obj,
+        })
+        .then((res) => {
+          // this.addedContact = response.data;
+          console.log(res);
+          this.$store.state.postData = res.data;
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
     },
   },
 };

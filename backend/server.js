@@ -326,9 +326,28 @@ app.post("/leavecomment", function (req, res) {
 });
 
 app.post("/postlike", function (req, res) {
-  res.send("ok");
-});
+  console.log(req.body);
 
+  db.collection("post").updateOne(
+    { _id: ObjectId(req.body.postObjId) },
+    {
+      $inc: {
+        like: +1,
+      },
+    }
+  );
+
+  db.collection("post")
+    .find()
+    .sort({ _id: -1 })
+    .toArray(function (err, data) {
+      res.json(data);
+    });
+});
+// function () {
+//       // console.log("Profile-Comment Edit Request");
+//       res.send("ok");
+//     }
 // db.collection("post").updateOne(
 //   { _id: req.body.userID },
 //   { $push: { profileComment: req.body.comment, }, },
