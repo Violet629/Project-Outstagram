@@ -64,16 +64,22 @@
           </p>
         </div>
       </div>
-      <form action="leavecomment" method="post">
-        <div class="leavecomment">
-          <input
-            type="text"
-            placeholder="Leave your Comment"
-            name="leaveComment"
-            autocomplete="off"
-          />
-          <button type="submit" class="comment-send">Send</button>
-        </div>
+      <div class="leavecomment">
+        <input
+          type="text"
+          placeholder="Leave your Comment"
+          name="leaveComment"
+          autocomplete="off"
+          v-model="inputText"
+        />
+        <button
+          @click="leaveComment($store.state.postData[i]._id)"
+          class="comment-send"
+        >
+          Send
+        </button>
+      </div>
+      <!-- <form action="leavecomment" method="post">
         <div style="display: none">
           <input
             type="text"
@@ -91,7 +97,7 @@
             name="objID"
           />
         </div>
-      </form>
+      </form> -->
     </div>
   </div>
 </template>
@@ -102,21 +108,33 @@ import axios from "axios";
 export default {
   data() {
     return {
-      // objId: "",
+      inputText: "",
     };
   },
   methods: {
-    // postLike(objId) {
-    //   consol.log(objId);
-    // },
     postLike(obj) {
       axios
         .post("postlike", {
           postObjId: obj,
         })
         .then((res) => {
-          // this.addedContact = response.data;
-          console.log(res);
+          // console.log(res.data);
+          this.$store.state.postData = res.data;
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+    },
+    leaveComment(obj) {
+      axios
+        .post("leaveComment", {
+          postObjId: obj,
+          userId: this.$store.state.userData.userID,
+          userImg: this.$store.state.userData.profileImg,
+          inputText: this.inputText,
+        })
+        .then((res) => {
+          // console.log(res.data);
           this.$store.state.postData = res.data;
         })
         .catch(function (err) {

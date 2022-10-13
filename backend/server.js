@@ -305,24 +305,26 @@ app.post("/newpost", postimg_upload.single("image"), function (req, res) {
   res.redirect("/add_post");
 });
 
-app.post("/leavecomment", function (req, res) {
-  // console.log(req.body);
+app.post("/leaveComment", function (req, res) {
+  console.log(req.body);
   db.collection("post").updateOne(
-    { _id: ObjectId(req.body.objID) },
+    { _id: ObjectId(req.body.postObjId) },
     {
       $push: {
         comment: {
-          userID: req.body.userID,
-          profileimg: req.body.profileimg,
-          text: req.body.leaveComment,
+          userID: req.body.userId,
+          profileimg: req.body.userImg,
+          text: req.body.inputText,
         },
       },
-    },
-    function () {
-      console.log("Leave Comment! " + "Post Obj ID: " + req.body.objID);
-      res.redirect("/home");
     }
   );
+  db.collection("post")
+    .find()
+    .sort({ _id: -1 })
+    .toArray(function (err, data) {
+      res.json(data);
+    });
 });
 
 app.post("/postlike", function (req, res) {
