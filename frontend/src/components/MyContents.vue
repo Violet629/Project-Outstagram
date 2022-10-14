@@ -19,16 +19,18 @@
             :class="$store.state.myPostData[i].filter"
           />
         </div>
-        <!-- <div
+        <div
           class="mycontent-mylikes"
           v-if="switchMenuber == 0 || switchMenuber == 2"
         >
           <img
-            v-for="mylike in 5"
+            v-for="(mylike, j) in $store.state.myLikeData.length"
             :key="mylike"
-            src="https://placeimg.com/500/500/arch"
+            :src="$store.state.myLikeData[j].postimg"
+            class="filter-item"
+            :class="$store.state.myLikeData[j].filter"
           />
-        </div> -->
+        </div>
       </div>
     </div>
   </div>

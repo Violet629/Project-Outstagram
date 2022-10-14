@@ -116,6 +116,7 @@ export default {
       axios
         .post("postlike", {
           postObjId: obj,
+          userId: this.$store.state.userData.userID,
         })
         .then((res) => {
           // console.log(res.data);

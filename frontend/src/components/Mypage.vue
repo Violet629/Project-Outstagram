@@ -41,6 +41,15 @@ export default {
       .catch((err) => {
         console.error(err.message);
       });
+    axios
+      .get("http://localhost:8080/mylikedata")
+      .then((res) => {
+        // console.log(res.data);
+        this.$store.state.myLikeData = res.data;
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
   },
 };
 </script>

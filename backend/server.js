@@ -167,16 +167,37 @@ app.get("/postdata", function (req, res) {
 });
 
 app.get("/mypostdata", function (req, res) {
+  console.log(req.user.userID + " MyPostData Request");
+
   db.collection("post")
     .find({ userID: req.user.userID })
     .sort({ _id: -1 })
     .toArray(function (err, data) {
       res.json(data);
-      console.log("PostData Request");
-      // for (var i = 0; i < data.length; i++) {
-      //   console.log(data[i]);
-      // }
     });
+});
+
+app.get("/mylikedata", function (req, res) {
+  console.log(req.user.userID + " MyLikeData Request");
+
+  var likeObj;
+
+  db
+    .collection("userdata")
+    .findOne({ userID: req.user.userID }, function (err, data) {
+      likeObj = data.like;
+      console.log(likeObj);
+    }),
+    db
+      .collection("post")
+      .find({ _id: ObjectId(likeObj) })
+      .sort({ _id: -1 })
+      .toArray(function (err, data2) {
+        console.log(data2);
+      });
+  // writer 필드의 값이 배열 ["Alpha", "Bravo"] 안에 속하는 값인 다큐먼트를 조회하려면 다음과 같이 명령어를 입력합니다.
+  // db.articles.find( { "writer" : { $in : ["Alpha", "Bravo"] } } ).pretty()
+  res.end();
 });
 
 // 이미지를 AWS S3에 저장하기
@@ -335,6 +356,15 @@ app.post("/postlike", function (req, res) {
     {
       $inc: {
         like: +1,
+      },
+    }
+  );
+
+  db.collection("userdata").updateOne(
+    { userID: req.body.userId },
+    {
+      $push: {
+        like: ObjectId(req.body.postObjId),
       },
     }
   );
