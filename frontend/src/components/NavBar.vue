@@ -6,9 +6,14 @@
           <p class="logo">Outstagram</p>
         </router-link>
       </div>
-      <div class="header-menu-2">
-        <input class="search" type="text" placeholder=" 🔍 Search" />
-      </div>
+      <!-- <div class="header-menu-2">
+        <input
+          v-model="inputSearch"
+          class="search"
+          type="text"
+          placeholder=" 🔍 Search"
+        />
+      </div> -->
       <div class="header-menu-3">
         <div>
           <router-link to="/home" v-if="this.urlName != `/home`"
@@ -37,13 +42,13 @@
           /></router-link>
         </div>
         <div>
-          <router-link to="/post_like" v-if="this.urlName != `/like`"
-            ><img class="menu3-button" src="../assets/icon/heart.png"
+          <router-link to="/search" v-if="this.urlName != `/search`"
+            ><img class="menu3-button" src="../assets/icon/search.png"
           /></router-link>
-          <router-link to="/post_like" v-if="this.urlName == `/like`"
+          <router-link to="/search" v-if="this.urlName == `/search`"
             ><img
               class="menu3-button act-button"
-              src="../assets/icon/heart2.png"
+              src="../assets/icon/search2.png"
           /></router-link>
         </div>
         <div>
@@ -84,13 +89,13 @@
           /></router-link>
         </div>
         <div>
-          <router-link to="/post_like" v-if="this.urlName != `/like`"
-            ><img class="footer-button" src="../assets/icon/heart.png"
+          <router-link to="/search" v-if="this.urlName != `/search`"
+            ><img class="footer-button" src="../assets/icon/search.png"
           /></router-link>
-          <router-link to="/post_like" v-if="this.urlName == `/like`"
+          <router-link to="/search" v-if="this.urlName == `/search`"
             ><img
               class="footer-button act-button"
-              src="../assets/icon/heart2.png"
+              src="../assets/icon/search2.png"
           /></router-link>
         </div>
         <div>
@@ -111,11 +116,31 @@ export default {
     return {
       // 호스트네임 / 뒷 문자 가져옴
       urlName: window.location.pathname,
+      inputSearch: "",
     };
   },
   methods: {
     logout() {
       axios.post("http://localhost:8080/logout");
+    },
+    // search(obj) {
+    //   axios
+    //     .post("leaveComment", {
+    //       postObjId: obj,
+    //       userId: this.$store.state.userData.userID,
+    //       userImg: this.$store.state.userData.profileImg,
+    //       inputText: this.inputText,
+    //     })
+    //     .then((res) => {
+    //       // console.log(res.data);
+    //       this.$store.state.postData = res.data;
+    //     })
+    //     .catch(function (err) {
+    //       console.log(err);
+    //     });
+    // },
+    search() {
+      alert("ok");
     },
   },
 };
@@ -128,18 +153,18 @@ export default {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: #ffffff;
   border-bottom: solid 2px rgba(153, 153, 153, 0.8);
 }
 .logo {
   font-family: "Kaushan Script", cursive;
   font-size: 35px;
-  margin: 15px;
+  margin: 15px 100px;
   color: black;
   text-decoration-line: none;
 }
-.search {
+/* .search {
   width: 260px;
   height: 28px;
   padding: 2px 0px 2px 12px;
@@ -148,9 +173,10 @@ export default {
   border-radius: 15px;
   font-size: 15px;
   font-family: "Roboto", sans-serif;
-}
+} */
 .header-menu-3 {
   display: flex;
+  margin: 0px 80px;
 }
 .footer-menu {
   display: flex;

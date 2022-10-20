@@ -97,7 +97,7 @@ export default {
   width: 350px;
   height: 350px;
   margin: 0.1%;
-  /* float: left; */
+  float: left;
 }
 .menuber-act {
   font-weight: 700;

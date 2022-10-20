@@ -180,25 +180,31 @@ app.get("/mypostdata", function (req, res) {
 app.get("/mylikedata", function (req, res) {
   console.log(req.user.userID + " MyLikeData Request");
 
-  let likeObj;
-  let likeList = [];
+  // let likeObj;
+  // let likeList = [];
+  // db.collection("userdata").findOne(
+  //   { userID: req.user.userID },
+  //   function (err, data) {
+  //     likeObj = data.like;
+  //     for (var i = 0; i < likeObj.length; i++) {
+  //       db.collection("post")
+  //         .find({ _id: ObjectId(likeObj[i]) })
+  //         .sort({ _id: -1 })
+  //         .toArray(function (err, data) {
+  //           likeList.push(data[0]);
+  //           // console.log(likeList);
+  //         });
+  //     }
+  //   }
+  // );
 
-  db.collection("userdata").findOne(
-    { userID: req.user.userID },
-    function (err, data) {
-      likeObj = data.like;
-      for (var i = 0; i < likeObj.length; i++) {
-        db.collection("post")
-          .find({ _id: ObjectId(likeObj[i]) })
-          .sort({ _id: -1 })
-          .toArray(function (err, data) {
-            likeList.push(data[0]);
-            // console.log(likeList);
-          });
-      }
-    }
-  );
-  res.send(likeList);
+  db.collection("post")
+    .find({ like: req.user.userID })
+    .sort({ _id: -1 })
+    .toArray(function (err, data) {
+      console.log(data);
+      res.send(data);
+    });
 });
 
 // 이미지를 AWS S3에 저장하기
@@ -310,7 +316,7 @@ app.post("/newpost", postimg_upload.single("image"), function (req, res) {
       postfeed: req.body.newPostFeed,
       posttag: tagfilter,
       comment: [],
-      like: 0,
+      like: [],
       liked: [],
       timestamp: today,
     })
@@ -352,15 +358,14 @@ app.post("/leaveComment", function (req, res) {
 app.post("/postlike", function (req, res) {
   console.log(req.body);
 
-  db.collection("post").updateOne(
-    { _id: ObjectId(req.body.postObjId) },
-    {
-      $inc: {
-        like: +1,
-      },
-    }
-  );
-
+  // db.collection("post").updateOne(
+  //   { _id: ObjectId(req.body.postObjId) },
+  //   {
+  //     $inc: {
+  //       like: +1,
+  //     },
+  //   }
+  // );
   db.collection("userdata").updateOne(
     { userID: req.body.userId },
     {
@@ -370,10 +375,20 @@ app.post("/postlike", function (req, res) {
     }
   );
 
+  db.collection("post").updateOne(
+    { _id: ObjectId(req.body.postObjId) },
+    {
+      $push: {
+        like: req.body.userId,
+      },
+    }
+  );
+
   db.collection("post")
     .find()
     .sort({ _id: -1 })
     .toArray(function (err, data) {
+      console.log(data);
       res.json(data);
     });
 });

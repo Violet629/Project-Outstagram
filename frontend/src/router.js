@@ -37,6 +37,10 @@ const routes = [
     path: "/add_post",
     component: () => import("../src/components/AddPost.vue"),
   },
+  {
+    path: "/test",
+    component: () => import("../src/components/FriendInfo.vue"),
+  },
 ];
 
 const router = createRouter({

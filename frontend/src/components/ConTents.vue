@@ -59,9 +59,9 @@
             src="../assets/icon/heart.png"
             alt="like"
           /> -->
-          <p class="like-count">
-            {{ $store.state.postData[i].like + " like" }}
-          </p>
+          <div class="like-count">
+            {{ $store.state.postData[i].like.length + " like" }}
+          </div>
         </div>
       </div>
       <div class="leavecomment">
