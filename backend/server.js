@@ -153,6 +153,16 @@ app.get("/userdata", function (req, res) {
     });
 });
 
+app.post("/friendInfo", function (req, res) {
+  console.log(req.body);
+  db.collection("userdata")
+    .find({ userID: req.body.name })
+    .toArray(function (err, data) {
+      res.json(data);
+      console.log("friendInfo Request");
+    });
+});
+
 app.get("/postdata", function (req, res) {
   db.collection("post")
     .find()

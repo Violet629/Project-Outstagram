@@ -4,6 +4,7 @@
     <FriendList />
     <MyInfo />
     <ConTents />
+    <FriendInfo v-if="this.$store.state.friendModal == true" />
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import FriendList from "./FriendList.vue";
 import ConTents from "./ConTents.vue";
 import MyInfo from "./MyInfo.vue";
 import NavBar from "./NavBar.vue";
+import FriendInfo from "./FriendInfo.vue";
 import axios from "axios";
 
 export default {
@@ -21,6 +23,7 @@ export default {
     ConTents,
     MyInfo,
     NavBar,
+    FriendInfo,
   },
   // 로딩 했을때 유저데이터 요청
   created() {

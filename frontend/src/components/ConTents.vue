@@ -2,7 +2,16 @@
   <div class="contents-list">
     <div class="contents" v-for="(contentsData, i) in 4" :key="contentsData">
       <div class="profile">
-        <img :src="$store.state.postData[i].profileimg" alt="profile-img" />
+        <img
+          @click="
+            [
+              $store.commit('openFriendModal'),
+              friendInfo($store.state.postData[i].userID),
+            ]
+          "
+          :src="$store.state.postData[i].profileimg"
+          alt="profile-img"
+        />
         <p class="profile-name">{{ $store.state.postData[i].userID }}</p>
         <p class="contents-time">{{ $store.state.postData[i].timestamp }}</p>
       </div>
@@ -137,6 +146,19 @@ export default {
         .then((res) => {
           // console.log(res.data);
           this.$store.state.postData = res.data;
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+    },
+    friendInfo(name) {
+      axios
+        .post("friendInfo", {
+          name: name,
+        })
+        .then((res) => {
+          console.log(res.data);
+          this.$store.state.friendInfoData = res.data;
         })
         .catch(function (err) {
           console.log(err);

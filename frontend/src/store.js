@@ -11,11 +11,19 @@ const store = createStore({
       postData: [],
       myPostData: [],
       myLikeData: [],
+      friendInfoData: [],
+      friendModal: false,
       editModal: false,
       upPostModal: false,
     };
   },
   mutations: {
+    openFriendModal(state) {
+      state.friendModal = true;
+    },
+    closeFriendModal(state) {
+      state.friendModal = false;
+    },
     openEditModal(state) {
       state.editModal = true;
     },
