@@ -402,6 +402,30 @@ app.post("/postlike", function (req, res) {
       res.json(data);
     });
 });
+
+app.post("/addFriend", function (req, res) {
+  db.collection("userdata").updateOne(
+    { userID: req.body.userID },
+    {
+      $push: {
+        friend: req.body.friendName,
+      },
+    }
+  );
+  res.redirect("/mypage");
+});
+
+app.post("/deleteFriend", function (req, res) {
+  db.collection("userdata").findOneAndUpdate(
+    { userID: req.body.userID },
+    {
+      $pull: {
+        friend: req.body.friendName,
+      },
+    }
+  );
+  res.redirect("/mypage");
+});
 // function () {
 //       // console.log("Profile-Comment Edit Request");
 //       res.send("ok");

@@ -16,9 +16,39 @@
         <div class="friendinfo-comment">
           <p>{{ $store.state.friendInfoData[0].profileComment }}</p>
         </div>
+        <div class="friendinfo-data">
+          <div class="friendinfo-post">
+            <p>{{ $store.state.friendInfoData[0].post.length + " Post" }}</p>
+          </div>
+          <div class="friendinfo-like">
+            <p>{{ $store.state.friendInfoData[0].like.length + " Like" }}</p>
+          </div>
+          <div class="friendinfo-friend">
+            <p>
+              {{ $store.state.friendInfoData[0].friend.length + " Friend" }}
+            </p>
+          </div>
+        </div>
         <div class="friendinfo-button">
           <button @click="$store.commit('closeFriendModal')">Close</button>
-          <button>Add to friends</button>
+          <button
+            v-if="
+              friendList.includes($store.state.friendInfoData[0].userID) ==
+              false
+            "
+            @click="addFriend($store.state.friendInfoData[0].userID)"
+          >
+            Add to friend
+          </button>
+          <button
+            @click="deleteFriend($store.state.friendInfoData[0].userID)"
+            style="color: Red"
+            v-if="
+              friendList.includes($store.state.friendInfoData[0].userID) == true
+            "
+          >
+            Delete friend
+          </button>
         </div>
       </div>
     </div>
@@ -26,11 +56,45 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
-      friendInfoImg: "https://i.postimg.cc/3w65rG1F/542268.jpg",
+      friendList: this.$store.state.userData.friend,
     };
+  },
+  created() {
+    alert(friendList);
+  },
+  methods: {
+    addFriend(name) {
+      axios
+        .post("addFriend", {
+          userID: this.$store.state.userData.userID,
+          friendName: name,
+        })
+        .then((res) => {
+          // console.log(res.data);
+          // this.$store.state.userData = res.data;
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+    },
+    deleteFriend(name) {
+      axios
+        .post("deleteFriend", {
+          userID: this.$store.state.userData.userID,
+          friendName: name,
+        })
+        .then((res) => {
+          // console.log(res.data);
+          // this.$store.state.userData = res.data;
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+    },
   },
 };
 </script>
@@ -89,8 +153,16 @@ export default {
 }
 .friendinfo-comment {
   font-size: 24px;
-  margin: 36px 0px;
+  margin-top: 36px;
   width: 100%;
+}
+.friendinfo-data {
+  display: flex;
+  justify-content: space-between;
+  font-size: 22px;
+  align-items: center;
+  height: 50px;
+  width: 80%;
 }
 .friendinfo-add {
   width: 100%;
@@ -100,7 +172,7 @@ export default {
   border: 2px solid rgba(153, 153, 153, 0.8);
   border-radius: 8px;
   background-color: #fff;
-  margin: 54px 4px;
+  margin: 35px 4px;
   padding: 8px 24px 8px 24px;
   font-family: "Roboto", sans-serif;
   float: right;
@@ -133,6 +205,10 @@ export default {
   .friendinfo-button button {
     float: none;
     margin: 0;
+  }
+  .friendinfo-data {
+    width: 100%;
+    justify-content: space-around;
   }
 }
 </style>

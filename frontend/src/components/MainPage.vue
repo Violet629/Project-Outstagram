@@ -14,7 +14,6 @@ import ConTents from "./ConTents.vue";
 import MyInfo from "./MyInfo.vue";
 import NavBar from "./NavBar.vue";
 import FriendInfo from "./FriendInfo.vue";
-import axios from "axios";
 
 export default {
   name: "MainPage",
