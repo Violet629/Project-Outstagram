@@ -23,29 +23,24 @@
           <div class="friendinfo-like">
             <p>{{ $store.state.friendInfoData[0].like.length + " Like" }}</p>
           </div>
-          <div class="friendinfo-friend">
+          <div class="friendinfo-follower">
             <p>
-              {{ $store.state.friendInfoData[0].friend.length + " Friend" }}
+              {{ $store.state.friendInfoData[0].follower.length + " follower" }}
             </p>
           </div>
         </div>
         <div class="friendinfo-button">
           <button @click="$store.commit('closeFriendModal')">Close</button>
           <button
-            v-if="
-              friendList.includes($store.state.friendInfoData[0].userID) ==
-              false
-            "
+            v-if="followerList.includes($store.state.userData.userID) == false"
             @click="addFriend($store.state.friendInfoData[0].userID)"
           >
             Add to friend
           </button>
           <button
+            v-if="followerList.includes($store.state.userData.userID) == true"
             @click="deleteFriend($store.state.friendInfoData[0].userID)"
             style="color: Red"
-            v-if="
-              friendList.includes($store.state.friendInfoData[0].userID) == true
-            "
           >
             Delete friend
           </button>
@@ -56,15 +51,11 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   data() {
     return {
-      friendList: this.$store.state.userData.friend,
+      followerList: this.$store.state.friendInfoData[0].follower,
     };
-  },
-  created() {
-    alert(friendList);
   },
   methods: {
     addFriend(name) {
@@ -74,8 +65,9 @@ export default {
           friendName: name,
         })
         .then((res) => {
-          // console.log(res.data);
-          // this.$store.state.userData = res.data;
+          console.log(res.data[0]);
+          this.$store.state.userData = res.data[0];
+          this.$router.go();
         })
         .catch(function (err) {
           console.log(err);
@@ -88,8 +80,9 @@ export default {
           friendName: name,
         })
         .then((res) => {
-          // console.log(res.data);
-          // this.$store.state.userData = res.data;
+          console.log(res.data[0]);
+          this.$store.state.userData = res.data[0];
+          this.$router.go();
         })
         .catch(function (err) {
           console.log(err);

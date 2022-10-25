@@ -20,9 +20,9 @@
           <p>Like</p>
           <p>{{ $store.state.userData.like.length }}</p>
         </div>
-        <div class="menu3-my-friend">
-          <p>friend</p>
-          <p>{{ $store.state.userData.friend.length }}</p>
+        <div class="menu3-my-follower">
+          <p>follower</p>
+          <p>{{ $store.state.userData.follower.length }}</p>
         </div>
       </div>
     </div>

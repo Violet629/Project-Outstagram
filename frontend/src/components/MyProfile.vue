@@ -33,8 +33,8 @@
           <div class="myprofile-like">
             <p>{{ $store.state.userData.like.length }} like</p>
           </div>
-          <div class="myprofile-friend">
-            <p>{{ $store.state.userData.friend.length }} friend</p>
+          <div class="myprofile-follower">
+            <p>{{ $store.state.userData.follower.length }} follower</p>
           </div>
         </div>
         <div class="menu2-bottom">

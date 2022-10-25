@@ -14,6 +14,7 @@ import ConTents from "./ConTents.vue";
 import MyInfo from "./MyInfo.vue";
 import NavBar from "./NavBar.vue";
 import FriendInfo from "./FriendInfo.vue";
+import axios from "axios";
 
 export default {
   name: "MainPage",
@@ -27,7 +28,7 @@ export default {
   // 로딩 했을때 유저데이터 요청
   created() {
     axios
-      .get("http://localhost:8080/userdata")
+      .get("userdata")
       .then((res) => {
         // console.log(res.data[0]);
         this.$store.state.userData = res.data[0];
@@ -36,7 +37,7 @@ export default {
         console.error(err.message);
       });
     axios
-      .get("http://localhost:8080/postdata")
+      .get("postdata")
       .then((res) => {
         // console.log(res.data);
         this.$store.state.postData = res.data;
@@ -45,7 +46,7 @@ export default {
         console.error(err.message);
       });
     axios
-      .get("http://localhost:8080/mypostdata")
+      .get("mypostdata")
       .then((res) => {
         // console.log(res.data);
         this.$store.state.myPostData = res.data;

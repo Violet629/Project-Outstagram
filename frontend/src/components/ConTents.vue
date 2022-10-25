@@ -3,13 +3,8 @@
     <div class="contents" v-for="(contentsData, i) in 4" :key="contentsData">
       <div class="profile">
         <img
-          @click="
-            [
-              $store.commit('openFriendModal'),
-              friendInfo($store.state.postData[i].userID),
-            ]
-          "
-          :src="$store.state.postData[i].profileimg"
+          @click="friendInfo($store.state.postData[i].userID)"
+          :src="$store.state.postData[i].profileImg"
           alt="profile-img"
         />
         <p class="profile-name">{{ $store.state.postData[i].userID }}</p>
@@ -155,8 +150,9 @@ export default {
           name: name,
         })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           this.$store.state.friendInfoData = res.data;
+          this.$store.commit("openFriendModal");
         })
         .catch(function (err) {
           console.log(err);

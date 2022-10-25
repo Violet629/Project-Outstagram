@@ -1,24 +1,35 @@
 <template>
   <div class="friend-list">
     <!-- <div class="friend-text">Friend</div> -->
-    <div class="friend-icon" v-for="friendData in 5" :key="friendData">
+    <div
+      class="friend-icon"
+      v-for="(myfollow, i) in $store.state.myFollowData.length"
+      :key="myfollow"
+    >
       <img
         class="icon-img"
-        src="https://placeimg.com/100/100/arch"
+        :src="$store.state.myFollowData[i].profileImg"
         alt="friend-icon"
       />
-      <p class="icon-name">name</p>
+      <p class="icon-name">{{ $store.state.myFollowData[i].userID }}</p>
     </div>
-    <!-- <div class="friend-add">
-      <img class="add-img" src="../assets/icon/add.png" alt="friend-add" />
-    </div> -->
   </div>
 </template>
 
 <script>
 export default {
   name: "FriendList",
-  components: {},
+  created() {
+    axios
+      .get("myfollowdata")
+      .then((res) => {
+        console.log(res.data);
+        this.$store.state.myFollowData = res.data;
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
+  },
 };
 </script>
 
@@ -41,8 +52,8 @@ export default {
 .icon-img {
   border: 2px solid transparent;
   border-radius: 50%;
-  background-image: linear-gradient(#fff, #fff),
-    linear-gradient(to bottom, violet 0%, orange 100%);
+  /* background-image: linear-gradient(#fff, #fff),
+    linear-gradient(to bottom, violet 0%, orange 100%); */
   background-origin: border-box;
   background-clip: content-box, border-box;
   width: 100%;

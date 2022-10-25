@@ -11,6 +11,7 @@ const store = createStore({
       postData: [],
       myPostData: [],
       myLikeData: [],
+      myFollowData: [],
       friendInfoData: [],
       friendModal: false,
       editModal: false,

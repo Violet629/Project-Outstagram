@@ -116,7 +116,7 @@ app.post("/signup", function (req, res) {
       profileImg:
         "https://project-outstagram.s3.ap-northeast-2.amazonaws.com/profile-img/Default.png",
       profileComment: "Hello!",
-      friend: [],
+      follower: [],
       post: [],
       like: [],
     },
@@ -214,6 +214,15 @@ app.get("/mylikedata", function (req, res) {
     .toArray(function (err, data) {
       console.log(data);
       res.send(data);
+    });
+});
+
+app.get("/myfollowdata", function (req, res) {
+  db.collection("userdata")
+    .find({ follower: req.user.userID })
+    .sort({ _id: -1 })
+    .toArray(function (err, data) {
+      res.json(data);
     });
 });
 
@@ -405,39 +414,43 @@ app.post("/postlike", function (req, res) {
 
 app.post("/addFriend", function (req, res) {
   db.collection("userdata").updateOne(
-    { userID: req.body.userID },
+    { userID: req.body.friendName },
     {
       $push: {
-        friend: req.body.friendName,
+        follower: req.body.userID,
       },
     }
   );
-  res.redirect("/mypage");
+  db.collection("userdata")
+    .find({ userID: req.body.userID })
+    .toArray(function (err, data) {
+      if (err) {
+        res.send(err);
+        return;
+      }
+      res.json(data);
+    });
 });
 
 app.post("/deleteFriend", function (req, res) {
   db.collection("userdata").findOneAndUpdate(
-    { userID: req.body.userID },
+    { userID: req.body.friendName },
     {
       $pull: {
-        friend: req.body.friendName,
+        follower: req.body.userID,
       },
     }
   );
-  res.redirect("/mypage");
+  db.collection("userdata")
+    .find({ userID: req.body.userID })
+    .toArray(function (err, data) {
+      if (err) {
+        res.send(err);
+        return;
+      }
+      res.json(data);
+    });
 });
-// function () {
-//       // console.log("Profile-Comment Edit Request");
-//       res.send("ok");
-//     }
-// db.collection("post").updateOne(
-//   { _id: req.body.userID },
-//   { $push: { profileComment: req.body.comment, }, },
-//   function () {
-//     console.log("수정완료");
-//     res.redirect("/mypage");
-//   }
-
 // 주소창에 미개발 주소 치면 다시 메인 페이지로 보내주세요
 // 사이트 랜더링을 프론트에게 맡김
 app.get("*", function (req, res) {
