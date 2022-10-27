@@ -40,7 +40,8 @@ export default {
       .get("postdata")
       .then((res) => {
         // console.log(res.data);
-        this.$store.state.postData = res.data;
+        // console.log(res.data.slice(0, 3));
+        this.$store.state.postData = res.data.slice(0, 3);
       })
       .catch((err) => {
         console.error(err.message);

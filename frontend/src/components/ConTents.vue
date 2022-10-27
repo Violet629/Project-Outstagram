@@ -1,70 +1,71 @@
 <template>
   <div class="contents-list">
-    <div class="contents" v-for="(contentsData, i) in 4" :key="contentsData">
+    <div
+      class="contents"
+      v-for="contentsData in $store.state.postData"
+      :key="contentsData"
+    >
       <div class="profile">
         <img
-          @click="friendInfo($store.state.postData[i].userID)"
-          :src="$store.state.postData[i].profileImg"
+          @click="friendInfo(contentsData.userID)"
+          :src="contentsData.profileimg"
           alt="profile-img"
         />
-        <p class="profile-name">{{ $store.state.postData[i].userID }}</p>
-        <p class="contents-time">{{ $store.state.postData[i].timestamp }}</p>
+        <p class="profile-name">{{ contentsData.userID }}</p>
+        <p class="contents-time">{{ contentsData.timestamp }}</p>
       </div>
       <div class="contents-img">
         <img
-          :src="$store.state.postData[i].postimg"
+          :src="contentsData.postimg"
           alt="contents-img"
           class="filter-item"
-          :class="$store.state.postData[i].filter"
+          :class="contentsData.filter"
         />
       </div>
       <div class="contents-post">
         <p class="post-feed">
-          {{ $store.state.postData[i].postfeed }}
+          {{ contentsData.postfeed }}
         </p>
         <br />
         <div class="post-taglist">
           <p
             class="post-tag"
-            v-for="(taglist, j) in $store.state.postData[i].posttag.length"
+            v-for="(taglist, j) in contentsData.posttag"
             :key="taglist"
           >
-            {{ "#" + $store.state.postData[i].posttag[j] }}
+            {{ "#" + contentsData.posttag[j] }}
           </p>
         </div>
         <div class="post-comment">
           <div
             class="post-commentlist"
-            v-for="(commentlist, k) in $store.state.postData[i].comment.length"
+            v-for="commentlist in contentsData.comment"
             :key="commentlist"
           >
-            <img
-              class="commentlist-profileimg"
-              :src="$store.state.postData[i].comment[k].profileimg"
-            />
+            <img class="commentlist-profileimg" :src="commentlist.profileimg" />
             <p class="commentlist-name">
-              {{ $store.state.postData[i].comment[k].userID }}
+              {{ commentlist.userID }}
             </p>
             <p class="commentlist-text">
-              {{ $store.state.postData[i].comment[k].text }}
+              {{ commentlist.text }}
             </p>
           </div>
         </div>
         <div class="post-like">
           <img
-            @click="postLike($store.state.postData[i]._id)"
+            @click="postLike(contentsData._id)"
             class="like-icon"
             src="../assets/icon/heart.png"
             alt="like"
           />
           <!-- <img
-            @click="postLike($store.state.postData[i]._id)"
+            @click="postLike(contentsData._id)"
             class="like-icon"
             src="../assets/icon/heart.png"
             alt="like"
           /> -->
           <div class="like-count">
-            {{ $store.state.postData[i].like.length + " like" }}
+            {{ contentsData.like.length + " like" }}
           </div>
         </div>
       </div>
@@ -76,10 +77,7 @@
           autocomplete="off"
           v-model="inputText"
         />
-        <button
-          @click="leaveComment($store.state.postData[i]._id)"
-          class="comment-send"
-        >
+        <button @click="leaveComment(contentsData._id)" class="comment-send">
           Send
         </button>
       </div>
@@ -97,7 +95,7 @@
           />
           <input
             type="text"
-            :value="$store.state.postData[i]._id"
+            :value="contentsData._id"
             name="objID"
           />
         </div>
@@ -122,7 +120,7 @@ export default {
         })
         .then((res) => {
           // console.log(res.data);
-          this.$store.state.postData = res.data;
+          this.$store.state.postData = res.data.slice(0, 3);
         })
         .catch(function (err) {
           console.log(err);
@@ -138,7 +136,7 @@ export default {
         })
         .then((res) => {
           // console.log(res.data);
-          this.$store.state.postData = res.data;
+          this.$store.state.postData = res.data.slice(0, 3);
         })
         .catch(function (err) {
           console.log(err);

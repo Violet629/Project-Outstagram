@@ -1,45 +1,44 @@
 <template>
-  <div class="friendinfo-modal">
+  <div class="friendinfo-modal" :key="friendData">
     <div class="friendinfo animate__animated animate__bounceIn">
       <div class="friendinfo-menu1">
         <div class="friendinfo-profileimg">
-          <img
-            :src="$store.state.friendInfoData[0].profileImg"
-            alt="profile-img"
-          />
+          <img :src="friendData.profileImg" alt="profile-img" />
         </div>
       </div>
       <div class="friendinfo-menu2">
         <div class="friendinfo-name">
-          <p>{{ $store.state.friendInfoData[0].userID }}</p>
+          <p>{{ friendData.userID }}</p>
         </div>
         <div class="friendinfo-comment">
-          <p>{{ $store.state.friendInfoData[0].profileComment }}</p>
+          <p>{{ friendData.profileComment }}</p>
         </div>
         <div class="friendinfo-data">
           <div class="friendinfo-post">
-            <p>{{ $store.state.friendInfoData[0].post.length + " Post" }}</p>
+            <p>{{ friendData.post.length + " Post" }}</p>
           </div>
           <div class="friendinfo-like">
-            <p>{{ $store.state.friendInfoData[0].like.length + " Like" }}</p>
+            <p>{{ friendData.like.length + " Like" }}</p>
           </div>
           <div class="friendinfo-follower">
             <p>
-              {{ $store.state.friendInfoData[0].follower.length + " follower" }}
+              {{ friendData.follower.length + " follower" }}
             </p>
           </div>
         </div>
         <div class="friendinfo-button">
           <button @click="$store.commit('closeFriendModal')">Close</button>
           <button
+            key="followerList"
             v-if="followerList.includes($store.state.userData.userID) == false"
-            @click="addFriend($store.state.friendInfoData[0].userID)"
+            @click="addFriend(friendData.userID)"
           >
             Add to friend
           </button>
           <button
+            key="followerList"
             v-if="followerList.includes($store.state.userData.userID) == true"
-            @click="deleteFriend($store.state.friendInfoData[0].userID)"
+            @click="deleteFriend(friendData.userID)"
             style="color: Red"
           >
             Delete friend
@@ -54,6 +53,7 @@
 export default {
   data() {
     return {
+      friendData: this.$store.state.friendInfoData[0],
       followerList: this.$store.state.friendInfoData[0].follower,
     };
   },
@@ -67,7 +67,7 @@ export default {
         .then((res) => {
           console.log(res.data[0]);
           this.$store.state.userData = res.data[0];
-          this.$router.go();
+          // this.$router.go();
         })
         .catch(function (err) {
           console.log(err);
@@ -82,7 +82,7 @@ export default {
         .then((res) => {
           console.log(res.data[0]);
           this.$store.state.userData = res.data[0];
-          this.$router.go();
+          // this.$router.go();
         })
         .catch(function (err) {
           console.log(err);

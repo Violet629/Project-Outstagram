@@ -3,15 +3,11 @@
     <!-- <div class="friend-text">Friend</div> -->
     <div
       class="friend-icon"
-      v-for="(myfollow, i) in $store.state.myFollowData.length"
+      v-for="myfollow in $store.state.myFollowData"
       :key="myfollow"
     >
-      <img
-        class="icon-img"
-        :src="$store.state.myFollowData[i].profileImg"
-        alt="friend-icon"
-      />
-      <p class="icon-name">{{ $store.state.myFollowData[i].userID }}</p>
+      <img class="icon-img" :src="myfollow.profileImg" alt="friend-icon" />
+      <p class="icon-name">{{ myfollow.userID }}</p>
     </div>
   </div>
 </template>
@@ -23,7 +19,7 @@ export default {
     axios
       .get("myfollowdata")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         this.$store.state.myFollowData = res.data;
       })
       .catch((err) => {
@@ -44,10 +40,9 @@ export default {
   border-radius: 8px;
   overflow: hidden;
 }
-.friend-icon,
-.friend-add {
+.friend-icon {
   width: 60px;
-  margin: 14px;
+  margin: 12px 0px 12px 22px;
 }
 .icon-img {
   border: 2px solid transparent;
@@ -57,6 +52,7 @@ export default {
   background-origin: border-box;
   background-clip: content-box, border-box;
   width: 100%;
+  height: 60px;
   /* height: 60px; */
 }
 .add-img {
