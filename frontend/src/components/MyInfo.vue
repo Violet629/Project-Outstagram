@@ -17,7 +17,7 @@
           <p>{{ $store.state.userData.post.length }}</p>
         </div>
         <div class="menu3-my-like">
-          <p>Like</p>
+          <p>Like Post</p>
           <p>{{ $store.state.userData.like.length }}</p>
         </div>
         <div class="menu3-my-follower">
@@ -35,24 +35,24 @@
       <h3>My Post</h3>
       <div
         class="my-post-list"
-        v-for="(mypostData, i) in $store.state.myPostData.length"
+        v-for="mypostData in $store.state.myPostData"
         :key="mypostData"
       >
         <img
-          :src="$store.state.myPostData[i].postimg"
+          :src="mypostData.postimg"
           alt="post-img"
           class="filter-item"
-          :class="$store.state.myPostData[i].filter"
+          :class="mypostData.filter"
         />
         <div class="my-post-text">
           <div class="my-post-list-time">
             <p>
-              {{ $store.state.myPostData[i].timestamp }}
+              {{ mypostData.timestamp }}
             </p>
           </div>
           <div class="my-post-list-comment">
             <p>
-              {{ $store.state.myPostData[i].postfeed }}
+              {{ mypostData.postfeed }}
             </p>
           </div>
         </div>

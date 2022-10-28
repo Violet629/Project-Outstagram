@@ -31,7 +31,7 @@
             <p>{{ $store.state.userData.post.length }} post</p>
           </div>
           <div class="myprofile-like">
-            <p>{{ $store.state.userData.like.length }} like</p>
+            <p>{{ $store.state.userData.like.length }} like post</p>
           </div>
           <div class="myprofile-follower">
             <p>{{ $store.state.userData.follower.length }} follower</p>
@@ -138,6 +138,9 @@ export default {};
   font-family: "Roboto", sans-serif;
   margin: 0;
 }
+.menu2-mid p {
+  margin: 12px 0px 12px 0px;
+}
 .menu2-bottom {
   width: 60%;
   float: left;
@@ -145,10 +148,17 @@ export default {};
   margin-bottom: 0;
   font-size: 24px;
 }
-.edit-comment input,
+.edit-comment input {
+  border: 1px solid rgba(153, 153, 153, 0.8);
+  border-radius: 12px 0px 0px 12px;
+  padding: 8px 42px 8px 8px;
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+}
 .edit-comment button {
   border: 1px solid rgba(153, 153, 153, 0.8);
-  /* border: 0; */
+  border-radius: 0px 12px 12px 0px;
+  padding: 8px 12px 8px 12px;
   font-size: 18px;
   font-family: "Roboto", sans-serif;
 }
@@ -212,6 +222,10 @@ export default {};
   .menu2-mid {
     width: 100%;
     justify-content: space-around;
+  }
+  .menu2-mid p {
+    font-size: 24px;
+    margin: 42px 0px;
   }
   .menu2-bottom {
     width: 100%;

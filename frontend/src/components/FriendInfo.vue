@@ -1,6 +1,6 @@
 <template>
   <div class="friendinfo-modal" :key="friendData">
-    <div class="friendinfo animate__animated animate__bounceIn">
+    <div class="friendinfo animate__animated animate__fadeIn">
       <div class="friendinfo-menu1">
         <div class="friendinfo-profileimg">
           <img :src="friendData.profileImg" alt="profile-img" />

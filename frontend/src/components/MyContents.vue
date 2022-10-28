@@ -12,11 +12,11 @@
           v-if="switchMenuber == 0 || switchMenuber == 1"
         >
           <img
-            v-for="(mypost, i) in $store.state.myPostData.length"
+            v-for="mypost in $store.state.myPostData"
             :key="mypost"
-            :src="$store.state.myPostData[i].postimg"
+            :src="mypost.postimg"
             class="filter-item"
-            :class="$store.state.myPostData[i].filter"
+            :class="mypost.filter"
           />
         </div>
         <div
@@ -24,11 +24,11 @@
           v-if="switchMenuber == 0 || switchMenuber == 2"
         >
           <img
-            v-for="(mylike, j) in $store.state.myLikeData.length"
+            v-for="mylike in $store.state.myLikeData"
             :key="mylike"
-            :src="$store.state.myLikeData[j].postimg"
+            :src="mylike.postimg"
             class="filter-item"
-            :class="$store.state.myLikeData[j].filter"
+            :class="mylike.filter"
           />
         </div>
       </div>

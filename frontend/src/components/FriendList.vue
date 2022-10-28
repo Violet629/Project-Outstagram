@@ -6,7 +6,11 @@
       v-for="myfollow in $store.state.myFollowData"
       :key="myfollow"
     >
-      <img class="icon-img" :src="myfollow.profileImg" alt="friend-icon" />
+      <img
+        class="icon-img animate__animated animate__bounceIn"
+        :src="myfollow.profileImg"
+        alt="friend-icon"
+      />
       <p class="icon-name">{{ myfollow.userID }}</p>
     </div>
   </div>

@@ -30,10 +30,10 @@
         <div class="post-taglist">
           <p
             class="post-tag"
-            v-for="(taglist, j) in contentsData.posttag"
+            v-for="taglist in contentsData.posttag"
             :key="taglist"
           >
-            {{ "#" + contentsData.posttag[j] }}
+            {{ "#" + taglist }}
           </p>
         </div>
         <div class="post-comment">
@@ -108,6 +108,7 @@
 export default {
   data() {
     return {
+      updatePostData: 0,
       inputText: "",
     };
   },
@@ -121,6 +122,8 @@ export default {
         .then((res) => {
           // console.log(res.data);
           this.$store.state.postData = res.data.slice(0, 3);
+          // this.updatePostData + 1;
+          // console.log(this.updatePostData);
         })
         .catch(function (err) {
           console.log(err);
@@ -137,6 +140,8 @@ export default {
         .then((res) => {
           // console.log(res.data);
           this.$store.state.postData = res.data.slice(0, 3);
+          // this.updatePostData + 1;
+          // console.log(this.updatePostData);
         })
         .catch(function (err) {
           console.log(err);
