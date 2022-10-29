@@ -1,7 +1,7 @@
 <template>
   <div class="contents-list">
     <div
-      class="contents"
+      class="contents animate__animated animate__fadeInUp"
       v-for="contentsData in $store.state.postData"
       :key="contentsData"
     >
@@ -245,6 +245,7 @@ export default {
   width: 80%;
   padding: 16px;
   border: 0;
+  border-right: 2px solid rgba(153, 153, 153, 0.8);
 }
 .comment-send {
   width: 20%;
@@ -294,6 +295,9 @@ export default {
 }
 .commentlist-text {
   font-size: 16px;
+}
+.animate__fadeInUp {
+  --animate-duration: 0.5s;
 }
 /* PC (해상도 1024px)*/
 @media all and (min-width: 1024px) {

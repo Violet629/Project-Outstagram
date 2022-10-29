@@ -33,7 +33,7 @@
             v-if="followerList.includes($store.state.userData.userID) == false"
             @click="addFriend(friendData.userID)"
           >
-            Add to friend
+            Follow
           </button>
           <button
             key="followerList"
@@ -41,7 +41,7 @@
             @click="deleteFriend(friendData.userID)"
             style="color: Red"
           >
-            Delete friend
+            Unfollow
           </button>
         </div>
       </div>
@@ -67,7 +67,7 @@ export default {
         .then((res) => {
           console.log(res.data[0]);
           this.$store.state.userData = res.data[0];
-          // this.$router.go();
+          this.$router.go();
         })
         .catch(function (err) {
           console.log(err);
@@ -82,7 +82,7 @@ export default {
         .then((res) => {
           console.log(res.data[0]);
           this.$store.state.userData = res.data[0];
-          // this.$router.go();
+          this.$router.go();
         })
         .catch(function (err) {
           console.log(err);

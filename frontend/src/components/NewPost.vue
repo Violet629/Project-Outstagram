@@ -32,7 +32,7 @@
             <div
               v-for="imgFilter in imgFilter"
               :key="imgFilter"
-              class="filter-item"
+              class="filter-item animate__animated animate__flipInX"
               :class="imgFilter"
             >
               <p>{{ imgFilter }}</p>
@@ -156,22 +156,30 @@ export default {
   text-align: center;
   font-size: 36px;
   background-color: rgba(153, 153, 153, 0.8);
-  border-radius: 0px 0px 12px 12px;
   padding: 8px 0px 8px 0px;
   margin-bottom: 12px;
   flex-grow: 6;
 }
+.newpost-nav-back {
+  border-radius: 0px 0px 0px 12px;
+}
+.newpost-nav-post {
+  border-radius: 0px 0px 12px 0px;
+}
+.newpost-nav-next {
+  border-radius: 0px 0px 12px 0px;
+}
 .newpost-nav-post,
 .newpost-nav-back,
 .newpost-nav-next {
-  text-align: center;
-  border: 2px solid rgba(153, 153, 153, 0.8);
-  border-radius: 8px;
-  margin: 0px 4px;
-  padding: 8px 0px 8px 0px;
-  font-size: 20px;
   font-family: "Roboto", sans-serif;
+  text-align: center;
+  font-size: 32px;
+  padding: 8px 0px 8px 0px;
+  margin-bottom: 12px;
   flex-grow: 2;
+  border: 2.1px solid rgba(153, 153, 153, 0.8);
+  background-color: #fff;
 }
 .newpost-postimg {
   width: 60%;

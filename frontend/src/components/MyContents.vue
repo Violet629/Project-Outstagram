@@ -15,7 +15,7 @@
             v-for="mypost in $store.state.myPostData"
             :key="mypost"
             :src="mypost.postimg"
-            class="filter-item"
+            class="filter-item animate__animated animate__zoomIn"
             :class="mypost.filter"
           />
         </div>
@@ -27,7 +27,7 @@
             v-for="mylike in $store.state.myLikeData"
             :key="mylike"
             :src="mylike.postimg"
-            class="filter-item"
+            class="filter-item animate__animated animate__zoomIn"
             :class="mylike.filter"
           />
         </div>
@@ -41,6 +41,7 @@ export default {
   data() {
     return {
       switchMenuber: 0,
+      number: 0,
     };
   },
   methods: {
@@ -108,6 +109,13 @@ export default {
 }
 .post-none {
   display: none;
+}
+.animate__zoomIn {
+  --animate-duration: 0.5s;
+}
+.ani {
+  animation-delay: 0.1;
+  animation-delay: 1s;
 }
 /* PC (해상도 1024px)*/
 @media all and (min-width: 1024px) {

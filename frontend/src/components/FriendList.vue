@@ -1,17 +1,20 @@
 <template>
   <div class="friend-list">
-    <!-- <div class="friend-text">Friend</div> -->
-    <div
-      class="friend-icon"
-      v-for="myfollow in $store.state.myFollowData"
-      :key="myfollow"
-    >
-      <img
-        class="icon-img animate__animated animate__bounceIn"
-        :src="myfollow.profileImg"
-        alt="friend-icon"
-      />
-      <p class="icon-name">{{ myfollow.userID }}</p>
+    <div class="friend-header">Follow</div>
+    <div class="friend-icon">
+      <div
+        class="friend-img"
+        v-for="myfollow in $store.state.myFollowData"
+        :key="myfollow"
+      >
+        <img
+          @click="followPost(myfollow.userID)"
+          class="icon-img animate__animated animate__bounceIn"
+          :src="myfollow.profileImg"
+          alt="friend-img"
+        />
+        <p class="icon-name">{{ myfollow.userID }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -19,6 +22,9 @@
 <script>
 export default {
   name: "FriendList",
+  data() {
+    return {};
+  },
   created() {
     axios
       .get("myfollowdata")
@@ -30,6 +36,20 @@ export default {
         console.error(err.message);
       });
   },
+  methods: {
+    followPost(name) {
+      axios
+        .post("followPost", {
+          followName: name,
+        })
+        .then((res) => {
+          this.$store.state.postData = res.data;
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 
@@ -39,12 +59,19 @@ export default {
   max-width: 60%;
   float: left;
   margin-top: 24px;
-  display: flex;
   border: solid 2px rgba(153, 153, 153, 0.8);
   border-radius: 8px;
   overflow: hidden;
 }
+.friend-header {
+  margin: 8px 0px 0px 12px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+}
 .friend-icon {
+  display: flex;
+}
+.friend-img {
   width: 60px;
   margin: 12px 0px 12px 22px;
 }

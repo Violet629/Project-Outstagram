@@ -226,6 +226,15 @@ app.get("/myfollowdata", function (req, res) {
     });
 });
 
+app.post("/followPost", function (req, res) {
+  db.collection("post")
+    .find({ userID: req.body.followName })
+    .sort({ _id: -1 })
+    .toArray(function (err, data) {
+      res.json(data);
+    });
+});
+
 // 이미지를 AWS S3에 저장하기
 const multer = require("multer");
 const multerS3 = require("multer-s3");
