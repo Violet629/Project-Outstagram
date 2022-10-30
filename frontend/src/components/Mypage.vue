@@ -12,7 +12,6 @@ import NavBar from "./NavBar.vue";
 import MyProfile from "./MyProfile.vue";
 import MyContents from "./MyContents.vue";
 import EditProfile from "./EditProfile.vue";
-import axios from "axios";
 
 export default {
   components: {

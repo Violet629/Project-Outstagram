@@ -9,6 +9,7 @@ const store = createStore({
     return {
       userData: [],
       postData: [],
+      searchPostData: [],
       myPostData: [],
       myLikeData: [],
       myFollowData: [],

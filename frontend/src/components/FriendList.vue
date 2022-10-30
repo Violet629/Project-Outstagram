@@ -73,18 +73,19 @@ export default {
 }
 .friend-img {
   width: 60px;
-  margin: 12px 0px 12px 22px;
+  margin: 6px 0px 6px 22px;
+  transition: all 0.1s linear;
+}
+.friend-img:hover {
+  transform: scale(1.1);
 }
 .icon-img {
   border: 2px solid transparent;
   border-radius: 50%;
-  /* background-image: linear-gradient(#fff, #fff),
-    linear-gradient(to bottom, violet 0%, orange 100%); */
   background-origin: border-box;
   background-clip: content-box, border-box;
   width: 100%;
   height: 60px;
-  /* height: 60px; */
 }
 .add-img {
   width: 100%;

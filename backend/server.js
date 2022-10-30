@@ -170,9 +170,25 @@ app.get("/postdata", function (req, res) {
     .toArray(function (err, data) {
       res.json(data);
       console.log("PostData Request");
-      // for (var i = 0; i < data.length; i++) {
-      //   console.log(data[i]);
-      // }
+    });
+});
+
+app.post("/searchinput", function (req, res) {
+  db.collection("post")
+    .find({ posttag: req.body.input })
+    .toArray(function (err, data) {
+      res.json(data);
+      console.log("PostData Request");
+    });
+});
+
+app.get("/searchpost", function (req, res) {
+  db.collection("post")
+    .find()
+    .sort({ _id: -1 })
+    .toArray(function (err, data) {
+      res.json(data);
+      console.log("PostData Request");
     });
 });
 

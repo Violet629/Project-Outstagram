@@ -170,7 +170,7 @@ export default {
   width: 100%;
   max-width: 60%;
   float: left;
-  margin-top: 22px;
+  margin-top: 8px;
   border: 2px solid rgba(153, 153, 153, 0.8);
   border-radius: 8px;
 }

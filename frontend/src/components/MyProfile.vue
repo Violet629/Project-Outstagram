@@ -180,6 +180,10 @@ export default {};
   .myprofile-img {
     max-width: 250px;
   }
+  .menu2-bottom,
+  .menu2-mid {
+    width: 80%;
+  }
   /* .myprofile-setting {
     margin-top: 32px;
   } */
