@@ -89,7 +89,7 @@ export default {
   height: 140px;
   /* object-fit: cover; */
   border-radius: 50%;
-  border: 2px solid rgba(153, 153, 153, 0.8);
+  border: 1px solid rgba(153, 153, 153, 0.3);
 }
 .myinfo-menu2 {
   width: 57%;
@@ -122,7 +122,7 @@ export default {
   width: 100%;
   float: left;
   margin-top: 18px;
-  border: 2px solid rgba(153, 153, 153, 0.8);
+  border: 1px solid rgba(153, 153, 153, 0.3);
   border-radius: 8px;
 }
 .up-post button {
@@ -138,7 +138,7 @@ export default {
   overflow-x: hidden;
   margin-top: 4px;
   float: left;
-  border: 2px solid rgba(153, 153, 153, 0.8);
+  border: 1px solid rgba(153, 153, 153, 0.3);
   border-radius: 8px;
 }
 .my-post::-webkit-scrollbar {
@@ -151,7 +151,7 @@ export default {
   border: 2px solid transparent;
 }
 .my-post::-webkit-scrollbar-track {
-  background-color: rgba(153, 153, 153, 0.8);
+  background-color: rgba(153, 153, 153, 0.3);
   border-radius: 10px;
   box-shadow: inset 0px 0px 5px white;
   display: none;
@@ -161,7 +161,7 @@ export default {
   color: gray;
   opacity: 0.5;
   font-family: "Roboto", sans-serif;
-  border-bottom: 2px solid rgba(153, 153, 153, 0.8);
+  border-bottom: 2px solid rgba(153, 153, 153, 0.3);
 }
 .my-post-list {
   margin: 0px 4px 28px 16px;

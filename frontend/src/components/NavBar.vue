@@ -155,7 +155,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   background-color: #ffffff;
-  border-bottom: solid 2px rgba(153, 153, 153, 0.8);
+  border-bottom: solid 1px rgba(153, 153, 153, 0.3);
 }
 .logo {
   font-family: "Kaushan Script", cursive;

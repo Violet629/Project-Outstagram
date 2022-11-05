@@ -59,9 +59,10 @@ export default {
   max-width: 60%;
   float: left;
   margin-top: 24px;
-  border: solid 2px rgba(153, 153, 153, 0.8);
+  border: solid 1px rgba(153, 153, 153, 0.2);
   border-radius: 8px;
   overflow: hidden;
+  background-color: #fff;
 }
 .friend-header {
   margin: 8px 0px 0px 12px;

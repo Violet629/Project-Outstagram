@@ -70,6 +70,7 @@ export default {
 <style>
 .mycontents {
   width: 100%;
+  /* background-color: #fff; */
 }
 .mycontent-menuber {
   text-align: center;
@@ -81,7 +82,7 @@ export default {
   padding: 8px 42px 8px 42px;
   font-size: 22px;
   font-family: "Roboto", sans-serif;
-  background-color: #fff;
+  background-color: rgba(247, 247, 247, 0.7);
 }
 .mycontent-myposts,
 .mycontent-mylikes {

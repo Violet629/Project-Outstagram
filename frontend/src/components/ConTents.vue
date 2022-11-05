@@ -171,8 +171,9 @@ export default {
   max-width: 60%;
   float: left;
   margin-top: 8px;
-  border: 2px solid rgba(153, 153, 153, 0.8);
+  border: 1px solid rgba(153, 153, 153, 0.3);
   border-radius: 8px;
+  background-color: #fff;
 }
 .profile {
   display: flex;
@@ -217,7 +218,7 @@ export default {
 }
 .post-taglist {
   display: flex;
-  border-bottom: 2px solid rgba(153, 153, 153, 0.8);
+  border-bottom: 1px solid rgba(153, 153, 153, 0.3);
 }
 .post-tag {
   font-family: "Roboto", sans-serif;
@@ -239,13 +240,13 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 2px solid rgba(153, 153, 153, 0.8);
+  border-top: 1px solid rgba(153, 153, 153, 0.3);
 }
 .leavecomment input {
   width: 80%;
   padding: 16px;
   border: 0;
-  border-right: 2px solid rgba(153, 153, 153, 0.8);
+  border-right: 1px solid rgba(153, 153, 153, 0.3);
 }
 .comment-send {
   width: 20%;
@@ -259,7 +260,7 @@ export default {
   overflow: scroll;
   overflow-x: hidden;
   /* overflow-y: hidden; */
-  /* border-bottom: 2px solid rgba(153, 153, 153, 0.8); */
+  /* border-bottom: 2px solid rgba(153, 153, 153, 0.3); */
 }
 .post-comment::-webkit-scrollbar {
   width: 10px;
@@ -271,7 +272,7 @@ export default {
   border: 2px solid transparent;
 }
 .post-comment::-webkit-scrollbar-track {
-  background-color: rgba(153, 153, 153, 0.8);
+  background-color: rgba(153, 153, 153, 0.3);
   border-radius: 10px;
   box-shadow: inset 0px 0px 5px white;
   display: none;
