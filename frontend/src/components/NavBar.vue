@@ -6,14 +6,12 @@
           <p class="logo">Outstagram</p>
         </router-link>
       </div>
-      <!-- <div class="header-menu-2">
-        <input
-          v-model="inputSearch"
-          class="search"
-          type="text"
-          placeholder=" 🔍 Search"
-        />
-      </div> -->
+      <div class="header-menu-2">
+        <input v-model="inputSearch" class="search" type="text" />
+        <button class="search-button" @click="search()">
+          <img src="../assets/icon/search3.png" />
+        </button>
+      </div>
       <div class="header-menu-3">
         <div>
           <router-link to="/home" v-if="this.urlName != `/home`"
@@ -42,13 +40,13 @@
           /></router-link>
         </div>
         <div>
-          <router-link to="/search" v-if="this.urlName != `/search`"
-            ><img class="menu3-button" src="../assets/icon/search.png"
+          <router-link to="/messenger" v-if="this.urlName != `/messenger`"
+            ><img class="menu3-button" src="../assets/icon/messenger.png"
           /></router-link>
-          <router-link to="/search" v-if="this.urlName == `/search`"
+          <router-link to="/messenger" v-if="this.urlName == `/messenger`"
             ><img
               class="menu3-button act-button"
-              src="../assets/icon/search2.png"
+              src="../assets/icon/messenger2.png"
           /></router-link>
         </div>
         <div>
@@ -89,13 +87,13 @@
           /></router-link>
         </div>
         <div>
-          <router-link to="/search" v-if="this.urlName != `/search`"
-            ><img class="footer-button" src="../assets/icon/search.png"
+          <router-link to="/messenger" v-if="this.urlName != `/messenger`"
+            ><img class="footer-button" src="../assets/icon/messenger.png"
           /></router-link>
-          <router-link to="/search" v-if="this.urlName == `/search`"
+          <router-link to="/messenger" v-if="this.urlName == `/messenger`"
             ><img
               class="footer-button act-button"
-              src="../assets/icon/search2.png"
+              src="../assets/icon/messenger2.png"
           /></router-link>
         </div>
         <div>
@@ -123,24 +121,18 @@ export default {
     logout() {
       axios.post("http://localhost:8080/logout");
     },
-    // search(obj) {
-    //   axios
-    //     .post("leaveComment", {
-    //       postObjId: obj,
-    //       userId: this.$store.state.userData.userID,
-    //       userImg: this.$store.state.userData.profileImg,
-    //       inputText: this.inputText,
-    //     })
-    //     .then((res) => {
-    //       // console.log(res.data);
-    //       this.$store.state.postData = res.data;
-    //     })
-    //     .catch(function (err) {
-    //       console.log(err);
-    //     });
-    // },
     search() {
-      alert("ok");
+      axios
+        .post("search", {
+          input: this.inputSearch,
+        })
+        .then((res) => {
+          // console.log(res.data);
+          this.$store.state.postData = res.data;
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
     },
   },
 };
@@ -156,6 +148,7 @@ export default {
   justify-content: space-between;
   background-color: #ffffff;
   border-bottom: solid 1px rgba(153, 153, 153, 0.3);
+  border-radius: 0px 0px 12px 12px;
 }
 .logo {
   font-family: "Kaushan Script", cursive;
@@ -164,16 +157,29 @@ export default {
   color: black;
   text-decoration-line: none;
 }
-/* .search {
-  width: 260px;
+.header-menu-2 {
+  display: flex;
+  align-items: center;
+}
+.search {
+  width: 220px;
   height: 28px;
-  padding: 2px 0px 2px 12px;
+  padding: 1px 0px 1px 12px;
   background-color: rgba(153, 153, 153, 0.3);
   border: 1px solid rgba(153, 153, 153, 0.8);
-  border-radius: 15px;
+  border-radius: 15px 0px 0px 15px;
   font-size: 15px;
   font-family: "Roboto", sans-serif;
-} */
+}
+.search-button {
+  border: 1px solid rgba(153, 153, 153, 0.8);
+  border-radius: 0px 15px 15px 0px;
+  height: 32px;
+}
+.search-button img {
+  height: 22px;
+  width: 22px;
+}
 .header-menu-3 {
   display: flex;
   margin: 0px 80px;
@@ -233,6 +239,7 @@ export default {
   }
   .logo {
     font-size: 28px;
+    margin: 15px 8px;
   }
   .search {
     width: 180px;

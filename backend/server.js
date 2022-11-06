@@ -173,7 +173,7 @@ app.get("/postdata", function (req, res) {
     });
 });
 
-app.post("/searchinput", function (req, res) {
+app.post("/search", function (req, res) {
   db.collection("post")
     .find({ posttag: req.body.input })
     .toArray(function (err, data) {
@@ -182,15 +182,15 @@ app.post("/searchinput", function (req, res) {
     });
 });
 
-app.get("/searchpost", function (req, res) {
-  db.collection("post")
-    .find()
-    .sort({ _id: -1 })
-    .toArray(function (err, data) {
-      res.json(data);
-      console.log("PostData Request");
-    });
-});
+// app.get("/searchpost", function (req, res) {
+//   db.collection("post")
+//     .find()
+//     .sort({ _id: -1 })
+//     .toArray(function (err, data) {
+//       res.json(data);
+//       console.log("PostData Request");
+//     });
+// });
 
 app.get("/mypostdata", function (req, res) {
   console.log(req.user.userID + " MyPostData Request");

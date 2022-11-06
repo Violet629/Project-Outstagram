@@ -38,8 +38,8 @@ const routes = [
     component: () => import("../src/components/AddPost.vue"),
   },
   {
-    path: "/search",
-    component: () => import("../src/components/SearchPage.vue"),
+    path: "/messenger",
+    component: () => import("../src/components/Messenger.vue"),
   },
 ];
 

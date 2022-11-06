@@ -77,6 +77,9 @@ export default {
   float: right;
   margin-top: 32px;
   box-sizing: border-box;
+  border: 1px solid rgba(153, 153, 153, 0.3);
+  background-color: #fff;
+  border-radius: 12px;
 }
 .myinfo-menu1 {
   width: 30%;
@@ -121,7 +124,7 @@ export default {
 .up-post {
   width: 100%;
   float: left;
-  margin-top: 18px;
+  margin-top: 8px;
   border: 1px solid rgba(153, 153, 153, 0.3);
   border-radius: 8px;
 }
@@ -138,8 +141,7 @@ export default {
   overflow-x: hidden;
   margin-top: 4px;
   float: left;
-  border: 1px solid rgba(153, 153, 153, 0.3);
-  border-radius: 8px;
+  /* border-top: 1px solid rgba(153, 153, 153, 0.3); */
 }
 .my-post::-webkit-scrollbar {
   width: 10px;
