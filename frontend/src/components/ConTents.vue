@@ -139,6 +139,7 @@ export default {
         })
         .then((res) => {
           // console.log(res.data);
+          this.inputText = "";
           this.$store.state.postData = res.data.slice(0, 3);
           // this.updatePostData + 1;
           // console.log(this.updatePostData);

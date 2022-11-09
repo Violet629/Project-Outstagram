@@ -134,6 +134,9 @@ export default {
   opacity: 0.8;
   border: 0;
 }
+.up-post button:hover {
+  background-color: #fff;
+}
 .my-post {
   width: 100%;
   height: 350px;

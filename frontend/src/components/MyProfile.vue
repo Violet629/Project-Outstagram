@@ -75,7 +75,7 @@ export default {};
   width: 100%;
   height: 360px;
   /* margin: 18px 0px 0px 0px; */
-  border-bottom: 2px solid rgba(153, 153, 153, 0.8);
+  border-bottom: 1px solid rgba(153, 153, 153, 0.3);
 }
 .myprofile-menu1 {
   width: 20%;

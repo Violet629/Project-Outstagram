@@ -170,11 +170,13 @@ export default {
   border-radius: 15px 0px 0px 15px;
   font-size: 15px;
   font-family: "Roboto", sans-serif;
+  background-color: #fff;
 }
 .search-button {
   border: 1px solid rgba(153, 153, 153, 0.8);
   border-radius: 0px 15px 15px 0px;
   height: 32px;
+  background-color: #fff;
 }
 .search-button img {
   height: 22px;

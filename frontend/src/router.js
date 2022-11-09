@@ -39,7 +39,7 @@ const routes = [
   },
   {
     path: "/messenger",
-    component: () => import("../src/components/Messenger.vue"),
+    component: () => import("../src/components/ChattingPage.vue"),
   },
 ];
 

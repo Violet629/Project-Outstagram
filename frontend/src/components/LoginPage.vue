@@ -95,6 +95,7 @@ export default {};
   border-radius: 8px;
   text-align: center;
   box-shadow: 20px 20px 20px grey;
+  background-color: #fff;
 }
 .welcome-icon img,
 .header-icon img {
@@ -127,6 +128,7 @@ export default {};
   list-style: none;
   text-decoration: none;
   color: black;
+  background-color: #fff;
 }
 .login-signin {
   padding: 10px 185px 10px 185px;
@@ -168,6 +170,7 @@ export default {};
   list-style: none;
   text-decoration: none;
   color: black;
+  background-color: #fff;
 }
 .mobile-login-signin {
   padding: 10px 144px 10px 144px;

@@ -48,6 +48,7 @@ export default {};
   border-radius: 8px;
   text-align: center;
   box-shadow: 20px 20px 20px grey;
+  background-color: #fff;
 }
 .login-request-icon img {
   width: 46px;
