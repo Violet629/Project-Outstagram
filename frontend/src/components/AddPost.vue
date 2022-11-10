@@ -8,7 +8,6 @@
 <script>
 import NavBar from "./NavBar.vue";
 import NewPost from "./NewPost.vue";
-import axios from "axios";
 
 export default {
   components: {

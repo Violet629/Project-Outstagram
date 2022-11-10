@@ -26,5 +26,6 @@ body {
   margin: 0;
   padding: 0;
   background-color: rgba(245, 245, 245, 0.7);
+  font-family: "Roboto", sans-serif;
 }
 </style>
