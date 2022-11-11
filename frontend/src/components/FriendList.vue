@@ -75,7 +75,7 @@ export default {
 .friend-img {
   width: 60px;
   margin: 6px 0px 6px 22px;
-  transition: all 0.1s linear;
+  transition: all 0.05s linear;
 }
 .friend-img:hover {
   transform: scale(1.1);

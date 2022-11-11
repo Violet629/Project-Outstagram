@@ -1,7 +1,7 @@
 <template>
   <div class="contents-list">
     <div
-      class="contents animate__animated animate__fadeInUp"
+      class="contents animate__animated"
       v-for="contentsData in $store.state.postData"
       :key="contentsData"
     >

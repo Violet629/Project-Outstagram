@@ -477,16 +477,30 @@ app.post("/deleteFriend", function (req, res) {
     });
 });
 
-app.post("/chat", function (req, res) {
-  console.log(req.body);
-  // db.collection("chat").updateOne();
+app.post("/chatMessage", function (req, res) {
   db.collection("chat")
-    .find({ member: "test", member: "Olivia" })
+    .find({ member: req.body.yourName, member: req.body.followName })
     .toArray(function (err, data) {
-      console.log(data);
       res.json(data);
     });
 });
+
+app.post("/sendMessage", function (req, res) {
+  db.collection("chat").updateOne(
+    { member: req.body.yourName, member: req.body.followName },
+    {
+      $push: {
+        message: { userID: req.body.yourName, text: req.body.inputMessage },
+      },
+    }
+  );
+  db.collection("chat")
+    .find({ member: req.body.yourName, member: req.body.followName })
+    .toArray(function (err, data) {
+      res.json(data);
+    });
+});
+
 // 주소창에 미개발 주소 치면 다시 메인 페이지로 보내주세요
 // 사이트 랜더링을 프론트에게 맡김
 app.get("*", function (req, res) {
