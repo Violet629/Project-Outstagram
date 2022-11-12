@@ -1,6 +1,9 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+const http = require("http").createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(http);
 
 // node와 서버간 ajax 요청 기능 추가
 app.use(express.json());
@@ -30,7 +33,7 @@ MongoClient.connect(
 
     db = client.db("Outstagram");
 
-    app.listen("8080", function () {
+    http.listen(8080, function () {
       console.log("listening on 8080");
     });
   }
@@ -496,6 +499,14 @@ app.post("/sendMessage", function (req, res) {
     .toArray(function (err, data) {
       res.json(data);
     });
+});
+
+io.on("connection", function (socket) {
+  console.log("연결되었어요");
+
+  socket.on("user-send", function (data) {
+    console.log(data);
+  });
 });
 
 // 주소창에 미개발 주소 치면 다시 메인 페이지로 보내주세요

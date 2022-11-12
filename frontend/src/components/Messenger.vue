@@ -46,9 +46,12 @@
 </template>
 
 <script>
+import io from "socket.io-client";
+
 export default {
   data() {
     return {
+      socket: io(),
       yourName: this.$store.state.userData.userID,
       inputMessage: "",
       followName: "",
@@ -64,6 +67,7 @@ export default {
       .catch((err) => {
         console.error(err.message);
       });
+    this.$store.state.chatData = [];
   },
   methods: {
     followProfileImg(img) {
