@@ -9,7 +9,9 @@
         class="messenger-follow-list-icon"
         v-for="myFollw in $store.state.myFollowData"
         :key="myFollw"
-        @click="chatMessage(myFollw.userID)"
+        @click="
+          [chatMessage(myFollw.userID), followProfileImg(myFollw.profileImg)]
+        "
       >
         <img :src="myFollw.profileImg" alt="friend-img" class="icon-img" />
         <p class="icon-name">{{ myFollw.userID }}</p>
@@ -19,18 +21,20 @@
       <div class="message" v-for="chat in $store.state.chatData" :key="chat">
         <div
           class="message-list"
-          v-for="message in chat.message"
-          :key="message"
+          :class="{ 'my-message': chat.Sender == yourName }"
         >
-          <div
-            :class="{
-              'my-message': message.userID == yourName,
-            }"
+          <img
+            v-if="chat.Sender != yourName"
+            class="message-profile animate__animated animate__bounceIn"
+            :src="followImg"
+            alt="profile-img"
+          />
+          <p
+            class="message-text animate__animated animate__bounceIn"
+            :class="{ 'my-message': chat.Sender == yourName }"
           >
-            <p class="animate__animated animate__bounceIn">
-              {{ message.text }}
-            </p>
-          </div>
+            {{ chat.text }}
+          </p>
         </div>
       </div>
     </div>
@@ -48,6 +52,7 @@ export default {
       yourName: this.$store.state.userData.userID,
       inputMessage: "",
       followName: "",
+      followImg: "",
     };
   },
   created() {
@@ -61,6 +66,9 @@ export default {
       });
   },
   methods: {
+    followProfileImg(img) {
+      this.followImg = img;
+    },
     chatMessage(follow) {
       this.followName = follow;
       axios
@@ -167,17 +175,28 @@ export default {
 }
 .message-list {
   width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  justify-content: flex-start;
 }
-.message-list p {
+.message-profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.message-text {
   font-size: 20px;
-  background-color: rgb(194, 194, 194);
+  background-color: rgb(200, 200, 200);
   border-radius: 12px;
-  padding: 4px 12px;
-  margin: 6px 12px;
+  border: 1px solid rgba(153, 153, 153, 0.3);
+  padding: 8px 16px;
+  margin: 6px 8px;
   display: inline-block;
 }
 .my-message {
-  text-align: right;
+  justify-content: flex-end;
+  background-color: #fff;
 }
 .chatting-send {
   width: 70%;
@@ -197,7 +216,4 @@ export default {
   height: 30px;
   margin: 0px 8px;
 }
-/* .chatting-send img:hover {
-  animation: jello;
-} */
 </style>

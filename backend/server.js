@@ -478,7 +478,7 @@ app.post("/deleteFriend", function (req, res) {
 });
 
 app.post("/chatMessage", function (req, res) {
-  db.collection("chat")
+  db.collection("message")
     .find({ member: req.body.yourName, member: req.body.followName })
     .toArray(function (err, data) {
       res.json(data);
@@ -486,15 +486,12 @@ app.post("/chatMessage", function (req, res) {
 });
 
 app.post("/sendMessage", function (req, res) {
-  db.collection("chat").updateOne(
-    { member: req.body.yourName, member: req.body.followName },
-    {
-      $push: {
-        message: { userID: req.body.yourName, text: req.body.inputMessage },
-      },
-    }
-  );
-  db.collection("chat")
+  db.collection("message").insertOne({
+    member: [req.body.yourName, req.body.followName],
+    text: req.body.inputMessage,
+    Sender: req.body.yourName,
+  });
+  db.collection("message")
     .find({ member: req.body.yourName, member: req.body.followName })
     .toArray(function (err, data) {
       res.json(data);
