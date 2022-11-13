@@ -33,6 +33,13 @@ MongoClient.connect(
 
     db = client.db("Outstagram");
 
+    io.on("connection", function (socket) {
+      console.log(socket.id + "연결");
+      socket.on("SEND_MESSAGE", function (data) {
+        io.emit("MESSAGE", data);
+      });
+    });
+
     http.listen(8080, function () {
       console.log("listening on 8080");
     });
@@ -132,15 +139,15 @@ app.post("/signup", function (req, res) {
 
 // 로그인하지 않고 밑에 경로로  바로 들어가는걸 방지 해주세요
 app.get("/home", loginCheck, function (req, res, next) {
-  // console.log(req.user._id);
   next();
 });
-
 app.get("/mypage", loginCheck, function (req, res, next) {
   next();
 });
-
 app.get("/add_post", loginCheck, function (req, res, next) {
+  next();
+});
+app.get("/messenger", loginCheck, function (req, res, next) {
   next();
 });
 
@@ -157,7 +164,7 @@ app.get("/userdata", function (req, res) {
 });
 
 app.post("/friendInfo", function (req, res) {
-  console.log(req.body);
+  // console.log(req.body);
   db.collection("userdata")
     .find({ userID: req.body.name })
     .toArray(function (err, data) {
@@ -231,7 +238,7 @@ app.get("/mylikedata", function (req, res) {
     .find({ like: req.user.userID })
     .sort({ _id: -1 })
     .toArray(function (err, data) {
-      console.log(data);
+      // console.log(data);
       res.send(data);
     });
 });
@@ -381,7 +388,7 @@ app.post("/newpost", postimg_upload.single("image"), function (req, res) {
 });
 
 app.post("/leaveComment", function (req, res) {
-  console.log(req.body);
+  // console.log(req.body);
   db.collection("post").updateOne(
     { _id: ObjectId(req.body.postObjId) },
     {
@@ -403,7 +410,7 @@ app.post("/leaveComment", function (req, res) {
 });
 
 app.post("/postlike", function (req, res) {
-  console.log(req.body);
+  // console.log(req.body);
 
   // db.collection("post").updateOne(
   //   { _id: ObjectId(req.body.postObjId) },
@@ -435,7 +442,7 @@ app.post("/postlike", function (req, res) {
     .find()
     .sort({ _id: -1 })
     .toArray(function (err, data) {
-      console.log(data);
+      // console.log(data);
       res.json(data);
     });
 });
@@ -488,26 +495,18 @@ app.post("/chatMessage", function (req, res) {
     });
 });
 
-app.post("/sendMessage", function (req, res) {
-  db.collection("message").insertOne({
-    member: [req.body.yourName, req.body.followName],
-    text: req.body.inputMessage,
-    Sender: req.body.yourName,
-  });
-  db.collection("message")
-    .find({ member: req.body.yourName, member: req.body.followName })
-    .toArray(function (err, data) {
-      res.json(data);
-    });
-});
-
-io.on("connection", function (socket) {
-  console.log("연결되었어요");
-
-  socket.on("user-send", function (data) {
-    console.log(data);
-  });
-});
+// app.post("/sendMessage", function (req, res) {
+//   db.collection("message").insertOne({
+//     member: [req.body.yourName, req.body.followName],
+//     text: req.body.inputMessage,
+//     Sender: req.body.yourName,
+//   });
+//   db.collection("message")
+//     .find({ member: req.body.yourName, member: req.body.followName })
+//     .toArray(function (err, data) {
+//       res.json(data);
+//     });
+// });
 
 // 주소창에 미개발 주소 치면 다시 메인 페이지로 보내주세요
 // 사이트 랜더링을 프론트에게 맡김

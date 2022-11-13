@@ -145,7 +145,7 @@ export default {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: #ffffff;
   border-bottom: solid 1px rgba(153, 153, 153, 0.3);
   border-radius: 0px 0px 12px 12px;
@@ -236,6 +236,9 @@ export default {
 }
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
+  .header {
+    justify-content: space-between;
+  }
   .mobile-footer {
     z-index: 99;
   }

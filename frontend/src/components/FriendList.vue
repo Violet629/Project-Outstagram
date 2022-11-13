@@ -25,7 +25,7 @@ export default {
   data() {
     return {};
   },
-  created() {
+  mounted() {
     axios
       .get("myfollowdata")
       .then((res) => {

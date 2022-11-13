@@ -26,7 +26,7 @@ export default {
     FriendInfo,
   },
   // 로딩 했을때 유저데이터 요청
-  created() {
+  mounted() {
     axios
       .get("userdata")
       .then((res) => {

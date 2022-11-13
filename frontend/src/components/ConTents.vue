@@ -248,6 +248,7 @@ export default {
   padding: 16px;
   border: 0;
   border-right: 1px solid rgba(153, 153, 153, 0.3);
+  border-radius: 0px 0px 0px 8px;
 }
 .comment-send {
   width: 20%;

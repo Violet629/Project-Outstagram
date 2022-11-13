@@ -52,13 +52,26 @@ export default {
   data() {
     return {
       socket: io(),
-      yourName: this.$store.state.userData.userID,
+      yourName: "",
       inputMessage: "",
       followName: "",
       followImg: "",
     };
   },
-  created() {
+  mounted() {
+    this.socket.on("MESSAGE", (data) => {
+      this.$store.state.chatData = [...this.$store.state.chatData, data];
+      // you can also do this.messages.push(data)
+    });
+    axios
+      .get("userdata")
+      .then((res) => {
+        this.$store.state.userData = res.data[0];
+        this.yourName = this.$store.state.userData.userID;
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
     axios
       .get("myfollowdata")
       .then((res) => {
@@ -95,11 +108,16 @@ export default {
           inputMessage: this.inputMessage,
         })
         .then((res) => {
-          this.$store.state.chatData = res.data;
+          // this.$store.state.chatData = res.data;
+          console.log(res.data);
         })
         .catch(function (err) {
           console.log(err);
         });
+      this.socket.emit("SEND_MESSAGE", {
+        user: this.yourName,
+        message: this.inputMessage,
+      });
     },
   },
 };
