@@ -18,20 +18,20 @@
       </div>
     </div>
     <div class="messenger-chatting">
-      <div class="message" v-for="chat in $store.state.chatData" :key="chat">
+      <div class="message" v-for="chat in chatData" :key="chat">
         <div
           class="message-list"
-          :class="{ 'my-message': chat.Sender == yourName }"
+          :class="{ 'my-message': chat.sender == yourName }"
         >
           <img
-            v-if="chat.Sender != yourName"
+            v-if="chat.sender != yourName"
             class="message-profile animate__animated animate__bounceIn"
             :src="followImg"
             alt="profile-img"
           />
           <p
             class="message-text animate__animated animate__bounceIn"
-            :class="{ 'my-message': chat.Sender == yourName }"
+            :class="{ 'my-message': chat.sender == yourName }"
           >
             {{ chat.text }}
           </p>
@@ -52,6 +52,7 @@ export default {
   data() {
     return {
       socket: io(),
+      chatData: [],
       yourName: "",
       inputMessage: "",
       followName: "",
@@ -60,8 +61,10 @@ export default {
   },
   mounted() {
     this.socket.on("MESSAGE", (data) => {
-      this.$store.state.chatData = [...this.$store.state.chatData, data];
-      // you can also do this.messages.push(data)
+      this.chatData = [...this.chatData, data];
+      $(".messenger-chatting").scrollTop(
+        $(".messenger-chatting")[0].scrollHeight
+      );
     });
     axios
       .get("userdata")
@@ -80,7 +83,7 @@ export default {
       .catch((err) => {
         console.error(err.message);
       });
-    this.$store.state.chatData = [];
+    this.chatData = [];
   },
   methods: {
     followProfileImg(img) {
@@ -88,13 +91,14 @@ export default {
     },
     chatMessage(follow) {
       this.followName = follow;
+      this.chatData = [];
       axios
         .post("chatMessage", {
           yourName: this.yourName,
           followName: follow,
         })
         .then((res) => {
-          this.$store.state.chatData = res.data;
+          this.chatData = res.data;
         })
         .catch(function (err) {
           console.log(err);
@@ -108,15 +112,15 @@ export default {
           inputMessage: this.inputMessage,
         })
         .then((res) => {
-          // this.$store.state.chatData = res.data;
-          console.log(res.data);
+          // this.chatData = res.data;
+          // console.log(res.data);
         })
         .catch(function (err) {
           console.log(err);
         });
       this.socket.emit("SEND_MESSAGE", {
-        user: this.yourName,
-        message: this.inputMessage,
+        sender: this.yourName,
+        text: this.inputMessage,
       });
     },
   },

@@ -32,19 +32,19 @@ MongoClient.connect(
     if (err) return console.log(err);
 
     db = client.db("Outstagram");
-
-    io.on("connection", function (socket) {
-      console.log(socket.id + "연결");
-      socket.on("SEND_MESSAGE", function (data) {
-        io.emit("MESSAGE", data);
-      });
-    });
-
-    http.listen(8080, function () {
-      console.log("listening on 8080");
-    });
   }
 );
+
+io.on("connection", function (socket) {
+  console.log(socket.id + "연결");
+  socket.on("SEND_MESSAGE", function (data) {
+    io.emit("MESSAGE", data);
+  });
+});
+
+http.listen(8080, function () {
+  console.log("listening on 8080");
+});
 
 // 다른 로컬파일 불러오기
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
@@ -488,25 +488,28 @@ app.post("/deleteFriend", function (req, res) {
 });
 
 app.post("/chatMessage", function (req, res) {
+  console.log(req.body);
   db.collection("message")
     .find({ member: req.body.yourName, member: req.body.followName })
     .toArray(function (err, data) {
+      console.log(data);
       res.json(data);
     });
 });
 
-// app.post("/sendMessage", function (req, res) {
-//   db.collection("message").insertOne({
-//     member: [req.body.yourName, req.body.followName],
-//     text: req.body.inputMessage,
-//     Sender: req.body.yourName,
-//   });
-//   db.collection("message")
-//     .find({ member: req.body.yourName, member: req.body.followName })
-//     .toArray(function (err, data) {
-//       res.json(data);
-//     });
-// });
+app.post("/sendMessage", function (req, res) {
+  db.collection("message").insertOne({
+    follow: req.body.followName,
+    text: req.body.inputMessage,
+    sender: req.body.yourName,
+  });
+  db.collection("message")
+    .find({ member: req.body.yourName, member: req.body.followName })
+    .toArray(function (err, data) {
+      // res.json(data);
+      res.end();
+    });
+});
 
 // 주소창에 미개발 주소 치면 다시 메인 페이지로 보내주세요
 // 사이트 랜더링을 프론트에게 맡김
