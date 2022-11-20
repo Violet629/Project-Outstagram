@@ -490,7 +490,9 @@ app.post("/deleteFriend", function (req, res) {
 app.post("/chatMessage", function (req, res) {
   console.log(req.body);
   db.collection("message")
-    .find({ member: req.body.yourName, member: req.body.followName })
+    .find({
+      $and: [{ member: req.body.yourName }, { member: req.body.followName }],
+    })
     .toArray(function (err, data) {
       console.log(data);
       res.json(data);
@@ -499,12 +501,15 @@ app.post("/chatMessage", function (req, res) {
 
 app.post("/sendMessage", function (req, res) {
   db.collection("message").insertOne({
-    follow: req.body.followName,
+    // follow: req.body.followName,
+    member: [req.body.yourName, req.body.followName],
     text: req.body.inputMessage,
     sender: req.body.yourName,
   });
   db.collection("message")
-    .find({ member: req.body.yourName, member: req.body.followName })
+    .find({
+      $and: [{ member: req.body.yourName }, { member: req.body.followName }],
+    })
     .toArray(function (err, data) {
       // res.json(data);
       res.end();
