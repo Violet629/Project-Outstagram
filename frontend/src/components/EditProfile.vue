@@ -33,45 +33,18 @@
         </div>
         <div style="display: none">
           <input :value="$store.state.userData.userID" name="userID" />
-          <!-- <input :value="$store.state.userData.profileImg" name="beforeUrl" /> -->
         </div>
       </form>
-      <!-- <form
-        v-if="editstep == 0"
-        action="/editprofile-comment"
-        method="post"
-        enctype="text/plain"
-      >
-        <div class="editprofile-comment">
-          <h3>Profile Comment</h3>
-          <p>{{ $store.state.userData.profileComment }}</p>
-          <input
-            type="text"
-            name="comment"
-            :value="$store.state.userData.profileComment"
-          />
-        </div>
-        <div class="editprofile-button">
-          <button class="editprofile-submit" type="submit">Edit</button>
-          <button
-            class="editprofile-cancel"
-            @click="$store.commit('closeEditModal')"
-          >
-            Cancel
-          </button>
-        </div>
-      </form> -->
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  name: "EditProfile",
   data() {
     return {
-      // editstep: 1,
       previewUrl: this.$store.state.userData.profileImg,
-      // deletReqUrl: this.$store.state.userData.profileImg,
     };
   },
   methods: {
@@ -80,9 +53,6 @@ export default {
       this.previewUrl = URL.createObjectURL(this.file[0]);
       console.log(this.previewUrl);
     },
-  },
-  created() {
-    // this.deletReqUrl = this.deletReqUrl.split("^_");
   },
 };
 </script>
@@ -144,7 +114,6 @@ export default {
 .preview {
   width: 250px;
   height: 250px;
-  /* object-fit: cover; */
   border-radius: 50%;
   border: 2px solid rgba(153, 153, 153, 0.8);
   display: block;
@@ -180,10 +149,7 @@ export default {
 }
 .editprofile-button {
   display: flex;
-  /* justify-content: space-around; */
   justify-content: flex-end;
-  /* text-align: right; */
-  /* margin-right: 12px; */
 }
 .editprofile-submit,
 .editprofile-cancel {
@@ -196,18 +162,15 @@ export default {
   font-family: "Roboto", sans-serif;
 }
 
-/* PC (해상도 1024px)*/
 @media all and (min-width: 1024px) {
 }
 
-/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
   .editprofile {
     width: 55%;
   }
 }
 
-/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
   .editprofile {
     width: 100%;

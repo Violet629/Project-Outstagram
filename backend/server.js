@@ -111,7 +111,8 @@ app.post(
 app.post("/logout", function (req, res) {
   req.logout(function (err) {
     if (err) {
-      return next(err);
+      res.send(err);
+      return;
     }
     res.redirect("/");
     console.log("User-logout");
@@ -130,9 +131,13 @@ app.post("/signup", function (req, res) {
       post: [],
       like: [],
     },
-    function (err, result) {}
+    function (err, result) {
+      if (err) {
+        res.send(err);
+        return;
+      }
+    }
   );
-  // console.log(req.body);
   console.log(req.body.login_id + " User-Sign UP!");
   res.redirect("/singup_complete");
 });
@@ -155,21 +160,23 @@ app.get("/userdata", function (req, res) {
   db.collection("userdata")
     .find({ userID: req.user.userID })
     .toArray(function (err, data) {
+      if (err) {
+        res.send(err);
+        return;
+      }
       res.json(data);
-      console.log("UserData Request");
-      // for (var i = 0; i < data.length; i++) {
-      //   console.log(data[i]);
-      // }
     });
 });
 
 app.post("/friendInfo", function (req, res) {
-  // console.log(req.body);
   db.collection("userdata")
     .find({ userID: req.body.name })
     .toArray(function (err, data) {
+      if (err) {
+        res.send(err);
+        return;
+      }
       res.json(data);
-      console.log("friendInfo Request");
     });
 });
 
@@ -178,8 +185,11 @@ app.get("/postdata", function (req, res) {
     .find()
     .sort({ _id: -1 })
     .toArray(function (err, data) {
+      if (err) {
+        res.send(err);
+        return;
+      }
       res.json(data);
-      console.log("PostData Request");
     });
 });
 
@@ -187,20 +197,13 @@ app.post("/search", function (req, res) {
   db.collection("post")
     .find({ posttag: req.body.input })
     .toArray(function (err, data) {
+      if (err) {
+        res.send(err);
+        return;
+      }
       res.json(data);
-      console.log("PostData Request");
     });
 });
-
-// app.get("/searchpost", function (req, res) {
-//   db.collection("post")
-//     .find()
-//     .sort({ _id: -1 })
-//     .toArray(function (err, data) {
-//       res.json(data);
-//       console.log("PostData Request");
-//     });
-// });
 
 app.get("/mypostdata", function (req, res) {
   console.log(req.user.userID + " MyPostData Request");
@@ -209,6 +212,10 @@ app.get("/mypostdata", function (req, res) {
     .find({ userID: req.user.userID })
     .sort({ _id: -1 })
     .toArray(function (err, data) {
+      if (err) {
+        res.send(err);
+        return;
+      }
       res.json(data);
     });
 });
@@ -216,29 +223,14 @@ app.get("/mypostdata", function (req, res) {
 app.get("/mylikedata", function (req, res) {
   console.log(req.user.userID + " MyLikeData Request");
 
-  // let likeObj;
-  // let likeList = [];
-  // db.collection("userdata").findOne(
-  //   { userID: req.user.userID },
-  //   function (err, data) {
-  //     likeObj = data.like;
-  //     for (var i = 0; i < likeObj.length; i++) {
-  //       db.collection("post")
-  //         .find({ _id: ObjectId(likeObj[i]) })
-  //         .sort({ _id: -1 })
-  //         .toArray(function (err, data) {
-  //           likeList.push(data[0]);
-  //           // console.log(likeList);
-  //         });
-  //     }
-  //   }
-  // );
-
   db.collection("post")
     .find({ like: req.user.userID })
     .sort({ _id: -1 })
     .toArray(function (err, data) {
-      // console.log(data);
+      if (err) {
+        res.send(err);
+        return;
+      }
       res.send(data);
     });
 });
@@ -248,6 +240,10 @@ app.get("/myfollowdata", function (req, res) {
     .find({ follower: req.user.userID })
     .sort({ _id: -1 })
     .toArray(function (err, data) {
+      if (err) {
+        res.send(err);
+        return;
+      }
       res.json(data);
     });
 });
@@ -257,6 +253,10 @@ app.post("/followPost", function (req, res) {
     .find({ userID: req.body.followName })
     .sort({ _id: -1 })
     .toArray(function (err, data) {
+      if (err) {
+        res.send(err);
+        return;
+      }
       res.json(data);
     });
 });
@@ -264,8 +264,6 @@ app.post("/followPost", function (req, res) {
 // 이미지를 AWS S3에 저장하기
 const multer = require("multer");
 const multerS3 = require("multer-s3");
-// const multerS3 = require("multer-s3-transform");
-// const sharp = require("sharp");
 const aws = require("aws-sdk");
 const { ObjectId } = require("mongodb");
 aws.config.loadFromPath(__dirname + "/config/s3.json");
@@ -300,17 +298,6 @@ app.post(
   "/editprofile-img",
   profileimg_upload.single("image"),
   function (req, res) {
-    // console.log(req.body);
-
-    // 수정전 사진은 S3 버킷에서 삭제 해주세요
-    // s3.deleteObject(
-    //   { Bucket: "project-outstagram/profile-img", Key: req.body.beforeUrl },
-    //   (err, data) => {
-    //     console.error(err);
-    //     console.log(data);
-    //   }
-    // );
-
     // 수정한 사진은 DB에 주소만 저장해주세요
     db.collection("userdata").updateOne(
       { userID: req.body.userID },
@@ -319,7 +306,11 @@ app.post(
           profileImg: req.file.location,
         },
       },
-      function () {
+      function (err) {
+        if (err) {
+          res.send(err);
+          return;
+        }
         console.log("Profile-Img Edit Request");
         res.redirect("/mypage");
       }
@@ -335,7 +326,11 @@ app.post("/editprofile-comment", function (req, res) {
         profileComment: req.body.comment,
       },
     },
-    function () {
+    function (err) {
+      if (err) {
+        res.send(err);
+        return;
+      }
       console.log("Profile-Comment Edit Request");
       res.redirect("/mypage");
     }
@@ -344,7 +339,6 @@ app.post("/editprofile-comment", function (req, res) {
 
 app.post("/newpost", postimg_upload.single("image"), function (req, res) {
   console.log("New Posting!");
-  // console.log(req.body);
 
   var today = new Date();
   var month = today.getUTCMonth() + 1; //months from 1-12
@@ -388,7 +382,6 @@ app.post("/newpost", postimg_upload.single("image"), function (req, res) {
 });
 
 app.post("/leaveComment", function (req, res) {
-  // console.log(req.body);
   db.collection("post").updateOne(
     { _id: ObjectId(req.body.postObjId) },
     {
@@ -405,21 +398,15 @@ app.post("/leaveComment", function (req, res) {
     .find()
     .sort({ _id: -1 })
     .toArray(function (err, data) {
+      if (err) {
+        res.send(err);
+        return;
+      }
       res.json(data);
     });
 });
 
 app.post("/postlike", function (req, res) {
-  // console.log(req.body);
-
-  // db.collection("post").updateOne(
-  //   { _id: ObjectId(req.body.postObjId) },
-  //   {
-  //     $inc: {
-  //       like: +1,
-  //     },
-  //   }
-  // );
   db.collection("userdata").updateOne(
     { userID: req.body.userId },
     {
@@ -428,7 +415,6 @@ app.post("/postlike", function (req, res) {
       },
     }
   );
-
   db.collection("post").updateOne(
     { _id: ObjectId(req.body.postObjId) },
     {
@@ -437,12 +423,14 @@ app.post("/postlike", function (req, res) {
       },
     }
   );
-
   db.collection("post")
     .find()
     .sort({ _id: -1 })
     .toArray(function (err, data) {
-      // console.log(data);
+      if (err) {
+        res.send(err);
+        return;
+      }
       res.json(data);
     });
 });
@@ -488,20 +476,21 @@ app.post("/deleteFriend", function (req, res) {
 });
 
 app.post("/chatMessage", function (req, res) {
-  console.log(req.body);
   db.collection("message")
     .find({
       $and: [{ member: req.body.yourName }, { member: req.body.followName }],
     })
     .toArray(function (err, data) {
-      console.log(data);
+      if (err) {
+        res.send(err);
+        return;
+      }
       res.json(data);
     });
 });
 
 app.post("/sendMessage", function (req, res) {
   db.collection("message").insertOne({
-    // follow: req.body.followName,
     member: [req.body.yourName, req.body.followName],
     text: req.body.inputMessage,
     sender: req.body.yourName,
@@ -511,7 +500,10 @@ app.post("/sendMessage", function (req, res) {
       $and: [{ member: req.body.yourName }, { member: req.body.followName }],
     })
     .toArray(function (err, data) {
-      // res.json(data);
+      if (err) {
+        res.send(err);
+        return;
+      }
       res.end();
     });
 });

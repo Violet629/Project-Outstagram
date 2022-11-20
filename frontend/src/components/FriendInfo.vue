@@ -65,7 +65,6 @@ export default {
           friendName: name,
         })
         .then((res) => {
-          console.log(res.data[0]);
           this.$store.state.userData = res.data[0];
           this.$router.go();
         })
@@ -80,7 +79,6 @@ export default {
           friendName: name,
         })
         .then((res) => {
-          console.log(res.data[0]);
           this.$store.state.userData = res.data[0];
           this.$router.go();
         })

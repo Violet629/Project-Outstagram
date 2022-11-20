@@ -107,19 +107,18 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "NavBar",
   data() {
     return {
-      // 호스트네임 / 뒷 문자 가져옴
+      // link address
       urlName: window.location.pathname,
       inputSearch: "",
     };
   },
   methods: {
     logout() {
-      axios.post("http://localhost:8080/logout");
+      axios.post("logout");
     },
     search() {
       axios
@@ -127,7 +126,6 @@ export default {
           input: this.inputSearch,
         })
         .then((res) => {
-          // console.log(res.data);
           this.$store.state.postData = res.data;
         })
         .catch(function (err) {
@@ -212,13 +210,11 @@ export default {
   bottom: 0;
   width: 100%;
 }
-/* PC (해상도 1024px)*/
 @media all and (min-width: 1024px) {
   .mobile-footer {
     display: none;
   }
 }
-/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
   .logo {
     font-size: 30px;
@@ -234,7 +230,6 @@ export default {
     display: none;
   }
 }
-/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
   .header {
     justify-content: space-between;

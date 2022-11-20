@@ -5,18 +5,12 @@
 </template>
 
 <script>
-import LoginPage from "../src/components/LoginPage.vue";
-import SignupPage from "../src/components/SignupPage.vue";
-
 export default {
   name: "App",
   data() {
     return {};
   },
-  components: {
-    LoginPage,
-    SignupPage,
-  },
+  components: {},
 };
 </script>
 

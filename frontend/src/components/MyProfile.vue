@@ -20,11 +20,6 @@
           <div class="myprofile-name">
             <p>{{ $store.state.userData.userID }}</p>
           </div>
-          <!-- <div class="myprofile-setting">
-            <button @click="$store.commit('openEditModal')">
-              Edit Profile
-            </button>
-          </div> -->
         </div>
         <div class="menu2-mid">
           <div class="myprofile-post">
@@ -67,14 +62,15 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "MyProfile",
+};
 </script>
 
 <style>
 .myprofile {
   width: 100%;
   height: 360px;
-  /* margin: 18px 0px 0px 0px; */
   border-bottom: 1px solid rgba(153, 153, 153, 0.3);
 }
 .myprofile-menu1 {
@@ -85,7 +81,6 @@ export default {};
 .myprofile-img {
   width: 100%;
   height: 250px;
-  /* object-fit: cover; */
   border-radius: 50%;
   border: 2px solid rgba(153, 153, 153, 0.8);
 }
@@ -110,11 +105,6 @@ export default {};
   width: 26px;
   height: 26px;
   float: right;
-  /* float: left;
-  width: 25%;
-  margin-top: 24px;
-  display: flex;
-  align-items: center; */
 }
 .myprofile-setting button {
   font-size: 18px;
@@ -124,11 +114,6 @@ export default {};
   background-color: #fff;
   font-family: "Roboto", sans-serif;
 }
-/* .myprofile-setting img {
-  width: 26px;
-  height: 26px;
-  margin-left: 4px;
-} */
 .menu2-mid {
   width: 60%;
   float: left;
@@ -162,11 +147,9 @@ export default {};
   font-size: 18px;
   font-family: "Roboto", sans-serif;
 }
-/* PC (해상도 1024px)*/
 @media all and (min-width: 1024px) {
 }
 
-/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
   .myprofile-menu1 {
     width: 30%;
@@ -184,12 +167,8 @@ export default {};
   .menu2-mid {
     width: 80%;
   }
-  /* .myprofile-setting {
-    margin-top: 32px;
-  } */
 }
 
-/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
   .myprofile {
     height: 680px;
@@ -204,11 +183,6 @@ export default {};
     height: 250px;
     margin: 12px 0px 12px 0px;
   }
-  /* .myprofile-setting img {
-    position: absolute;
-    right: 20px;
-    top: 80px;
-  } */
   .myprofile-setting button {
     display: none;
   }

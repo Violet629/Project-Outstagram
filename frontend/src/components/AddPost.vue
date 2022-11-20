@@ -10,16 +10,15 @@ import NavBar from "./NavBar.vue";
 import NewPost from "./NewPost.vue";
 
 export default {
+  name: "AddPost",
   components: {
     NavBar,
     NewPost,
   },
-  // 로딩 했을때 유저데이터 요청
   created() {
     axios
-      .get("http://localhost:8080/userdata")
+      .get("userdata")
       .then((res) => {
-        // console.log(res.data[0]);
         this.$store.state.userData = res.data[0];
       })
       .catch((err) => {

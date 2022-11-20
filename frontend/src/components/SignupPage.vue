@@ -216,21 +216,19 @@ export default {
   padding: 10px 139px 10px 139px;
   color: black;
 }
-/* PC (해상도 1024px)*/
+
 @media all and (min-width: 1024px) {
   .mobile-signup-page {
     display: none;
   }
 }
 
-/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
   .mobile-signup-page {
     display: none;
   }
 }
 
-/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
   .pc-signup-page {
     display: none;

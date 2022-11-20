@@ -49,8 +49,10 @@
 import io from "socket.io-client";
 
 export default {
+  name: "Messenger",
   data() {
     return {
+      // socket library
       socket: io(),
       chatData: [],
       yourName: "",

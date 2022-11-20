@@ -77,6 +77,7 @@
 
 <script>
 export default {
+  name: "NewPost",
   data() {
     return {
       newPostStep: 0,
@@ -117,7 +118,6 @@ export default {
     newPostPreview($event) {
       this.file = $event.target.files;
       this.newPostImgUrl = URL.createObjectURL(this.file[0]);
-      //   console.log(this.newPostImgUrl);
       this.openFilter = true;
     },
     filterAdd($filter) {
@@ -144,11 +144,8 @@ export default {
 .newpost-nav {
   width: 60%;
   display: flex;
-  /* justify-content: center; */
   margin: 0 auto;
   align-items: center;
-  /* width: 90%; */
-  /* margin: 0 auto; */
 }
 .newpost-header {
   font-family: "Roboto", sans-serif;
@@ -189,11 +186,9 @@ export default {
 }
 .newpost-postimg img {
   width: 100%;
-  /* width: 500px; */
   height: 500px;
   margin: 0px auto;
   border: 2px solid rgba(153, 153, 153, 0.8);
-  /* object-fit: cover; */
 }
 .newpost-postimg label {
   text-align: center;
@@ -209,8 +204,6 @@ export default {
   display: flex;
   overflow: scroll;
   overflow-y: hidden;
-  /* justify-content: space-around; */
-  /* width: 100%; */
 }
 .editimg::-webkit-scrollbar {
   width: 10px;
@@ -230,7 +223,6 @@ export default {
   width: 150px;
   height: 150px;
   margin: 10px 10px 10px auto;
-  /* padding: 8px; */
   display: inline-block;
   color: white;
   background-size: cover;
@@ -274,11 +266,10 @@ export default {
   font-size: 16px;
   font-family: "Roboto", sans-serif;
 }
-/* PC (해상도 1024px)*/
+
 @media all and (min-width: 1024px) {
 }
 
-/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
   .newpost-nav {
     width: 100%;
@@ -291,7 +282,6 @@ export default {
   }
 }
 
-/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
   .newpost-nav {
     width: 100%;

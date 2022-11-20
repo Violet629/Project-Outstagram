@@ -58,12 +58,6 @@
             src="../assets/icon/heart.png"
             alt="like"
           />
-          <!-- <img
-            @click="postLike(contentsData._id)"
-            class="like-icon"
-            src="../assets/icon/heart.png"
-            alt="like"
-          /> -->
           <div class="like-count">
             {{ contentsData.like.length + " like" }}
           </div>
@@ -81,31 +75,13 @@
           Send
         </button>
       </div>
-      <!-- <form action="leavecomment" method="post">
-        <div style="display: none">
-          <input
-            type="text"
-            :value="$store.state.userData.userID"
-            name="userID"
-          />
-          <input
-            type="text"
-            :value="$store.state.userData.profileImg"
-            name="profileimg"
-          />
-          <input
-            type="text"
-            :value="contentsData._id"
-            name="objID"
-          />
-        </div>
-      </form> -->
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  name: "ConTents",
   data() {
     return {
       updatePostData: 0,
@@ -120,10 +96,7 @@ export default {
           userId: this.$store.state.userData.userID,
         })
         .then((res) => {
-          // console.log(res.data);
           this.$store.state.postData = res.data.slice(0, 3);
-          // this.updatePostData + 1;
-          // console.log(this.updatePostData);
         })
         .catch(function (err) {
           console.log(err);
@@ -138,11 +111,8 @@ export default {
           inputText: this.inputText,
         })
         .then((res) => {
-          // console.log(res.data);
           this.inputText = "";
           this.$store.state.postData = res.data.slice(0, 3);
-          // this.updatePostData + 1;
-          // console.log(this.updatePostData);
         })
         .catch(function (err) {
           console.log(err);
@@ -154,7 +124,6 @@ export default {
           name: name,
         })
         .then((res) => {
-          // console.log(res.data);
           this.$store.state.friendInfoData = res.data;
           this.$store.commit("openFriendModal");
         })
@@ -205,7 +174,6 @@ export default {
 .contents-img img {
   width: 100%;
   height: 100%;
-  /* object-fit: cover; */
 }
 .contents-post {
   width: 100%;
@@ -261,8 +229,6 @@ export default {
   max-height: 160px;
   overflow: scroll;
   overflow-x: hidden;
-  /* overflow-y: hidden; */
-  /* border-bottom: 2px solid rgba(153, 153, 153, 0.3); */
 }
 .post-comment::-webkit-scrollbar {
   width: 10px;
@@ -302,11 +268,9 @@ export default {
 .animate__fadeInUp {
   --animate-duration: 0.5s;
 }
-/* PC (해상도 1024px)*/
 @media all and (min-width: 1024px) {
 }
 
-/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
   .contents {
     max-width: 90%;
@@ -315,7 +279,6 @@ export default {
   }
 }
 
-/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
   .contents {
     max-width: 100%;

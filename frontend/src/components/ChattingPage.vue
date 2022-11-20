@@ -10,6 +10,7 @@ import Messenger from "./Messenger.vue";
 import NavBar from "./NavBar.vue";
 
 export default {
+  name: "ChattingPage",
   data() {
     return {};
   },

@@ -90,7 +90,6 @@ export default {
 .my-profile-img {
   width: 100%;
   height: 140px;
-  /* object-fit: cover; */
   border-radius: 50%;
   border: 1px solid rgba(153, 153, 153, 0.3);
 }
@@ -144,7 +143,6 @@ export default {
   overflow-x: hidden;
   margin-top: 4px;
   float: left;
-  /* border-top: 1px solid rgba(153, 153, 153, 0.3); */
 }
 .my-post::-webkit-scrollbar {
   width: 10px;
@@ -170,8 +168,6 @@ export default {
 }
 .my-post-list {
   margin: 0px 4px 28px 16px;
-  /* width: 100%; */
-  /* float: left; */
   display: inline-block;
 }
 .my-post-list img {
@@ -185,7 +181,6 @@ export default {
   flex-direction: column;
 }
 .my-post-list-time p {
-  /* width: 80%; */
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   margin: 6px 12px 0px 12px;
@@ -193,7 +188,6 @@ export default {
   opacity: 0.5;
 }
 .my-post-list-comment {
-  /* width: 50%; */
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   margin: 8px 12px 0px 12px;
@@ -206,16 +200,13 @@ export default {
   width: 100%;
   margin: 0;
 }
-/* PC (해상도 1024px)*/
 @media all and (min-width: 1024px) {
 }
-/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
   .myinfo {
     display: none;
   }
 }
-/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
   .myinfo {
     display: none;
