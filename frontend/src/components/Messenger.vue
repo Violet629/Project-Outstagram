@@ -71,7 +71,7 @@ export default {
     axios
       .get("userdata")
       .then((res) => {
-        this.$store.state.userData = res.data[0];
+        this.$store.commit("changeUserData", res.data[0]);
         this.yourName = this.$store.state.userData.userID;
       })
       .catch((err) => {
@@ -80,7 +80,7 @@ export default {
     axios
       .get("myfollowdata")
       .then((res) => {
-        this.$store.state.myFollowData = res.data;
+        this.$store.commit("changeMyFollowData", res.data);
       })
       .catch((err) => {
         console.error(err.message);

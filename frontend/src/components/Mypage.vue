@@ -26,7 +26,7 @@ export default {
     axios
       .get("userdata")
       .then((res) => {
-        this.$store.state.userData = res.data[0];
+        this.$store.commit("changeUserData", res.data[0]);
       })
       .catch((err) => {
         console.error(err.message);
@@ -34,7 +34,7 @@ export default {
     axios
       .get("mypostdata")
       .then((res) => {
-        this.$store.state.myPostData = res.data;
+        this.$store.commit("changeMyPostData", res.data);
       })
       .catch((err) => {
         console.error(err.message);
@@ -42,7 +42,7 @@ export default {
     axios
       .get("mylikedata")
       .then((res) => {
-        this.$store.state.myLikeData = res.data;
+        this.$store.commit("changeMyLikeData", res.data);
       })
       .catch((err) => {
         console.error(err.message);

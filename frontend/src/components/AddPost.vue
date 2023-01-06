@@ -19,7 +19,7 @@ export default {
     axios
       .get("userdata")
       .then((res) => {
-        this.$store.state.userData = res.data[0];
+        this.$store.commit("changeUserData", res.data[0]);
       })
       .catch((err) => {
         console.error(err.message);

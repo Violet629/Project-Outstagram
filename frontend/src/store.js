@@ -9,12 +9,10 @@ const store = createStore({
     return {
       userData: [],
       postData: [],
-      searchPostData: [],
       myPostData: [],
       myLikeData: [],
       myFollowData: [],
       friendInfoData: [],
-      chatData: [],
       friendModal: false,
       editModal: false,
       upPostModal: false,
@@ -38,6 +36,24 @@ const store = createStore({
     },
     openUpPostModal(state) {
       state.upPostModal = false;
+    },
+    changeUserData(state, payload) {
+      state.userData = payload;
+    },
+    changePostData(state, payload) {
+      state.postData = payload;
+    },
+    changeMyPostData(state, payload) {
+      state.myPostData = payload;
+    },
+    changeMyLikeData(state, payload) {
+      state.myLikeData = payload;
+    },
+    changeMyFollowData(state, payload) {
+      state.myFollowData = payload;
+    },
+    changeFriendInfoData(state, payload) {
+      state.friendInfoData = payload;
     },
   },
 });

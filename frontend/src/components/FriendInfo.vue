@@ -65,7 +65,7 @@ export default {
           friendName: name,
         })
         .then((res) => {
-          this.$store.state.userData = res.data[0];
+          this.$store.commit("changeUserData", res.data[0]);
           this.$router.go();
         })
         .catch(function (err) {
@@ -79,7 +79,7 @@ export default {
           friendName: name,
         })
         .then((res) => {
-          this.$store.state.userData = res.data[0];
+          this.$store.commit("changeUserData", res.data[0]);
           this.$router.go();
         })
         .catch(function (err) {

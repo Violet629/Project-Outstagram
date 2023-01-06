@@ -96,7 +96,7 @@ export default {
           userId: this.$store.state.userData.userID,
         })
         .then((res) => {
-          this.$store.state.postData = res.data.slice(0, 3);
+          this.$store.commit("changePostData", res.data.slice(0, 3));
         })
         .catch(function (err) {
           console.log(err);
@@ -112,7 +112,7 @@ export default {
         })
         .then((res) => {
           this.inputText = "";
-          this.$store.state.postData = res.data.slice(0, 3);
+          this.$store.commit("changePostData", res.data.slice(0, 3));
         })
         .catch(function (err) {
           console.log(err);
@@ -124,7 +124,7 @@ export default {
           name: name,
         })
         .then((res) => {
-          this.$store.state.friendInfoData = res.data;
+          this.$store.commit("changeFriendInfoData", res.data);
           this.$store.commit("openFriendModal");
         })
         .catch(function (err) {

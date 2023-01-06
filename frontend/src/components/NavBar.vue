@@ -126,7 +126,7 @@ export default {
           input: this.inputSearch,
         })
         .then((res) => {
-          this.$store.state.postData = res.data;
+          this.$store.commit("changePostData", res.data);
         })
         .catch(function (err) {
           console.log(err);

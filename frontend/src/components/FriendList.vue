@@ -42,7 +42,7 @@ export default {
           followName: name,
         })
         .then((res) => {
-          this.$store.state.postData = res.data;
+          this.$store.commit("changePostData", res.data.slice(0, 3));
         })
         .catch(function (err) {
           console.log(err);

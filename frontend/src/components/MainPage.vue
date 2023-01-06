@@ -29,7 +29,7 @@ export default {
     axios
       .get("userdata")
       .then((res) => {
-        this.$store.state.userData = res.data[0];
+        this.$store.commit("changeUserData", res.data[0]);
       })
       .catch((err) => {
         console.error(err.message);
@@ -37,7 +37,7 @@ export default {
     axios
       .get("postdata")
       .then((res) => {
-        this.$store.state.postData = res.data.slice(0, 3);
+        this.$store.commit("changePostData", res.data.slice(0, 3));
       })
       .catch((err) => {
         console.error(err.message);
@@ -45,7 +45,7 @@ export default {
     axios
       .get("mypostdata")
       .then((res) => {
-        this.$store.state.myPostData = res.data;
+        this.$store.commit("changeMyPostData", res.data);
       })
       .catch((err) => {
         console.error(err.message);
